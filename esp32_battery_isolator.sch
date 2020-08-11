@@ -1040,7 +1040,7 @@ Text GLabel 4820 5292 2    50   Input ~ 0
 LOAD_2_C
 Text GLabel 4820 6592 2    50   Output ~ 0
 AUX_1
-Text GLabel 3620 6292 0    50   Output ~ 0
+Text GLabel 4820 5692 2    50   Output ~ 0
 AUX_2
 Text GLabel 4820 6192 2    50   Output ~ 0
 LOAD_1
@@ -1089,7 +1089,6 @@ Wire Wire Line
 	1686 805  2171 805 
 NoConn ~ 4820 6092
 NoConn ~ 4820 5792
-NoConn ~ 4820 5692
 NoConn ~ 4820 5392
 Text Notes 3396 1280 0    50   ~ 0
 Alternative FETs: \nC148386\nC148396
@@ -1507,4 +1506,5 @@ NoConn ~ 2862 6106
 NoConn ~ 2532 7558
 Text Notes 2090 7148 0    50   ~ 0
 Temp
+NoConn ~ 3620 6292
 $EndSCHEMATC
