@@ -90,21 +90,17 @@ NoConn ~ 3620 6192
 NoConn ~ 3620 6392
 NoConn ~ 3620 6492
 NoConn ~ 3620 6592
-Wire Wire Line
-	2726 4570 2762 4570
 $Comp
 L power:GND #PWR06
 U 1 1 5F032105
-P 2426 4970
-F 0 "#PWR06" H 2426 4720 50  0001 C CNN
-F 1 "GND" H 2431 4797 50  0000 C CNN
-F 2 "" H 2426 4970 50  0001 C CNN
-F 3 "" H 2426 4970 50  0001 C CNN
-	1    2426 4970
+P 2427 4870
+F 0 "#PWR06" H 2427 4620 50  0001 C CNN
+F 1 "GND" H 2432 4697 50  0000 C CNN
+F 2 "" H 2427 4870 50  0001 C CNN
+F 3 "" H 2427 4870 50  0001 C CNN
+	1    2427 4870
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	2126 4670 2126 4570
 $Comp
 L Device:C_Small C1
 U 1 1 5F03693E
@@ -159,10 +155,6 @@ F 3 "" H 3078 4770 50  0001 C CNN
 	1    3078 4770
 	1    0    0    -1  
 $EndComp
-Connection ~ 2762 4570
-Connection ~ 3078 4570
-Wire Wire Line
-	2762 4570 3078 4570
 $Comp
 L Device:C_Small C6
 U 1 1 5F0878E3
@@ -297,20 +289,6 @@ Wire Wire Line
 Text Notes 7908 4309 0    50   ~ 0
 UART Port
 $Comp
-L Connector:Conn_01x02_Male J1
-U 1 1 5F0B5543
-P 1486 905
-F 0 "J1" H 1556 1090 50  0000 C CNN
-F 1 "INPUT" H 1266 980 50  0000 C CNN
-F 2 "Acea:AMASS_XT90-F_1x02_P11mm_Vertical" H 1486 905 50  0001 C CNN
-F 3 "~" H 1486 905 50  0001 C CNN
-F 4 "https://www.frontlinehobbies.com.au/g-force-xt60-gold-connector-male-female-2pair-gf-1?gclid=CjwKCAjwrvv3BRAJEiwAhwOdM8-qgWv5jfFefjTFyJOH3A9PPJY-dncYXHNHYDGoyDbJGDFwuET0RRoCcNgQAvD_BwE" H 1486 905 50  0001 C CNN "other_URL"
-	1    1486 905 
-	1    0    0    1   
-$EndComp
-Text Notes 1758 591  0    50   ~ 0
-Input\n
-$Comp
 L Sensor_Current:ACS781xLRTR-050B U4
 U 1 1 5F000CC7
 P 5548 1250
@@ -351,53 +329,15 @@ F 3 "" H 5548 950 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Text Notes 5312 602  0    50   ~ 0
-Aux Batt 1
+Batt 1 (MAIN)
 Text Notes 9224 609  0    50   ~ 0
-Aux Batt 2
-$Comp
-L power:GND #PWR03
-U 1 1 5F00D6BD
-P 1776 1000
-F 0 "#PWR03" H 1776 750 50  0001 C CNN
-F 1 "GND" H 1781 827 50  0000 C CNN
-F 2 "" H 1776 1000 50  0001 C CNN
-F 3 "" H 1776 1000 50  0001 C CNN
-	1    1776 1000
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	1686 905  1776 905 
-Text GLabel 2171 805  2    50   Output ~ 0
-Alternator
+Batt 2 (AUX)
 Text GLabel 5078 984  0    50   Input ~ 0
 Alternator
 Text GLabel 9810 1252 2    50   Output ~ 0
 AUX_2_C
-Text GLabel 1497 4570 0    50   Input ~ 0
-Alternator
-$Comp
-L Regulator_Linear:TLV70012_SOT23-5 U1
-U 1 1 5F01D262
-P 2426 4670
-F 0 "U1" H 2426 5012 50  0000 C CNN
-F 1 "ME6119C33M5G" H 2426 4921 50  0000 C CNN
-F 2 "Package_TO_SOT_SMD:SOT-23-5" H 2426 4995 50  0001 C CIN
-F 3 "https://datasheet.lcsc.com/szlcsc/Nanjing-Micro-One-Elec-ME6119C33M5G_C81100.pdf" H 2426 4720 50  0001 C CNN
-F 4 "C81100" H 2426 4670 50  0001 C CNN "lcsc_part_number"
-F 5 "https://lcsc.com/product-detail/Low-Dropout-Regulators-LDO_MICRONE-Nanjing-Micro-One-Elec-ME6119C33M5G_C81100.html" H 2426 4670 50  0001 C CNN "lcsc_url"
-F 6 "5" H 2426 4670 50  0001 C CNN "lcsc_min_qty"
-F 7 "ME6119C33M5G" H 2426 4670 50  0001 C CNN "mfr_part_number"
-F 8 "SOT23-5" H 2426 4670 50  0001 C CNN "package"
-	1    2426 4670
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	2127 4570 2126 4570
 Wire Wire Line
 	1582 4570 1582 4600
-Connection ~ 2126 4570
-Wire Wire Line
-	1776 905  1776 1000
 $Comp
 L Device:C_Small C2
 U 1 1 5F0597D2
@@ -418,8 +358,6 @@ Wire Wire Line
 	1582 4570 1947 4570
 Wire Wire Line
 	1947 4570 1947 4600
-Wire Wire Line
-	1947 4570 2126 4570
 Connection ~ 1947 4570
 Text GLabel 4820 6892 2    50   Output ~ 0
 MAIN_LED
@@ -768,52 +706,10 @@ Wire Notes Line
 	11222 5446 11222 5224
 Wire Notes Line
 	11222 5224 11230 5224
-$Comp
-L Sensor_Current:ACS781xLRTR-050B U3
-U 1 1 5F15CBB6
-P 5532 3052
-F 0 "U3" H 5922 2952 50  0000 L CNN
-F 1 "ACS781LLRTR-050B" H 5927 2872 50  0000 L CNN
-F 2 "Sensor_Current:Allegro_PSOF-7_4.8x6.4mm_P1.60mm" H 5532 3052 50  0001 C CNN
-F 3 "http://www.allegromicro.com/~/media/Files/Datasheets/ACS780-Datasheet.ashx?la=en" H 5532 3052 50  0001 C CNN
-F 4 "620-1823-1-ND" H 5532 3052 50  0001 C CNN "digi_part_number"
-F 5 "https://www.digikey.com.au/product-detail/en/allegro-microsystems/ACS781LLRTR-050B-T/620-1823-1-ND/6189112" H 5532 3052 50  0001 C CNN "digi_url"
-F 6 "1" H 5532 3052 50  0001 C CNN "digi_min_qty"
-F 7 "ACS781LLRTR-050B-T" H 5532 3052 50  0001 C CNN "mfr_part_number"
-F 8 "7-PSOF" H 5532 3052 50  0001 C CNN "package"
-	1    5532 3052
-	1    0    0    -1  
-$EndComp
-NoConn ~ 5632 3352
-NoConn ~ 5732 3352
-$Comp
-L power:GND #PWR020
-U 1 1 5F15CBC2
-P 5532 3352
-F 0 "#PWR020" H 5532 3102 50  0001 C CNN
-F 1 "GND" H 5537 3179 50  0000 C CNN
-F 2 "" H 5532 3352 50  0001 C CNN
-F 3 "" H 5532 3352 50  0001 C CNN
-	1    5532 3352
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:+3V3 #PWR019
-U 1 1 5F15CBCC
-P 5532 2752
-F 0 "#PWR019" H 5532 2602 50  0001 C CNN
-F 1 "+3V3" H 5547 2925 50  0000 C CNN
-F 2 "" H 5532 2752 50  0001 C CNN
-F 3 "" H 5532 2752 50  0001 C CNN
-	1    5532 2752
-	1    0    0    -1  
-$EndComp
 Text Notes 5296 2404 0    50   ~ 0
 Load 1
-Text GLabel 5062 2786 0    50   Input ~ 0
+Text GLabel 5132 3152 2    50   Input ~ 0
 Alternator
-Text GLabel 5932 3052 2    50   Output ~ 0
-LOAD_1_C
 $Comp
 L Connector:Conn_01x02_Male J2
 U 1 1 5F15CBDA
@@ -854,12 +750,6 @@ Wire Wire Line
 	4602 3152 4732 3152
 Text GLabel 4932 3542 3    50   Output ~ 0
 LOAD_1
-Wire Wire Line
-	5132 2952 5112 2952
-Wire Wire Line
-	5112 2952 5112 2786
-Wire Wire Line
-	5112 2786 5062 2786
 $Comp
 L Device:R_Small R5
 U 1 1 5F15CC03
@@ -894,49 +784,7 @@ F 3 "" H 5094 3652 50  0001 C CNN
 $EndComp
 Text Notes 9240 2415 0    50   ~ 0
 Load 2
-Text GLabel 9826 3058 2    50   Output ~ 0
-LOAD_2_C
-$Comp
-L Sensor_Current:ACS781xLRTR-050B U6
-U 1 1 5F167DE6
-P 9426 3058
-F 0 "U6" H 9816 2958 50  0000 L CNN
-F 1 "ACS781LLRTR-050B" H 9821 2878 50  0000 L CNN
-F 2 "Sensor_Current:Allegro_PSOF-7_4.8x6.4mm_P1.60mm" H 9426 3058 50  0001 C CNN
-F 3 "http://www.allegromicro.com/~/media/Files/Datasheets/ACS780-Datasheet.ashx?la=en" H 9426 3058 50  0001 C CNN
-F 4 "620-1823-1-ND" H 9426 3058 50  0001 C CNN "digi_part_number"
-F 5 "https://www.digikey.com.au/product-detail/en/allegro-microsystems/ACS781LLRTR-050B-T/620-1823-1-ND/6189112" H 9426 3058 50  0001 C CNN "digi_url"
-F 6 "1" H 9426 3058 50  0001 C CNN "digi_min_qty"
-F 7 "ACS781LLRTR-050B-T" H 9426 3058 50  0001 C CNN "mfr_part_number"
-F 8 "7-PSOF" H 9426 3058 50  0001 C CNN "package"
-	1    9426 3058
-	1    0    0    -1  
-$EndComp
-NoConn ~ 9526 3358
-NoConn ~ 9626 3358
-$Comp
-L power:GND #PWR032
-U 1 1 5F167DF2
-P 9426 3358
-F 0 "#PWR032" H 9426 3108 50  0001 C CNN
-F 1 "GND" H 9431 3185 50  0000 C CNN
-F 2 "" H 9426 3358 50  0001 C CNN
-F 3 "" H 9426 3358 50  0001 C CNN
-	1    9426 3358
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:+3V3 #PWR031
-U 1 1 5F167DFC
-P 9426 2758
-F 0 "#PWR031" H 9426 2608 50  0001 C CNN
-F 1 "+3V3" H 9441 2931 50  0000 C CNN
-F 2 "" H 9426 2758 50  0001 C CNN
-F 3 "" H 9426 2758 50  0001 C CNN
-	1    9426 2758
-	1    0    0    -1  
-$EndComp
-Text GLabel 8956 2792 0    50   Input ~ 0
+Text GLabel 9026 3158 2    50   Input ~ 0
 Alternator
 $Comp
 L Connector:Conn_01x02_Male J5
@@ -978,12 +826,6 @@ Wire Wire Line
 	8496 3158 8626 3158
 Text GLabel 8826 3548 3    50   Output ~ 0
 LOAD_2
-Wire Wire Line
-	9026 2958 9006 2958
-Wire Wire Line
-	9006 2958 9006 2792
-Wire Wire Line
-	9006 2792 8956 2792
 $Comp
 L Device:R_Small R9
 U 1 1 5F167E31
@@ -1032,12 +874,8 @@ Text GLabel 4820 6992 2    50   Input ~ 0
 AUX_1_C
 Text GLabel 5948 1250 2    50   Output ~ 0
 AUX_1_C
-Text GLabel 4820 5092 2    50   Input ~ 0
-LOAD_1_C
-Text GLabel 4820 5592 2    50   Input ~ 0
+Text GLabel 3620 5092 0    50   Input ~ 0
 AUX_2_C
-Text GLabel 4820 5292 2    50   Input ~ 0
-LOAD_2_C
 Text GLabel 4820 6592 2    50   Output ~ 0
 AUX_1
 Text GLabel 4820 5692 2    50   Output ~ 0
@@ -1085,15 +923,11 @@ F 3 "" H 1582 4800 50  0001 C CNN
 	1    1582 4800
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	1686 805  2171 805 
 NoConn ~ 4820 6092
 NoConn ~ 4820 5792
 NoConn ~ 4820 5392
 Text Notes 3396 1280 0    50   ~ 0
 Alternative FETs: \nC148386\nC148396
-Text GLabel 3620 5092 0    50   Input ~ 0
-MAIN
 Wire Wire Line
 	3078 4570 3338 4570
 Connection ~ 3338 4570
@@ -1314,17 +1148,6 @@ F 3 "~" H 8342 5920 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:+3V3 #PWR034
-U 1 1 5F0D4017
-P 8142 5920
-F 0 "#PWR034" H 8142 5770 50  0001 C CNN
-F 1 "+3V3" V 8141 6137 50  0000 C CNN
-F 2 "" H 8142 5920 50  0001 C CNN
-F 3 "" H 8142 5920 50  0001 C CNN
-	1    8142 5920
-	0    -1   -1   0   
-$EndComp
-$Comp
 L power:GND #PWR035
 U 1 1 5F0D4D77
 P 8142 5820
@@ -1335,10 +1158,6 @@ F 3 "" H 8142 5820 50  0001 C CNN
 	1    8142 5820
 	0    1    1    0   
 $EndComp
-Text GLabel 8142 6120 0    50   Input ~ 0
-SDA
-Text GLabel 8142 6020 0    50   Input ~ 0
-SCL
 Wire Wire Line
 	4820 5492 5056 5492
 $Comp
@@ -1507,4 +1326,81 @@ NoConn ~ 2532 7558
 Text Notes 2090 7148 0    50   ~ 0
 Temp
 NoConn ~ 3620 6292
+$Comp
+L Regulator_Linear:AMS1117-3.3 U1
+U 1 1 5F52FBF8
+P 2427 4570
+F 0 "U1" H 2427 4812 50  0000 C CNN
+F 1 "AMS1117-3.3" H 2427 4721 50  0000 C CNN
+F 2 "Package_TO_SOT_SMD:SOT-223-3_TabPin2" H 2427 4770 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/1812131418_Youtai-Semiconductor-Co-Ltd-AMS1117-3-3_C347222.pdf" H 2527 4320 50  0001 C CNN
+F 4 "C347222" H 2427 4570 50  0001 C CNN "lcsc_part_number"
+F 5 "https://lcsc.com/product-detail/Dropout-Regulators-LDO_UMW-Youtai-Semiconductor-Co-Ltd-AMS1117-3-3_C347222.html" H 2427 4570 50  0001 C CNN "lcsc_url"
+F 6 "10" H 2427 4570 50  0001 C CNN "lcsc_min_qty"
+F 7 "AMS1117-3.3" H 2427 4570 50  0001 C CNN "mfr_part_number"
+F 8 "SOT-223" H 2427 4570 50  0001 C CNN "package"
+	1    2427 4570
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1947 4570 2127 4570
+Wire Wire Line
+	2727 4570 2762 4570
+Wire Wire Line
+	2762 4570 3078 4570
+Connection ~ 2762 4570
+Connection ~ 3078 4570
+$Comp
+L MAX17260:TACT-SWITCH SW2
+U 1 1 5F552A40
+P 2826 5520
+F 0 "SW2" H 2826 5775 50  0000 C CNN
+F 1 "TS-1102W-4316" H 2826 5684 50  0000 C CNN
+F 2 "Button_Switch_SMD:SW_Push_1P1T_NO_6x6mm_H9.5mm" H 2826 5797 60  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/1808311432_SOFNG-TS-1102W-4316_C111373.pdf" H 2826 5691 60  0001 C CNN
+F 4 "C111373" H 2826 5520 50  0001 C CNN "lcsc_part_number"
+F 5 "https://lcsc.com/product-detail/Tactile-Switches_SOFNG-TS-1102W-4316_C111373.html" H 2826 5520 50  0001 C CNN "lcsc_url"
+F 6 "10" H 2826 5520 50  0001 C CNN "lcsc_min_qty"
+F 7 "TS-1102W-4316" H 2826 5520 50  0001 C CNN "mfr_part_number"
+F 8 "6x6x4.3" H 2826 5520 50  0001 C CNN "package"
+	1    2826 5520
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0103
+U 1 1 5F553B72
+P 3126 5520
+F 0 "#PWR0103" H 3126 5270 50  0001 C CNN
+F 1 "GND" H 3131 5347 50  0000 C CNN
+F 2 "" H 3126 5520 50  0001 C CNN
+F 3 "" H 3126 5520 50  0001 C CNN
+	1    3126 5520
+	1    0    0    -1  
+$EndComp
+Text GLabel 2526 5520 0    50   Input ~ 0
+RST
+Text GLabel 8142 6120 0    50   Input ~ 0
+SDA
+Text GLabel 8142 6020 0    50   Input ~ 0
+SCL
+$Comp
+L power:+3V3 #PWR034
+U 1 1 5F0D4017
+P 8142 5920
+F 0 "#PWR034" H 8142 5770 50  0001 C CNN
+F 1 "+3V3" V 8141 6137 50  0000 C CNN
+F 2 "" H 8142 5920 50  0001 C CNN
+F 3 "" H 8142 5920 50  0001 C CNN
+	1    8142 5920
+	0    -1   -1   0   
+$EndComp
+Text GLabel 3581 4892 1    50   Input ~ 0
+RST
+Text GLabel 1497 4570 0    50   Input ~ 0
+BAT2V
+NoConn ~ 4820 5592
+NoConn ~ 4820 5092
+NoConn ~ 4820 5292
+Text Notes 4867 7229 0    50   ~ 0
+SPARE ADC
 $EndSCHEMATC
