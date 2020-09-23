@@ -80,11 +80,6 @@ F 3 "" H 3660 4568 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	4220 4692 3660 4692
-Wire Wire Line
-	3660 4692 3660 4570
-Connection ~ 3660 4570
-Wire Wire Line
-	3660 4570 3660 4568
 NoConn ~ 3620 6092
 NoConn ~ 3620 6192
 NoConn ~ 3620 6392
@@ -93,93 +88,93 @@ NoConn ~ 3620 6592
 $Comp
 L power:GND #PWR06
 U 1 1 5F032105
-P 2427 4870
-F 0 "#PWR06" H 2427 4620 50  0001 C CNN
-F 1 "GND" H 2432 4697 50  0000 C CNN
-F 2 "" H 2427 4870 50  0001 C CNN
-F 3 "" H 2427 4870 50  0001 C CNN
-	1    2427 4870
+P 2215 4870
+F 0 "#PWR06" H 2215 4620 50  0001 C CNN
+F 1 "GND" H 2220 4697 50  0000 C CNN
+F 2 "" H 2215 4870 50  0001 C CNN
+F 3 "" H 2215 4870 50  0001 C CNN
+	1    2215 4870
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:C_Small C1
 U 1 1 5F03693E
-P 1582 4700
-F 0 "C1" H 1674 4746 50  0000 L CNN
-F 1 "10uF" H 1674 4655 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0805_2012Metric" H 1582 4700 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/Samsung-Electro-Mechanics-CL21A106KAYNNNE_C15850.pdf" H 1582 4700 50  0001 C CNN
-F 4 "C15850" H 1582 4700 50  0001 C CNN "lcsc_part_number"
-F 5 "https://lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_SAMSUNG_CL21A106KAYNNNE_10uF-106-10-25V_C15850.html" H 1582 4700 50  0001 C CNN "lcsc_url"
-F 6 "20" H 1582 4700 50  0001 C CNN "lcsc_min_qty"
-F 7 "CL21A106KAYNNNE" H 1582 4700 50  0001 C CNN "mfr_part_number"
-F 8 "0805" H 1582 4700 50  0001 C CNN "package"
-	1    1582 4700
+P 1370 4700
+F 0 "C1" H 1462 4746 50  0000 L CNN
+F 1 "10uF" H 1462 4655 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric" H 1370 4700 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Samsung-Electro-Mechanics-CL21A106KAYNNNE_C15850.pdf" H 1370 4700 50  0001 C CNN
+F 4 "C15850" H 1370 4700 50  0001 C CNN "lcsc_part_number"
+F 5 "https://lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_SAMSUNG_CL21A106KAYNNNE_10uF-106-10-25V_C15850.html" H 1370 4700 50  0001 C CNN "lcsc_url"
+F 6 "20" H 1370 4700 50  0001 C CNN "lcsc_min_qty"
+F 7 "CL21A106KAYNNNE" H 1370 4700 50  0001 C CNN "mfr_part_number"
+F 8 "0805" H 1370 4700 50  0001 C CNN "package"
+	1    1370 4700
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:C_Small C4
 U 1 1 5F03A09F
-P 2762 4670
-F 0 "C4" H 2748 4904 50  0000 L CNN
-F 1 "10uF" H 2754 4826 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0805_2012Metric" H 2762 4670 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/Samsung-Electro-Mechanics-CL21A106KAYNNNE_C15850.pdf" H 2762 4670 50  0001 C CNN
-F 4 "C15850" H 2762 4670 50  0001 C CNN "lcsc_part_number"
-F 5 "https://lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_SAMSUNG_CL21A106KAYNNNE_10uF-106-10-25V_C15850.html" H 2762 4670 50  0001 C CNN "lcsc_url"
-F 6 "20" H 2762 4670 50  0001 C CNN "lcsc_min_qty"
-F 7 "CL21A106KAYNNNE" H 2762 4670 50  0001 C CNN "mfr_part_number"
-F 8 "0805" H 2762 4670 50  0001 C CNN "package"
-	1    2762 4670
+P 2550 4670
+F 0 "C4" H 2536 4904 50  0000 L CNN
+F 1 "10uF" H 2542 4826 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric" H 2550 4670 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Samsung-Electro-Mechanics-CL21A106KAYNNNE_C15850.pdf" H 2550 4670 50  0001 C CNN
+F 4 "C15850" H 2550 4670 50  0001 C CNN "lcsc_part_number"
+F 5 "https://lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_SAMSUNG_CL21A106KAYNNNE_10uF-106-10-25V_C15850.html" H 2550 4670 50  0001 C CNN "lcsc_url"
+F 6 "20" H 2550 4670 50  0001 C CNN "lcsc_min_qty"
+F 7 "CL21A106KAYNNNE" H 2550 4670 50  0001 C CNN "mfr_part_number"
+F 8 "0805" H 2550 4670 50  0001 C CNN "package"
+	1    2550 4670
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:GND #PWR08
 U 1 1 5F03B396
-P 2762 4770
-F 0 "#PWR08" H 2762 4520 50  0001 C CNN
-F 1 "GND" H 2767 4597 50  0000 C CNN
-F 2 "" H 2762 4770 50  0001 C CNN
-F 3 "" H 2762 4770 50  0001 C CNN
-	1    2762 4770
+P 2550 4770
+F 0 "#PWR08" H 2550 4520 50  0001 C CNN
+F 1 "GND" H 2555 4597 50  0000 C CNN
+F 2 "" H 2550 4770 50  0001 C CNN
+F 3 "" H 2550 4770 50  0001 C CNN
+	1    2550 4770
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:GND #PWR09
 U 1 1 5F0703E1
-P 3078 4770
-F 0 "#PWR09" H 3078 4520 50  0001 C CNN
-F 1 "GND" H 3083 4597 50  0000 C CNN
-F 2 "" H 3078 4770 50  0001 C CNN
-F 3 "" H 3078 4770 50  0001 C CNN
-	1    3078 4770
+P 2866 4770
+F 0 "#PWR09" H 2866 4520 50  0001 C CNN
+F 1 "GND" H 2871 4597 50  0000 C CNN
+F 2 "" H 2866 4770 50  0001 C CNN
+F 3 "" H 2866 4770 50  0001 C CNN
+	1    2866 4770
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:C_Small C6
 U 1 1 5F0878E3
-P 3338 4994
-F 0 "C6" H 3148 4940 50  0000 L CNN
-F 1 "100n" H 3050 4870 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0805_2012Metric" H 3338 4994 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/Huaxin-S-T-0805B104K250_C128353.pdf" H 3338 4994 50  0001 C CNN
-F 4 "C128353" H 3338 4994 50  0001 C CNN "lcsc_part_number"
-F 5 "https://lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Walsin-Tech-Corp-0805B104K250_C128353.html" H 3338 4994 50  0001 C CNN "lcsc_url"
-F 6 "100" H 3338 4994 50  0001 C CNN "lcsc_min_qty"
-F 7 "0805B104K250" H 3338 4994 50  0001 C CNN "mfr_part_number"
-F 8 "0805" H 3338 4994 50  0001 C CNN "package"
-	1    3338 4994
+P 3126 4994
+F 0 "C6" H 2936 4940 50  0000 L CNN
+F 1 "100n" H 2838 4870 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric" H 3126 4994 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Huaxin-S-T-0805B104K250_C128353.pdf" H 3126 4994 50  0001 C CNN
+F 4 "C128353" H 3126 4994 50  0001 C CNN "lcsc_part_number"
+F 5 "https://lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Walsin-Tech-Corp-0805B104K250_C128353.html" H 3126 4994 50  0001 C CNN "lcsc_url"
+F 6 "100" H 3126 4994 50  0001 C CNN "lcsc_min_qty"
+F 7 "0805B104K250" H 3126 4994 50  0001 C CNN "mfr_part_number"
+F 8 "0805" H 3126 4994 50  0001 C CNN "package"
+	1    3126 4994
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:GND #PWR010
 U 1 1 5F088CED
-P 3338 5094
-F 0 "#PWR010" H 3338 4844 50  0001 C CNN
-F 1 "GND" H 3343 4921 50  0000 C CNN
-F 2 "" H 3338 5094 50  0001 C CNN
-F 3 "" H 3338 5094 50  0001 C CNN
-	1    3338 5094
+P 3126 5094
+F 0 "#PWR010" H 3126 4844 50  0001 C CNN
+F 1 "GND" H 3131 4921 50  0000 C CNN
+F 2 "" H 3126 5094 50  0001 C CNN
+F 3 "" H 3126 5094 50  0001 C CNN
+	1    3126 5094
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -212,33 +207,33 @@ $EndComp
 $Comp
 L Device:R_Small R4
 U 1 1 5F08C101
-P 3338 4670
-F 0 "R4" H 3426 4694 50  0000 C CNN
-F 1 "10k" H 3446 4626 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" H 3338 4670 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/Uniroyal-Elec-0603WAJ0103T5E_C15401.pdf" H 3338 4670 50  0001 C CNN
-F 4 "C15401" H 3338 4670 50  0001 C CNN "lcsc_part_number"
-F 5 "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_UNI-ROYAL-Uniroyal-Elec-0603WAJ0103T5E_C15401.html" H 3338 4670 50  0001 C CNN "lcsc_url"
-F 6 "100" H 3338 4670 50  0001 C CNN "lcsc_min_qty"
-F 7 "0603WAJ0103T5E" H 3338 4670 50  0001 C CNN "mfr_part_number"
-F 8 "0603" H 3338 4670 50  0001 C CNN "package"
-	1    3338 4670
+P 3126 4670
+F 0 "R4" H 3214 4694 50  0000 C CNN
+F 1 "10k" H 3234 4626 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 3126 4670 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Uniroyal-Elec-0603WAJ0103T5E_C15401.pdf" H 3126 4670 50  0001 C CNN
+F 4 "C15401" H 3126 4670 50  0001 C CNN "lcsc_part_number"
+F 5 "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_UNI-ROYAL-Uniroyal-Elec-0603WAJ0103T5E_C15401.html" H 3126 4670 50  0001 C CNN "lcsc_url"
+F 6 "100" H 3126 4670 50  0001 C CNN "lcsc_min_qty"
+F 7 "0603WAJ0103T5E" H 3126 4670 50  0001 C CNN "mfr_part_number"
+F 8 "0603" H 3126 4670 50  0001 C CNN "package"
+	1    3126 4670
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:C_Small C5
 U 1 1 5F06F3AB
-P 3078 4670
-F 0 "C5" H 3094 4974 50  0000 L CNN
-F 1 "100n" H 3096 4906 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0805_2012Metric" H 3078 4670 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/Huaxin-S-T-0805B104K250_C128353.pdf" H 3078 4670 50  0001 C CNN
-F 4 "C128353" H 3078 4670 50  0001 C CNN "lcsc_part_number"
-F 5 "https://lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Walsin-Tech-Corp-0805B104K250_C128353.html" H 3078 4670 50  0001 C CNN "lcsc_url"
-F 6 "100" H 3078 4670 50  0001 C CNN "lcsc_min_qty"
-F 7 "0805B104K250" H 3078 4670 50  0001 C CNN "mfr_part_number"
-F 8 "0805" H 3078 4670 50  0001 C CNN "package"
-	1    3078 4670
+P 2866 4670
+F 0 "C5" H 2882 4974 50  0000 L CNN
+F 1 "100n" H 2884 4906 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric" H 2866 4670 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Huaxin-S-T-0805B104K250_C128353.pdf" H 2866 4670 50  0001 C CNN
+F 4 "C128353" H 2866 4670 50  0001 C CNN "lcsc_part_number"
+F 5 "https://lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Walsin-Tech-Corp-0805B104K250_C128353.html" H 2866 4670 50  0001 C CNN "lcsc_url"
+F 6 "100" H 2866 4670 50  0001 C CNN "lcsc_min_qty"
+F 7 "0805B104K250" H 2866 4670 50  0001 C CNN "mfr_part_number"
+F 8 "0805" H 2866 4670 50  0001 C CNN "package"
+	1    2866 4670
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -337,28 +332,28 @@ Alternator
 Text GLabel 9810 1252 2    50   Output ~ 0
 AUX_2_C
 Wire Wire Line
-	1582 4570 1582 4600
+	1370 4570 1370 4600
 $Comp
 L Device:C_Small C2
 U 1 1 5F0597D2
-P 1947 4700
-F 0 "C2" H 2017 4745 50  0000 L CNN
-F 1 "100n" H 2017 4650 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0805_2012Metric" H 1947 4700 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/Huaxin-S-T-0805B104K250_C128353.pdf" H 1947 4700 50  0001 C CNN
-F 4 "C128353" H 1947 4700 50  0001 C CNN "lcsc_part_number"
-F 5 "https://lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Walsin-Tech-Corp-0805B104K250_C128353.html" H 1947 4700 50  0001 C CNN "lcsc_url"
-F 6 "100" H 1947 4700 50  0001 C CNN "lcsc_min_qty"
-F 7 "0805B104K250" H 1947 4700 50  0001 C CNN "mfr_part_number"
-F 8 "0805" H 1947 4700 50  0001 C CNN "package"
-	1    1947 4700
+P 1735 4700
+F 0 "C2" H 1805 4745 50  0000 L CNN
+F 1 "100n" H 1805 4650 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric" H 1735 4700 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Huaxin-S-T-0805B104K250_C128353.pdf" H 1735 4700 50  0001 C CNN
+F 4 "C128353" H 1735 4700 50  0001 C CNN "lcsc_part_number"
+F 5 "https://lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Walsin-Tech-Corp-0805B104K250_C128353.html" H 1735 4700 50  0001 C CNN "lcsc_url"
+F 6 "100" H 1735 4700 50  0001 C CNN "lcsc_min_qty"
+F 7 "0805B104K250" H 1735 4700 50  0001 C CNN "mfr_part_number"
+F 8 "0805" H 1735 4700 50  0001 C CNN "package"
+	1    1735 4700
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	1582 4570 1947 4570
+	1370 4570 1735 4570
 Wire Wire Line
-	1947 4570 1947 4600
-Connection ~ 1947 4570
+	1735 4570 1735 4600
+Connection ~ 1735 4570
 Text GLabel 4820 6892 2    50   Output ~ 0
 MAIN_LED
 Text GLabel 4820 6692 2    50   Output ~ 0
@@ -890,37 +885,37 @@ NoConn ~ 4820 7192
 $Comp
 L power:GND #PWR0101
 U 1 1 5F1CC227
-P 1947 4800
-F 0 "#PWR0101" H 1947 4550 50  0001 C CNN
-F 1 "GND" H 1952 4627 50  0000 C CNN
-F 2 "" H 1947 4800 50  0001 C CNN
-F 3 "" H 1947 4800 50  0001 C CNN
-	1    1947 4800
+P 1735 4800
+F 0 "#PWR0101" H 1735 4550 50  0001 C CNN
+F 1 "GND" H 1740 4627 50  0000 C CNN
+F 2 "" H 1735 4800 50  0001 C CNN
+F 3 "" H 1735 4800 50  0001 C CNN
+	1    1735 4800
 	1    0    0    -1  
 $EndComp
-Connection ~ 1582 4570
+Connection ~ 1370 4570
 $Comp
 L power:PWR_FLAG #FLG0101
 U 1 1 5F1D7B08
-P 1582 4570
-F 0 "#FLG0101" H 1582 4645 50  0001 C CNN
-F 1 "PWR_FLAG" H 1582 4743 50  0000 C CNN
-F 2 "" H 1582 4570 50  0001 C CNN
-F 3 "~" H 1582 4570 50  0001 C CNN
-	1    1582 4570
+P 1370 4570
+F 0 "#FLG0101" H 1370 4645 50  0001 C CNN
+F 1 "PWR_FLAG" H 1370 4743 50  0000 C CNN
+F 2 "" H 1370 4570 50  0001 C CNN
+F 3 "~" H 1370 4570 50  0001 C CNN
+	1    1370 4570
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	1497 4570 1582 4570
+	1285 4570 1370 4570
 $Comp
 L power:GND #PWR0102
 U 1 1 5F337A25
-P 1582 4800
-F 0 "#PWR0102" H 1582 4550 50  0001 C CNN
-F 1 "GND" H 1587 4627 50  0000 C CNN
-F 2 "" H 1582 4800 50  0001 C CNN
-F 3 "" H 1582 4800 50  0001 C CNN
-	1    1582 4800
+P 1370 4800
+F 0 "#PWR0102" H 1370 4550 50  0001 C CNN
+F 1 "GND" H 1375 4627 50  0000 C CNN
+F 2 "" H 1370 4800 50  0001 C CNN
+F 3 "" H 1370 4800 50  0001 C CNN
+	1    1370 4800
 	1    0    0    -1  
 $EndComp
 NoConn ~ 4820 6092
@@ -929,17 +924,13 @@ NoConn ~ 4820 5392
 Text Notes 3396 1280 0    50   ~ 0
 Alternative FETs: \nC148386\nC148396
 Wire Wire Line
-	3078 4570 3338 4570
-Connection ~ 3338 4570
+	2866 4570 3126 4570
+Connection ~ 3126 4570
 Wire Wire Line
-	3338 4570 3660 4570
+	3126 4770 3126 4892
+Connection ~ 3126 4892
 Wire Wire Line
-	3620 4892 3338 4892
-Wire Wire Line
-	3338 4770 3338 4892
-Connection ~ 3338 4892
-Wire Wire Line
-	3338 4892 3338 4894
+	3126 4892 3126 4894
 Text GLabel 3620 5192 0    50   Input ~ 0
 BAT1
 Text GLabel 4820 7092 2    50   Input ~ 0
@@ -1329,27 +1320,27 @@ NoConn ~ 3620 6292
 $Comp
 L Regulator_Linear:AMS1117-3.3 U1
 U 1 1 5F52FBF8
-P 2427 4570
-F 0 "U1" H 2427 4812 50  0000 C CNN
-F 1 "AMS1117-3.3" H 2427 4721 50  0000 C CNN
-F 2 "Package_TO_SOT_SMD:SOT-223-3_TabPin2" H 2427 4770 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/1812131418_Youtai-Semiconductor-Co-Ltd-AMS1117-3-3_C347222.pdf" H 2527 4320 50  0001 C CNN
-F 4 "C347222" H 2427 4570 50  0001 C CNN "lcsc_part_number"
-F 5 "https://lcsc.com/product-detail/Dropout-Regulators-LDO_UMW-Youtai-Semiconductor-Co-Ltd-AMS1117-3-3_C347222.html" H 2427 4570 50  0001 C CNN "lcsc_url"
-F 6 "10" H 2427 4570 50  0001 C CNN "lcsc_min_qty"
-F 7 "AMS1117-3.3" H 2427 4570 50  0001 C CNN "mfr_part_number"
-F 8 "SOT-223" H 2427 4570 50  0001 C CNN "package"
-	1    2427 4570
+P 2215 4570
+F 0 "U1" H 2215 4812 50  0000 C CNN
+F 1 "AMS1117-3.3" H 2215 4721 50  0000 C CNN
+F 2 "Package_TO_SOT_SMD:SOT-223-3_TabPin2" H 2215 4770 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/1812131418_Youtai-Semiconductor-Co-Ltd-AMS1117-3-3_C347222.pdf" H 2315 4320 50  0001 C CNN
+F 4 "C347222" H 2215 4570 50  0001 C CNN "lcsc_part_number"
+F 5 "https://lcsc.com/product-detail/Dropout-Regulators-LDO_UMW-Youtai-Semiconductor-Co-Ltd-AMS1117-3-3_C347222.html" H 2215 4570 50  0001 C CNN "lcsc_url"
+F 6 "10" H 2215 4570 50  0001 C CNN "lcsc_min_qty"
+F 7 "AMS1117-3.3" H 2215 4570 50  0001 C CNN "mfr_part_number"
+F 8 "SOT-223" H 2215 4570 50  0001 C CNN "package"
+	1    2215 4570
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	1947 4570 2127 4570
+	1735 4570 1915 4570
 Wire Wire Line
-	2727 4570 2762 4570
+	2515 4570 2550 4570
 Wire Wire Line
-	2762 4570 3078 4570
-Connection ~ 2762 4570
-Connection ~ 3078 4570
+	2550 4570 2866 4570
+Connection ~ 2550 4570
+Connection ~ 2866 4570
 $Comp
 L MAX17260:TACT-SWITCH SW2
 U 1 1 5F552A40
@@ -1396,11 +1387,20 @@ F 3 "" H 8142 5920 50  0001 C CNN
 $EndComp
 Text GLabel 3581 4892 1    50   Input ~ 0
 RST
-Text GLabel 1497 4570 0    50   Input ~ 0
+Text GLabel 1285 4570 0    50   Input ~ 0
 BAT2V
 NoConn ~ 4820 5592
 NoConn ~ 4820 5092
 NoConn ~ 4820 5292
 Text Notes 4867 7229 0    50   ~ 0
 SPARE ADC
+Wire Wire Line
+	3660 4568 3660 4570
+Wire Wire Line
+	3126 4892 3620 4892
+Wire Wire Line
+	3126 4570 3660 4570
+Connection ~ 3660 4570
+Wire Wire Line
+	3660 4570 3660 4692
 $EndSCHEMATC
