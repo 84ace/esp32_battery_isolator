@@ -1,0 +1,55 @@
+### Module positions - created on Friday, November 13, 2020 at 08:56:25 PM ###
+### Printed by Pcbnew version kicad (5.1.7-0-10_14)
+## Unit = mm, Angle = deg.
+## Side : top
+# Ref     Val              Package                         PosX       PosY       Rot  Side
+C1        100n             C_0805_2012Metric           134.0000   -84.0000   90.0000  top
+C2        CP_Small         C_Elec_5x5.4                155.0000  -112.0000    0.0000  top
+C3        CP_Small         C_Elec_5x5.4                155.0000  -106.0000    0.0000  top
+C4        1uF              CP_EIA-3216-18_Kemet-A      106.4500  -122.8500   90.0000  top
+C5        100n             C_0805_2012Metric           108.4500  -123.6000   90.0000  top
+C6        100n             C_0805_2012Metric           103.2500  -122.5000   90.0000  top
+C7        1uF              CP_EIA-3216-18_Kemet-A      103.5000  -127.2500  270.0000  top
+C8        100n             C_0805_2012Metric           186.5000  -125.0000  270.0000  top
+C9        100n             C_0603_1608Metric           169.2500   -78.5000   90.0000  top
+C10       100n             C_0603_1608Metric           171.2500   -83.0000   90.0000  top
+C11       1uF              CP_EIA-3216-18_Kemet-A      125.8000   -81.8000  180.0000  top
+C12       100n             C_0805_2012Metric           131.8000   -84.0000  270.0000  top
+D1        MAIN_LED         LED_0603_1608Metric         120.6750   -78.6500   90.0000  top
+D2        SS14             D_SMA                       181.2500   -89.5000   90.0000  top
+D3        B1_LED           LED_0603_1608Metric         128.0000   -91.0000   90.0000  top
+D4        B2_LED           LED_0603_1608Metric         161.0000   -91.0000   90.0000  top
+D5        SS14             D_SMA                       117.9000   -91.0500    0.0000  top
+D6        SS14             D_SMA                       174.0000   -91.5000  180.0000  top
+J3        USB_B_Micro      USB_Micro-B_XKB_4BH89_SMT   185.2500   -87.7500   90.0000  top
+Q1        FDN335N          SuperSOT-3                  132.5500   -94.2500    0.0000  top
+Q2        FDN335N          SuperSOT-3                  157.9500   -94.3000    0.0000  top
+Q3        MMBT3904         SOT-23                      123.3000   -99.2500  270.0000  top
+Q4        Si7141DP         PowerPAK_SO-8_Single        120.8500  -107.2000    0.0000  top
+Q5        MMBT3904         SOT-23                      170.9000  -100.1500    0.0000  top
+Q6        Si7141DP         PowerPAK_SO-8_Single        178.4500  -107.0500    0.0000  top
+R1        10k              R_0603_1608Metric           129.5000   -83.8000  270.0000  top
+R2        2.55K            LED_0603_1608Metric         122.4750   -78.6500   90.0000  top
+R3        2.55K            LED_0603_1608Metric         129.8750   -91.0000   90.0000  top
+R4        10k              R_0603_1608Metric           133.0000   -98.7500    0.0000  top
+R5        2.55K            LED_0603_1608Metric         163.0000   -91.0000   90.0000  top
+R6        2.2k             R_0603_1608Metric           180.0000  -130.0000  270.0000  top
+R7        2.2k             R_0603_1608Metric           182.5000  -130.0000  270.0000  top
+R8        10k              R_0603_1608Metric           157.0000   -99.2000  180.0000  top
+R9        10k              R_0603_1608Metric           128.2000   -87.0500  270.0000  top
+R10       105k             R_0603_1608Metric           131.5000  -125.5000   90.0000  top
+R11       20k              R_0603_1608Metric           131.5000  -122.5000   90.0000  top
+R12       105k             R_0603_1608Metric           134.5000  -125.5000   90.0000  top
+R13       20k              R_0603_1608Metric           134.5000  -122.5000   90.0000  top
+R14       105k             R_0603_1608Metric           116.3500  -103.6500   90.0000  top
+R15       105k             R_0603_1608Metric           173.6500  -103.1000   90.0000  top
+SW1       KMR221GLFS       SW_Push_1P1T_NO_CK_KMR2     135.0500  -103.5000  180.0000  top
+SW2       KMR221GLFS       SW_Push_1P1T_NO_CK_KMR2     135.0500  -108.5000  180.0000  top
+SW3       KMR221GLFS       SW_Push_1P1T_NO_CK_KMR2     135.0500  -113.5000  180.0000  top
+U1        ESP32-WROOM-32D  ESP32-WROOM-32              145.0000   -91.1500    0.0000  top
+U2        LD1086D2T33TR    TO-252-2                    145.0000  -112.0000   90.0000  top
+U3        ADC128D818       TSSOP-16_4.4x5mm_P0.65mm    109.7000  -128.4500    0.0000  top
+U4        LM75B            SO-8_3.9x4.9mm_P1.27mm      181.0000  -125.0000    0.0000  top
+U5        CH330N           SOIC-8_3.9x4.9mm_P1.27mm    166.5000   -83.0000    0.0000  top
+U6        CC6903SO-30A     SOP-8_3.9x4.9mm_P1.27mm     153.4500  -119.3000  180.0000  top
+## End

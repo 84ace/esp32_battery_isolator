@@ -15,7 +15,7 @@ wdt = WDT(timeout=50000) # 50 second timeout for hardware watchdog
 rtc = RTC()
 
 # set debug to True to enable WiFi without pressing the mode button at boot
-debug = True
+debug = False
 
 # 1st boot ever?
 first_boot_ever = False
@@ -215,7 +215,7 @@ def connectWiFi():
 
 	if USE_AP and not local_ap.active():
 		local_ap.active(True)
-		oled_update("WIFI AP", "STARTED!", "", 0)
+		#oled_update("WIFI AP", "STARTED!", "", 0)
 	oled_update("NO SSIDS", "FOUND!", "CONTINUING...", 0)
 	return False
 
@@ -264,7 +264,7 @@ def i2c_adc_current_check():
 
 	value = (high_byte << 4 | low_byte >> 1)
 	adc_voltage = 2.56 / 4096 * value
-	crossover_point = 1.63
+	crossover_point = 1.675
 	current = (adc_voltage - crossover_point) / 0.044
     
 	return current
@@ -292,6 +292,8 @@ def charge_state(battery, state):
 # Can't do this on the lite version as there are now current sensors
 
 def check_b1vd_voltage():
+	global max_batt_1_voltage
+	global min_batt_1_voltage
 	global batt_1_enabled
 	global batt_2_enabled
 	global batt_1_led
@@ -300,6 +302,11 @@ def check_b1vd_voltage():
 	batt_1_voltage = battery_voltage_divider * batt_1_adc_voltage * error
 	batt_1_led = Pin(25, Pin.OUT, Pin.PULL_DOWN)
 	batt_2_led = Pin(18, Pin.OUT, Pin.PULL_DOWN)
+
+	if batt_1_voltage < min_batt_1_voltage:
+		min_batt_1_voltage = batt_1_voltage
+	elif batt_1_voltage > max_batt_1_voltage:
+		max_batt_1_voltage = batt_1_voltage
 
 	if batt_1_voltage > 13.2:
 		state = 'CHG'
@@ -310,7 +317,6 @@ def check_b1vd_voltage():
 		batt_1_enabled.value(1)
 		batt_2_enabled.value(1)
 		charge_state(1, 1)
-		#print("BATT 1 STATE: charging ", charger_state)
 	elif batt_1_voltage > batt_1_cuttoff_voltage:
 		batt_1_charging_indicator_timer.deinit()
 		batt_1_led.value(1)
@@ -319,7 +325,6 @@ def check_b1vd_voltage():
 		#if int(minutes_since_counter_reset) % 2 == 0: # slow the rate of change down to 1 by every 2 mins
 		batt_1_enabled = Pin(32, Pin.OUT, Pin.PULL_UP)
 		batt_1_enabled.value(1)
-		#print("BATT 1 STATE: on")
 	else:
 		batt_1_charging_indicator_timer.deinit()
 		batt_1_led.value(0)
@@ -327,11 +332,9 @@ def check_b1vd_voltage():
 		batt_1_enabled = Pin(32, Pin.OUT, Pin.PULL_DOWN)
 		batt_1_enabled.value(0)
 		charge_state(1, 0)
-		#print("BATT 1 STATE: off")
 
-	#print("BATT 1 VOLTAGE: ", batt_1_voltage)
 
-	return state, charger_state, str(batt_1_voltage)[:5]
+	return state, charger_state, str(batt_1_voltage)[:5], str(min_batt_1_voltage)[:5], str(max_batt_1_voltage)[:5]
 
 
 def check_b2vd_voltage():
@@ -346,6 +349,11 @@ def check_b2vd_voltage():
 	batt_1_led = Pin(25, Pin.OUT, Pin.PULL_DOWN)
 	batt_2_led = Pin(18, Pin.OUT, Pin.PULL_DOWN)
 
+	if batt_2_voltage < min_batt_2_voltage:
+		min_batt_2_voltage = batt_2_voltage
+	elif batt_2_voltage > max_batt_2_voltage:
+		max_batt_2_voltage = batt_2_voltage
+
 	if batt_2_voltage > 13.0:
 		batt_2_charging_indicator_timer.init(period=250, mode=Timer.PERIODIC, callback=lambda t:batt_2_led.value(not batt_2_led.value()))
 		state = 'CHG'
@@ -354,7 +362,6 @@ def check_b2vd_voltage():
 		batt_1_enabled.value(1)
 		batt_2_enabled.value(1)
 		charge_state(2, 1)
-		#print("BATT 2 STATE: charging ", charger_state)
 
 	elif batt_2_voltage > batt_2_cuttoff_voltage:
 		batt_2_charging_indicator_timer.deinit()
@@ -363,7 +370,6 @@ def check_b2vd_voltage():
 		state = 'ON'
 		charge_state(2, 0)
 		batt_2_enabled.value(1)
-		#print("BATT 2 STATE: on")
 
 	else:
 		batt_2_charging_indicator_timer.deinit()
@@ -372,10 +378,8 @@ def check_b2vd_voltage():
 		state = 'OFF'
 		charge_state(2, 0)
 		batt_2_enabled.value(0)
-		#print("BATT 2 STATE: off")
 
-	#print("BATT 2 VOLTAGE: ", str(batt_2_voltage))
-	return state, charger_state, str(batt_2_voltage)[:5]
+	return state, charger_state, str(batt_2_voltage)[:5], str(min_batt_1_voltage)[:5], str(max_batt_1_voltage)[:5]
 
 
 def set_pins_held():
@@ -413,5 +417,5 @@ def set_pins_held():
 def go_to_sleep():
 	set_pins_held()
 	deepsleep(10000) # 10 seconds
-
-#TODO: do something with board temperature for safety
+	
+	#TODO: do something with board temperature for safety
