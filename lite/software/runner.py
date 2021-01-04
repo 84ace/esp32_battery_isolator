@@ -21,7 +21,7 @@ debug = False
 first_boot_ever = False
 
 # is the i2c oled attached to the board?
-oled_attached = False
+oled_attached = True
 
 # is the ADC attached to the board?
 adc_attached = True
