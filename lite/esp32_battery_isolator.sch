@@ -14,22 +14,6 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L Device:R_Small R4
-U 1 1 5EFC8B89
-P 2800 5500
-F 0 "R4" V 2800 5500 50  0000 C CNN
-F 1 "10k" V 2700 5500 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" H 2800 5500 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/Uniroyal-Elec-0603WAJ0103T5E_C15401.pdf" H 2800 5500 50  0001 C CNN
-F 4 "C15401" H 2800 5500 50  0001 C CNN "lcsc_part_number"
-F 5 "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_UNI-ROYAL-Uniroyal-Elec-0603WAJ0103T5E_C15401.html" H 2800 5500 50  0001 C CNN "lcsc_url"
-F 6 "100" H 2800 5500 50  0001 C CNN "lcsc_min_qty"
-F 7 "0603WAJ0103T5E" H 2800 5500 50  0001 C CNN "mfr_part_number"
-F 8 "0603" H 2800 5500 50  0001 C CNN "package"
-	1    2800 5500
-	0    1    1    0   
-$EndComp
-$Comp
 L power:GND #PWR08
 U 1 1 5EFCF275
 P 2900 5500
@@ -54,12 +38,12 @@ $EndComp
 $Comp
 L power:+3V3 #PWR02
 U 1 1 5F01533D
-P 1600 3950
-F 0 "#PWR02" H 1600 3800 50  0001 C CNN
-F 1 "+3V3" H 1615 4123 50  0000 C CNN
-F 2 "" H 1600 3950 50  0001 C CNN
-F 3 "" H 1600 3950 50  0001 C CNN
-	1    1600 3950
+P 1600 4550
+F 0 "#PWR02" H 1600 4400 50  0001 C CNN
+F 1 "+3V3" H 1615 4723 50  0000 C CNN
+F 2 "" H 1600 4550 50  0001 C CNN
+F 3 "" H 1600 4550 50  0001 C CNN
+	1    1600 4550
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -234,7 +218,7 @@ F 8 "0603" H 2806 1320 50  0001 C CNN "package"
 	1    2806 1320
 	1    0    0    -1  
 $EndComp
-Text Notes 1950 4250 0    50   ~ 0
+Text Notes 1950 4400 0    50   ~ 0
 ESP-32
 Wire Notes Line
 	11218 4184 11218 4180
@@ -313,8 +297,6 @@ F 3 "" H 4066 4090 50  0001 C CNN
 	1    4066 4090
 	1    0    0    -1  
 $EndComp
-Text GLabel 4132 4324 2    50   Input ~ 0
-SCL
 Wire Wire Line
 	4132 4324 4066 4324
 Wire Wire Line
@@ -403,7 +385,7 @@ Wire Notes Line
 	4700 7800 4650 7800
 Wire Notes Line
 	4156 476  4154 476 
-Text GLabel 3350 4900 2    50   Input ~ 0
+Text GLabel 3050 4900 2    50   Input ~ 0
 BOOT
 Text GLabel 2900 4500 0    50   Input ~ 0
 BOOT
@@ -1049,107 +1031,64 @@ MODE
 $Comp
 L Device:C_Small C12
 U 1 1 5F91DD56
-P 1100 4100
-F 0 "C12" H 1200 4200 50  0000 L CNN
-F 1 "100n" H 1200 4100 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0805_2012Metric" H 1100 4100 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/Huaxin-S-T-0805B104K250_C128353.pdf" H 1100 4100 50  0001 C CNN
-F 4 "C128353" H 1100 4100 50  0001 C CNN "lcsc_part_number"
-F 5 "https://lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Walsin-Tech-Corp-0805B104K250_C128353.html" H 1100 4100 50  0001 C CNN "lcsc_url"
-F 6 "100" H 1100 4100 50  0001 C CNN "lcsc_min_qty"
-F 7 "0805B104K250" H 1100 4100 50  0001 C CNN "mfr_part_number"
-F 8 "0805" H 1100 4100 50  0001 C CNN "package"
-	1    1100 4100
+P 850 4700
+F 0 "C12" H 900 4800 50  0000 L CNN
+F 1 "100n" H 900 4600 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric" H 850 4700 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Huaxin-S-T-0805B104K250_C128353.pdf" H 850 4700 50  0001 C CNN
+F 4 "C128353" H 850 4700 50  0001 C CNN "lcsc_part_number"
+F 5 "https://lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Walsin-Tech-Corp-0805B104K250_C128353.html" H 850 4700 50  0001 C CNN "lcsc_url"
+F 6 "100" H 850 4700 50  0001 C CNN "lcsc_min_qty"
+F 7 "0805B104K250" H 850 4700 50  0001 C CNN "mfr_part_number"
+F 8 "0805" H 850 4700 50  0001 C CNN "package"
+	1    850  4700
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	1100 3950 1100 4000
+	850  4550 850  4600
 $Comp
 L power:GND #PWR037
 U 1 1 5F9329D9
-P 1100 4200
-F 0 "#PWR037" H 1100 3950 50  0001 C CNN
-F 1 "GND" H 1105 4027 50  0000 C CNN
-F 2 "" H 1100 4200 50  0001 C CNN
-F 3 "" H 1100 4200 50  0001 C CNN
-	1    1100 4200
+P 850 4800
+F 0 "#PWR037" H 850 4550 50  0001 C CNN
+F 1 "GND" H 855 4627 50  0000 C CNN
+F 2 "" H 850 4800 50  0001 C CNN
+F 3 "" H 850 4800 50  0001 C CNN
+	1    850  4800
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:CP_Small C11
 U 1 1 5F9330EE
-P 650 4100
-F 0 "C11" H 750 4200 50  0000 L CNN
-F 1 "1uF" H 750 4100 50  0000 L CNN
-F 2 "Capacitor_Tantalum_SMD:CP_EIA-3216-18_Kemet-A" H 650 4100 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/Hunan-Xiangyee-in-S-T-CA45-A035K105T_C126949.pdf" H 650 4100 50  0001 C CNN
-F 4 "C126949" H 650 4100 50  0001 C CNN "lcsc_part_number"
-F 5 "https://lcsc.com/product-detail/Tantalum-Capacitors_Hunan-Xiangyee-in-S-T-CA45-A035K105T_C126949.html" H 650 4100 50  0001 C CNN "lcsc_url"
-F 6 "5" H 650 4100 50  0001 C CNN "lcsc_min_qty"
-F 7 "CA45-A035K105T" H 650 4100 50  0001 C CNN "mfr_part_number"
-F 8 "CASE_A_3216" H 650 4100 50  0001 C CNN "package"
-	1    650  4100
+P 550 4700
+F 0 "C11" H 600 4800 50  0000 L CNN
+F 1 "1uF" H 600 4600 50  0000 L CNN
+F 2 "Capacitor_Tantalum_SMD:CP_EIA-3216-18_Kemet-A" H 550 4700 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Hunan-Xiangyee-in-S-T-CA45-A035K105T_C126949.pdf" H 550 4700 50  0001 C CNN
+F 4 "C126949" H 550 4700 50  0001 C CNN "lcsc_part_number"
+F 5 "https://lcsc.com/product-detail/Tantalum-Capacitors_Hunan-Xiangyee-in-S-T-CA45-A035K105T_C126949.html" H 550 4700 50  0001 C CNN "lcsc_url"
+F 6 "5" H 550 4700 50  0001 C CNN "lcsc_min_qty"
+F 7 "CA45-A035K105T" H 550 4700 50  0001 C CNN "mfr_part_number"
+F 8 "CASE_A_3216" H 550 4700 50  0001 C CNN "package"
+	1    550  4700
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	1100 3950 650  3950
-Wire Wire Line
-	650  3950 650  4000
-Connection ~ 1100 3950
+	550  4550 550  4600
 $Comp
 L power:GND #PWR036
 U 1 1 5F941D3A
-P 650 4200
-F 0 "#PWR036" H 650 3950 50  0001 C CNN
-F 1 "GND" H 655 4027 50  0000 C CNN
-F 2 "" H 650 4200 50  0001 C CNN
-F 3 "" H 650 4200 50  0001 C CNN
-	1    650  4200
+P 550 4800
+F 0 "#PWR036" H 550 4550 50  0001 C CNN
+F 1 "GND" H 555 4627 50  0000 C CNN
+F 2 "" H 550 4800 50  0001 C CNN
+F 3 "" H 550 4800 50  0001 C CNN
+	1    550  4800
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	1100 3950 1600 3950
-Connection ~ 1600 3950
-$Comp
-L Device:R_Small R8
-U 1 1 5F952AB6
-P 3000 4800
-F 0 "R8" H 3088 4824 50  0000 C CNN
-F 1 "10k" H 3108 4756 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" H 3000 4800 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/Uniroyal-Elec-0603WAJ0103T5E_C15401.pdf" H 3000 4800 50  0001 C CNN
-F 4 "C15401" H 3000 4800 50  0001 C CNN "lcsc_part_number"
-F 5 "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_UNI-ROYAL-Uniroyal-Elec-0603WAJ0103T5E_C15401.html" H 3000 4800 50  0001 C CNN "lcsc_url"
-F 6 "100" H 3000 4800 50  0001 C CNN "lcsc_min_qty"
-F 7 "0603WAJ0103T5E" H 3000 4800 50  0001 C CNN "mfr_part_number"
-F 8 "0603" H 3000 4800 50  0001 C CNN "package"
-	1    3000 4800
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	2100 4700 3000 4700
+	2100 4700 2800 4700
 Connection ~ 2100 4700
-Wire Wire Line
-	3000 4900 2700 4900
-Wire Wire Line
-	3000 4900 3350 4900
-Connection ~ 3000 4900
-$Comp
-L Device:R_Small R9
-U 1 1 5F95A20E
-P 3350 6800
-F 0 "R9" H 3438 6824 50  0000 C CNN
-F 1 "10k" H 3458 6756 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" H 3350 6800 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/Uniroyal-Elec-0603WAJ0103T5E_C15401.pdf" H 3350 6800 50  0001 C CNN
-F 4 "C15401" H 3350 6800 50  0001 C CNN "lcsc_part_number"
-F 5 "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_UNI-ROYAL-Uniroyal-Elec-0603WAJ0103T5E_C15401.html" H 3350 6800 50  0001 C CNN "lcsc_url"
-F 6 "100" H 3350 6800 50  0001 C CNN "lcsc_min_qty"
-F 7 "0603WAJ0103T5E" H 3350 6800 50  0001 C CNN "mfr_part_number"
-F 8 "0603" H 3350 6800 50  0001 C CNN "package"
-	1    3350 6800
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	3400 7000 3350 7000
 Wire Wire Line
@@ -1169,72 +1108,72 @@ Wire Wire Line
 	3350 7000 2700 7000
 Connection ~ 3350 7000
 Wire Wire Line
-	4000 800  4000 750 
+	3950 1800 3950 1750
 Wire Wire Line
-	3950 800  4000 800 
+	3900 1800 3950 1800
 Wire Wire Line
-	4000 900  4000 950 
+	3950 1900 3950 1950
 Wire Wire Line
-	3950 900  4000 900 
-Text GLabel 4000 750  1    50   Output ~ 0
+	3900 1900 3950 1900
+Text GLabel 3950 1750 1    50   Output ~ 0
 B1VM
 $Comp
 L power:GND #PWR018
 U 1 1 5FAC6DC8
-P 4000 950
-F 0 "#PWR018" H 4000 700 50  0001 C CNN
-F 1 "GND" H 4005 777 50  0000 C CNN
-F 2 "" H 4000 950 50  0001 C CNN
-F 3 "" H 4000 950 50  0001 C CNN
-	1    4000 950 
+P 3950 1950
+F 0 "#PWR018" H 3950 1700 50  0001 C CNN
+F 1 "GND" H 3955 1777 50  0000 C CNN
+F 2 "" H 3950 1950 50  0001 C CNN
+F 3 "" H 3950 1950 50  0001 C CNN
+	1    3950 1950
 	1    0    0    -1  
 $EndComp
 $Comp
 L Connector:Conn_01x02_Male J1
 U 1 1 5FAC6DBE
-P 3750 900
-F 0 "J1" H 3885 1075 50  0000 C CNN
-F 1 "BATT1" H 3750 1000 50  0000 C CNN
-F 2 "Connector_AMASS:AMASS_XT60-F_1x02_P7.20mm_Vertical" H 3750 900 50  0001 C CNN
-F 3 "~" H 3750 900 50  0001 C CNN
-F 4 "https://www.frontlinehobbies.com.au/g-force-xt60-gold-connector-male-female-2pair-gf-1?gclid=CjwKCAjwrvv3BRAJEiwAhwOdM8-qgWv5jfFefjTFyJOH3A9PPJY-dncYXHNHYDGoyDbJGDFwuET0RRoCcNgQAvD_BwE" H 3750 900 50  0001 C CNN "other_URL"
-	1    3750 900 
+P 3700 1900
+F 0 "J1" H 3835 2075 50  0000 C CNN
+F 1 "BATT1" H 3700 2000 50  0000 C CNN
+F 2 "Connector_AMASS:AMASS_XT60-F_1x02_P7.20mm_Vertical" H 3700 1900 50  0001 C CNN
+F 3 "~" H 3700 1900 50  0001 C CNN
+F 4 "https://www.frontlinehobbies.com.au/g-force-xt60-gold-connector-male-female-2pair-gf-1?gclid=CjwKCAjwrvv3BRAJEiwAhwOdM8-qgWv5jfFefjTFyJOH3A9PPJY-dncYXHNHYDGoyDbJGDFwuET0RRoCcNgQAvD_BwE" H 3700 1900 50  0001 C CNN "other_URL"
+	1    3700 1900
 	1    0    0    1   
 $EndComp
 $Comp
 L Connector:Conn_01x02_Male J4
 U 1 1 5F07EB11
-P 5900 900
-F 0 "J4" H 6035 1075 50  0000 C CNN
-F 1 "BATT2" H 5900 1000 50  0000 C CNN
-F 2 "Connector_AMASS:AMASS_XT60-F_1x02_P7.20mm_Vertical" H 5900 900 50  0001 C CNN
-F 3 "~" H 5900 900 50  0001 C CNN
-F 4 "https://www.frontlinehobbies.com.au/g-force-xt60-gold-connector-male-female-2pair-gf-1?gclid=CjwKCAjwrvv3BRAJEiwAhwOdM8-qgWv5jfFefjTFyJOH3A9PPJY-dncYXHNHYDGoyDbJGDFwuET0RRoCcNgQAvD_BwE" H 5900 900 50  0001 C CNN "other_URL"
-	1    5900 900 
+P 5850 1900
+F 0 "J4" H 5985 2075 50  0000 C CNN
+F 1 "BATT2" H 5850 2000 50  0000 C CNN
+F 2 "Connector_AMASS:AMASS_XT60-F_1x02_P7.20mm_Vertical" H 5850 1900 50  0001 C CNN
+F 3 "~" H 5850 1900 50  0001 C CNN
+F 4 "https://www.frontlinehobbies.com.au/g-force-xt60-gold-connector-male-female-2pair-gf-1?gclid=CjwKCAjwrvv3BRAJEiwAhwOdM8-qgWv5jfFefjTFyJOH3A9PPJY-dncYXHNHYDGoyDbJGDFwuET0RRoCcNgQAvD_BwE" H 5850 1900 50  0001 C CNN "other_URL"
+	1    5850 1900
 	1    0    0    1   
 $EndComp
 $Comp
 L power:GND #PWR032
 U 1 1 5F07EB25
-P 6150 950
-F 0 "#PWR032" H 6150 700 50  0001 C CNN
-F 1 "GND" H 6155 777 50  0000 C CNN
-F 2 "" H 6150 950 50  0001 C CNN
-F 3 "" H 6150 950 50  0001 C CNN
-	1    6150 950 
+P 6100 1950
+F 0 "#PWR032" H 6100 1700 50  0001 C CNN
+F 1 "GND" H 6105 1777 50  0000 C CNN
+F 2 "" H 6100 1950 50  0001 C CNN
+F 3 "" H 6100 1950 50  0001 C CNN
+	1    6100 1950
 	1    0    0    -1  
 $EndComp
 Wire Notes Line
 	6506 476  6504 476 
 Wire Wire Line
-	6100 900  6150 900 
+	6050 1900 6100 1900
 Wire Wire Line
-	6150 900  6150 950 
+	6100 1900 6100 1950
 Wire Wire Line
-	6100 800  6150 800 
+	6050 1800 6100 1800
 Wire Wire Line
-	6150 800  6150 750 
-Text GLabel 6150 750  1    50   Output ~ 0
+	6100 1800 6100 1750
+Text GLabel 6100 1750 1    50   Output ~ 0
 B2VM
 $Comp
 L power:+3V3 #PWR0104
@@ -1259,7 +1198,7 @@ P 4750 1350
 F 0 "Q4" H 4954 1396 50  0000 L CNN
 F 1 "WSD20L120DN" H 4950 1300 50  0000 L CNN
 F 2 "Package_SO:PowerPAK_SO-8_Single" H 4950 1275 50  0001 L CIN
-F 3 "https://www.vishay.com/docs/65596/si7141dp.pdf" H 4750 1350 50  0001 L CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/1805301730_Winsok-Semicon-WSD20L120DN_C148395.pdf" H 4750 1350 50  0001 L CNN
 F 4 "C148395" H 4750 1350 50  0001 C CNN "lcsc_part_number"
 F 5 "https://lcsc.com/product-detail/MOSFET_Winsok-Semicon-WSD20L120DN_C148395.html" H 4750 1350 50  0001 C CNN "lcsc_url"
 F 6 "1" H 4750 1350 50  0001 C CNN "lcsc_min_qty"
@@ -1443,36 +1382,36 @@ Wire Notes Line
 Text Notes 5750 2500 0    50   ~ 0
 Load 1 (fridge?)
 Wire Wire Line
-	5350 2550 5350 2500
+	5200 3300 5200 3250
 Wire Wire Line
-	5300 2550 5350 2550
+	5150 3300 5200 3300
 Wire Wire Line
-	5350 2650 5350 2700
+	5200 3400 5200 3450
 Wire Wire Line
-	5300 2650 5350 2650
-Text GLabel 5350 2500 1    50   Output ~ 0
+	5150 3400 5200 3400
+Text GLabel 5200 3250 1    50   Output ~ 0
 LOAD1
 $Comp
 L power:GND #PWR027
 U 1 1 5FD65F4F
-P 5350 2700
-F 0 "#PWR027" H 5350 2450 50  0001 C CNN
-F 1 "GND" H 5355 2527 50  0000 C CNN
-F 2 "" H 5350 2700 50  0001 C CNN
-F 3 "" H 5350 2700 50  0001 C CNN
-	1    5350 2700
+P 5200 3450
+F 0 "#PWR027" H 5200 3200 50  0001 C CNN
+F 1 "GND" H 5205 3277 50  0000 C CNN
+F 2 "" H 5200 3450 50  0001 C CNN
+F 3 "" H 5200 3450 50  0001 C CNN
+	1    5200 3450
 	1    0    0    -1  
 $EndComp
 $Comp
 L Connector:Conn_01x02_Male J5
 U 1 1 5FD65F62
-P 5100 2650
-F 0 "J5" H 5235 2825 50  0000 C CNN
-F 1 "LOAD1" H 5150 2400 50  0000 C CNN
-F 2 "Connector_AMASS:AMASS_XT60-F_1x02_P7.20mm_Vertical" H 5100 2650 50  0001 C CNN
-F 3 "~" H 5100 2650 50  0001 C CNN
-F 4 "https://www.frontlinehobbies.com.au/g-force-xt60-gold-connector-male-female-2pair-gf-1?gclid=CjwKCAjwrvv3BRAJEiwAhwOdM8-qgWv5jfFefjTFyJOH3A9PPJY-dncYXHNHYDGoyDbJGDFwuET0RRoCcNgQAvD_BwE" H 5100 2650 50  0001 C CNN "other_URL"
-	1    5100 2650
+P 4950 3400
+F 0 "J5" H 5085 3575 50  0000 C CNN
+F 1 "LOAD1" H 5000 3150 50  0000 C CNN
+F 2 "Connector_AMASS:AMASS_XT60-F_1x02_P7.20mm_Vertical" H 4950 3400 50  0001 C CNN
+F 3 "~" H 4950 3400 50  0001 C CNN
+F 4 "https://www.frontlinehobbies.com.au/g-force-xt60-gold-connector-male-female-2pair-gf-1?gclid=CjwKCAjwrvv3BRAJEiwAhwOdM8-qgWv5jfFefjTFyJOH3A9PPJY-dncYXHNHYDGoyDbJGDFwuET0RRoCcNgQAvD_BwE" H 4950 3400 50  0001 C CNN "other_URL"
+	1    4950 3400
 	1    0    0    1   
 $EndComp
 $Comp
@@ -1482,7 +1421,7 @@ P 6100 3100
 F 0 "Q2" H 6304 3146 50  0000 L CNN
 F 1 "WSD20L120DN" H 6300 3050 50  0000 L CNN
 F 2 "Package_SO:PowerPAK_SO-8_Single" H 6300 3025 50  0001 L CIN
-F 3 "https://www.vishay.com/docs/65596/si7141dp.pdf" H 6100 3100 50  0001 L CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/1805301730_Winsok-Semicon-WSD20L120DN_C148395.pdf" H 6100 3100 50  0001 L CNN
 F 4 "C148395" H 6100 3100 50  0001 C CNN "lcsc_part_number"
 F 5 "https://lcsc.com/product-detail/MOSFET_Winsok-Semicon-WSD20L120DN_C148395.html" H 6100 3100 50  0001 C CNN "lcsc_url"
 F 6 "1" H 6100 3100 50  0001 C CNN "lcsc_min_qty"
@@ -1495,35 +1434,8 @@ Text GLabel 6200 2900 1    50   BiDi ~ 0
 LOAD1
 Wire Wire Line
 	6200 3300 6250 3300
-Text GLabel 5600 3300 0    50   Input ~ 0
+Text GLabel 5900 3100 0    50   Input ~ 0
 L1ON
-$Comp
-L Transistor_BJT:MMBT3904 Q1
-U 1 1 5FD65FC2
-P 5800 3300
-F 0 "Q1" H 6000 3200 50  0000 L CNN
-F 1 "MMBT3904" H 6000 3100 50  0000 L CNN
-F 2 "Package_TO_SOT_SMD:SOT-23" H 6000 3225 50  0001 L CIN
-F 3 "https://www.onsemi.com/pub/Collateral/2N3903-D.PDF" H 5800 3300 50  0001 L CNN
-F 4 "C81464" H 5800 3300 50  0001 C CNN "lcsc_part_number"
-F 5 "https://lcsc.com/product-detail/Transistors-NPN-PNP_ON-Semiconductor-MMBT3904LT1G_C81464.html" H 5800 3300 50  0001 C CNN "lcsc_url"
-F 6 "50" H 5800 3300 50  0001 C CNN "lcsc_min_qty"
-F 7 "MMBT3904LT1G" H 5800 3300 50  0001 C CNN "mfr_part_number"
-F 8 "SOT-23" H 5800 3300 50  0001 C CNN "package"
-	1    5800 3300
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:GND #PWR029
-U 1 1 5FD65FF4
-P 5900 3500
-F 0 "#PWR029" H 5900 3250 50  0001 C CNN
-F 1 "GND" H 5727 3425 50  0000 C CNN
-F 2 "" H 5900 3500 50  0001 C CNN
-F 3 "" H 5900 3500 50  0001 C CNN
-	1    5900 3500
-	1    0    0    -1  
-$EndComp
 $Comp
 L Device:R_Small R16
 U 1 1 5FD6600B
@@ -1546,7 +1458,6 @@ Wire Wire Line
 	5900 2750 5900 2800
 Wire Wire Line
 	5900 3000 5900 3100
-Connection ~ 5900 3100
 Text GLabel 5800 2750 0    50   Input ~ 0
 B2VM
 Text GLabel 6250 3300 2    50   BiDi ~ 0
@@ -1554,36 +1465,36 @@ B2C
 Text Notes 7800 2500 0    50   ~ 0
 Load 2 (freezer?)
 Wire Wire Line
-	7400 2550 7400 2500
+	7300 3300 7300 3250
 Wire Wire Line
-	7350 2550 7400 2550
+	7250 3300 7300 3300
 Wire Wire Line
-	7400 2650 7400 2700
+	7300 3400 7300 3450
 Wire Wire Line
-	7350 2650 7400 2650
-Text GLabel 7400 2500 1    50   Output ~ 0
+	7250 3400 7300 3400
+Text GLabel 7300 3250 1    50   Output ~ 0
 LOAD2
 $Comp
 L power:GND #PWR030
 U 1 1 5FD820ED
-P 7400 2700
-F 0 "#PWR030" H 7400 2450 50  0001 C CNN
-F 1 "GND" H 7405 2527 50  0000 C CNN
-F 2 "" H 7400 2700 50  0001 C CNN
-F 3 "" H 7400 2700 50  0001 C CNN
-	1    7400 2700
+P 7300 3450
+F 0 "#PWR030" H 7300 3200 50  0001 C CNN
+F 1 "GND" H 7305 3277 50  0000 C CNN
+F 2 "" H 7300 3450 50  0001 C CNN
+F 3 "" H 7300 3450 50  0001 C CNN
+	1    7300 3450
 	1    0    0    -1  
 $EndComp
 $Comp
 L Connector:Conn_01x02_Male J7
 U 1 1 5FD82100
-P 7150 2650
-F 0 "J7" H 7285 2825 50  0000 C CNN
-F 1 "LOAD2" H 7200 2400 50  0000 C CNN
-F 2 "Connector_AMASS:AMASS_XT60-F_1x02_P7.20mm_Vertical" H 7150 2650 50  0001 C CNN
-F 3 "~" H 7150 2650 50  0001 C CNN
-F 4 "https://www.frontlinehobbies.com.au/g-force-xt60-gold-connector-male-female-2pair-gf-1?gclid=CjwKCAjwrvv3BRAJEiwAhwOdM8-qgWv5jfFefjTFyJOH3A9PPJY-dncYXHNHYDGoyDbJGDFwuET0RRoCcNgQAvD_BwE" H 7150 2650 50  0001 C CNN "other_URL"
-	1    7150 2650
+P 7050 3400
+F 0 "J7" H 7185 3575 50  0000 C CNN
+F 1 "LOAD2" H 7100 3150 50  0000 C CNN
+F 2 "Connector_AMASS:AMASS_XT60-F_1x02_P7.20mm_Vertical" H 7050 3400 50  0001 C CNN
+F 3 "~" H 7050 3400 50  0001 C CNN
+F 4 "https://www.frontlinehobbies.com.au/g-force-xt60-gold-connector-male-female-2pair-gf-1?gclid=CjwKCAjwrvv3BRAJEiwAhwOdM8-qgWv5jfFefjTFyJOH3A9PPJY-dncYXHNHYDGoyDbJGDFwuET0RRoCcNgQAvD_BwE" H 7050 3400 50  0001 C CNN "other_URL"
+	1    7050 3400
 	1    0    0    1   
 $EndComp
 $Comp
@@ -1593,7 +1504,7 @@ P 8150 3100
 F 0 "Q8" H 8354 3146 50  0000 L CNN
 F 1 "WSD20L120DN" H 8350 3050 50  0000 L CNN
 F 2 "Package_SO:PowerPAK_SO-8_Single" H 8350 3025 50  0001 L CIN
-F 3 "https://www.vishay.com/docs/65596/si7141dp.pdf" H 8150 3100 50  0001 L CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/1805301730_Winsok-Semicon-WSD20L120DN_C148395.pdf" H 8150 3100 50  0001 L CNN
 F 4 "C148395" H 8150 3100 50  0001 C CNN "lcsc_part_number"
 F 5 "https://lcsc.com/product-detail/MOSFET_Winsok-Semicon-WSD20L120DN_C148395.html" H 8150 3100 50  0001 C CNN "lcsc_url"
 F 6 "1" H 8150 3100 50  0001 C CNN "lcsc_min_qty"
@@ -1606,35 +1517,8 @@ Text GLabel 8250 2900 1    50   BiDi ~ 0
 LOAD2
 Wire Wire Line
 	8250 3300 8300 3300
-Text GLabel 7650 3300 0    50   Input ~ 0
+Text GLabel 7950 3100 0    50   Input ~ 0
 L2ON
-$Comp
-L Transistor_BJT:MMBT3904 Q7
-U 1 1 5FD8215F
-P 7850 3300
-F 0 "Q7" H 8050 3200 50  0000 L CNN
-F 1 "MMBT3904" H 8050 3100 50  0000 L CNN
-F 2 "Package_TO_SOT_SMD:SOT-23" H 8050 3225 50  0001 L CIN
-F 3 "https://www.onsemi.com/pub/Collateral/2N3903-D.PDF" H 7850 3300 50  0001 L CNN
-F 4 "C81464" H 7850 3300 50  0001 C CNN "lcsc_part_number"
-F 5 "https://lcsc.com/product-detail/Transistors-NPN-PNP_ON-Semiconductor-MMBT3904LT1G_C81464.html" H 7850 3300 50  0001 C CNN "lcsc_url"
-F 6 "50" H 7850 3300 50  0001 C CNN "lcsc_min_qty"
-F 7 "MMBT3904LT1G" H 7850 3300 50  0001 C CNN "mfr_part_number"
-F 8 "SOT-23" H 7850 3300 50  0001 C CNN "package"
-	1    7850 3300
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:GND #PWR031
-U 1 1 5FD82191
-P 7950 3500
-F 0 "#PWR031" H 7950 3250 50  0001 C CNN
-F 1 "GND" H 7777 3425 50  0000 C CNN
-F 2 "" H 7950 3500 50  0001 C CNN
-F 3 "" H 7950 3500 50  0001 C CNN
-	1    7950 3500
-	1    0    0    -1  
-$EndComp
 $Comp
 L Device:R_Small R17
 U 1 1 5FD821A8
@@ -1657,7 +1541,6 @@ Wire Wire Line
 	7950 2750 7950 2800
 Wire Wire Line
 	7950 3000 7950 3100
-Connection ~ 7950 3100
 Text GLabel 7850 2750 0    50   Input ~ 0
 B2VM
 Text GLabel 8300 3300 2    50   BiDi ~ 0
@@ -1665,36 +1548,36 @@ B2C
 Text Notes 9850 2500 0    50   ~ 0
 Load 3 (lights?)
 Wire Wire Line
-	9450 2550 9450 2500
+	9400 3300 9400 3250
 Wire Wire Line
-	9400 2550 9450 2550
+	9350 3300 9400 3300
 Wire Wire Line
-	9450 2650 9450 2700
+	9400 3400 9400 3450
 Wire Wire Line
-	9400 2650 9450 2650
-Text GLabel 9450 2500 1    50   Output ~ 0
+	9350 3400 9400 3400
+Text GLabel 9400 3250 1    50   Output ~ 0
 LOAD3
 $Comp
 L power:GND #PWR045
 U 1 1 5FD8A180
-P 9450 2700
-F 0 "#PWR045" H 9450 2450 50  0001 C CNN
-F 1 "GND" H 9455 2527 50  0000 C CNN
-F 2 "" H 9450 2700 50  0001 C CNN
-F 3 "" H 9450 2700 50  0001 C CNN
-	1    9450 2700
+P 9400 3450
+F 0 "#PWR045" H 9400 3200 50  0001 C CNN
+F 1 "GND" H 9405 3277 50  0000 C CNN
+F 2 "" H 9400 3450 50  0001 C CNN
+F 3 "" H 9400 3450 50  0001 C CNN
+	1    9400 3450
 	1    0    0    -1  
 $EndComp
 $Comp
 L Connector:Conn_01x02_Male J8
 U 1 1 5FD8A193
-P 9200 2650
-F 0 "J8" H 9335 2825 50  0000 C CNN
-F 1 "LOAD3" H 9250 2400 50  0000 C CNN
-F 2 "Connector_AMASS:AMASS_XT60-F_1x02_P7.20mm_Vertical" H 9200 2650 50  0001 C CNN
-F 3 "~" H 9200 2650 50  0001 C CNN
-F 4 "https://www.frontlinehobbies.com.au/g-force-xt60-gold-connector-male-female-2pair-gf-1?gclid=CjwKCAjwrvv3BRAJEiwAhwOdM8-qgWv5jfFefjTFyJOH3A9PPJY-dncYXHNHYDGoyDbJGDFwuET0RRoCcNgQAvD_BwE" H 9200 2650 50  0001 C CNN "other_URL"
-	1    9200 2650
+P 9150 3400
+F 0 "J8" H 9285 3575 50  0000 C CNN
+F 1 "LOAD3" H 9200 3150 50  0000 C CNN
+F 2 "Connector_AMASS:AMASS_XT60-F_1x02_P7.20mm_Vertical" H 9150 3400 50  0001 C CNN
+F 3 "~" H 9150 3400 50  0001 C CNN
+F 4 "https://www.frontlinehobbies.com.au/g-force-xt60-gold-connector-male-female-2pair-gf-1?gclid=CjwKCAjwrvv3BRAJEiwAhwOdM8-qgWv5jfFefjTFyJOH3A9PPJY-dncYXHNHYDGoyDbJGDFwuET0RRoCcNgQAvD_BwE" H 9150 3400 50  0001 C CNN "other_URL"
+	1    9150 3400
 	1    0    0    1   
 $EndComp
 $Comp
@@ -1704,7 +1587,7 @@ P 10200 3100
 F 0 "Q10" H 10404 3146 50  0000 L CNN
 F 1 "WSD20L120DN" H 10400 3050 50  0000 L CNN
 F 2 "Package_SO:PowerPAK_SO-8_Single" H 10400 3025 50  0001 L CIN
-F 3 "https://www.vishay.com/docs/65596/si7141dp.pdf" H 10200 3100 50  0001 L CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/1805301730_Winsok-Semicon-WSD20L120DN_C148395.pdf" H 10200 3100 50  0001 L CNN
 F 4 "C148395" H 10200 3100 50  0001 C CNN "lcsc_part_number"
 F 5 "https://lcsc.com/product-detail/MOSFET_Winsok-Semicon-WSD20L120DN_C148395.html" H 10200 3100 50  0001 C CNN "lcsc_url"
 F 6 "1" H 10200 3100 50  0001 C CNN "lcsc_min_qty"
@@ -1717,35 +1600,8 @@ Text GLabel 10300 2900 1    50   BiDi ~ 0
 LOAD3
 Wire Wire Line
 	10300 3300 10350 3300
-Text GLabel 9700 3300 0    50   Input ~ 0
+Text GLabel 10000 3100 0    50   Input ~ 0
 L3ON
-$Comp
-L Transistor_BJT:MMBT3904 Q9
-U 1 1 5FD8A1F2
-P 9900 3300
-F 0 "Q9" H 10100 3200 50  0000 L CNN
-F 1 "MMBT3904" H 10100 3100 50  0000 L CNN
-F 2 "Package_TO_SOT_SMD:SOT-23" H 10100 3225 50  0001 L CIN
-F 3 "https://www.onsemi.com/pub/Collateral/2N3903-D.PDF" H 9900 3300 50  0001 L CNN
-F 4 "C81464" H 9900 3300 50  0001 C CNN "lcsc_part_number"
-F 5 "https://lcsc.com/product-detail/Transistors-NPN-PNP_ON-Semiconductor-MMBT3904LT1G_C81464.html" H 9900 3300 50  0001 C CNN "lcsc_url"
-F 6 "50" H 9900 3300 50  0001 C CNN "lcsc_min_qty"
-F 7 "MMBT3904LT1G" H 9900 3300 50  0001 C CNN "mfr_part_number"
-F 8 "SOT-23" H 9900 3300 50  0001 C CNN "package"
-	1    9900 3300
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:GND #PWR048
-U 1 1 5FD8A224
-P 10000 3500
-F 0 "#PWR048" H 10000 3250 50  0001 C CNN
-F 1 "GND" H 9827 3425 50  0000 C CNN
-F 2 "" H 10000 3500 50  0001 C CNN
-F 3 "" H 10000 3500 50  0001 C CNN
-	1    10000 3500
-	1    0    0    -1  
-$EndComp
 $Comp
 L Device:R_Small R20
 U 1 1 5FD8A23B
@@ -1768,7 +1624,6 @@ Wire Wire Line
 	10000 2750 10000 2800
 Wire Wire Line
 	10000 3000 10000 3100
-Connection ~ 10000 3100
 Text GLabel 9900 2750 0    50   Input ~ 0
 B2VM
 Text GLabel 10350 3300 2    50   BiDi ~ 0
@@ -1808,7 +1663,7 @@ P 6900 1350
 F 0 "Q6" H 7104 1396 50  0000 L CNN
 F 1 "WSD20L120DN" H 7104 1305 50  0000 L CNN
 F 2 "Package_SO:PowerPAK_SO-8_Single" H 7100 1275 50  0001 L CIN
-F 3 "https://www.vishay.com/docs/65596/si7141dp.pdf" H 6900 1350 50  0001 L CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/1805301730_Winsok-Semicon-WSD20L120DN_C148395.pdf" H 6900 1350 50  0001 L CNN
 F 4 "C148395" H 6900 1350 50  0001 C CNN "lcsc_part_number"
 F 5 "https://lcsc.com/product-detail/MOSFET_Winsok-Semicon-WSD20L120DN_C148395.html" H 6900 1350 50  0001 C CNN "lcsc_url"
 F 6 "1" H 6900 1350 50  0001 C CNN "lcsc_min_qty"
@@ -2058,73 +1913,19 @@ Wire Wire Line
 	7000 1550 7050 1550
 Text GLabel 7050 1550 2    50   BiDi ~ 0
 B2C
-$Comp
-L power:GND #PWR034
-U 1 1 5FB79D9A
-P 6700 1750
-F 0 "#PWR034" H 6700 1500 50  0001 C CNN
-F 1 "GND" H 6527 1675 50  0000 C CNN
-F 2 "" H 6700 1750 50  0001 C CNN
-F 3 "" H 6700 1750 50  0001 C CNN
-	1    6700 1750
-	1    0    0    -1  
-$EndComp
-Connection ~ 6700 1350
-Text GLabel 6400 1550 0    50   Input ~ 0
+Text GLabel 6700 1350 0    50   Input ~ 0
 B2ON
-$Comp
-L Transistor_BJT:MMBT3904 Q5
-U 1 1 5FB70A89
-P 6600 1550
-F 0 "Q5" H 6800 1450 50  0000 L CNN
-F 1 "MMBT3904" H 6800 1350 50  0000 L CNN
-F 2 "Package_TO_SOT_SMD:SOT-23" H 6800 1475 50  0001 L CIN
-F 3 "https://www.onsemi.com/pub/Collateral/2N3903-D.PDF" H 6600 1550 50  0001 L CNN
-F 4 "C81464" H 6600 1550 50  0001 C CNN "lcsc_part_number"
-F 5 "https://lcsc.com/product-detail/Transistors-NPN-PNP_ON-Semiconductor-MMBT3904LT1G_C81464.html" H 6600 1550 50  0001 C CNN "lcsc_url"
-F 6 "50" H 6600 1550 50  0001 C CNN "lcsc_min_qty"
-F 7 "MMBT3904LT1G" H 6600 1550 50  0001 C CNN "mfr_part_number"
-F 8 "SOT-23" H 6600 1550 50  0001 C CNN "package"
-	1    6600 1550
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	1600 4550 1600 3950
 Wire Wire Line
 	1600 4700 1600 4550
-Connection ~ 1600 4550
 Wire Wire Line
 	1600 4550 1200 4550
-Wire Wire Line
-	1450 4900 1500 4900
-Wire Wire Line
-	1450 4850 1450 4900
-Text GLabel 1450 4850 1    50   Input ~ 0
+Text GLabel 1150 4900 0    50   Input ~ 0
 RST
-Connection ~ 1450 4900
 Wire Wire Line
 	1200 4550 1200 4600
 Connection ~ 1200 4900
 Wire Wire Line
-	1450 4900 1200 4900
-Wire Wire Line
 	1200 4900 1200 4800
-$Comp
-L Device:R_Small R1
-U 1 1 5F08C101
-P 1200 4700
-F 0 "R1" H 1288 4724 50  0000 C CNN
-F 1 "10k" H 1308 4656 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" H 1200 4700 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/Uniroyal-Elec-0603WAJ0103T5E_C15401.pdf" H 1200 4700 50  0001 C CNN
-F 4 "C15401" H 1200 4700 50  0001 C CNN "lcsc_part_number"
-F 5 "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_UNI-ROYAL-Uniroyal-Elec-0603WAJ0103T5E_C15401.html" H 1200 4700 50  0001 C CNN "lcsc_url"
-F 6 "100" H 1200 4700 50  0001 C CNN "lcsc_min_qty"
-F 7 "0603WAJ0103T5E" H 1200 4700 50  0001 C CNN "mfr_part_number"
-F 8 "0603" H 1200 4700 50  0001 C CNN "package"
-	1    1200 4700
-	1    0    0    -1  
-$EndComp
 $Comp
 L power:GND #PWR01
 U 1 1 5F088CED
@@ -2140,7 +1941,7 @@ $Comp
 L Device:C_Small C1
 U 1 1 5F0878E3
 P 1200 5000
-F 0 "C1" H 1300 5000 50  0000 L CNN
+F 0 "C1" H 1300 5050 50  0000 L CNN
 F 1 "100n" H 1250 4900 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0805_2012Metric" H 1200 5000 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/Huaxin-S-T-0805B104K250_C128353.pdf" H 1200 5000 50  0001 C CNN
@@ -2156,34 +1957,88 @@ Wire Wire Line
 	4850 1550 4900 1550
 Text GLabel 4900 1550 2    50   BiDi ~ 0
 B1VM
-Connection ~ 4550 1350
-$Comp
-L power:GND #PWR022
-U 1 1 5FB90C6A
-P 4550 1750
-F 0 "#PWR022" H 4550 1500 50  0001 C CNN
-F 1 "GND" H 4377 1675 50  0000 C CNN
-F 2 "" H 4550 1750 50  0001 C CNN
-F 3 "" H 4550 1750 50  0001 C CNN
-	1    4550 1750
-	1    0    0    -1  
-$EndComp
-$Comp
-L Transistor_BJT:MMBT3904 Q3
-U 1 1 5FB90C38
-P 4450 1550
-F 0 "Q3" H 4650 1450 50  0000 L CNN
-F 1 "MMBT3904" H 4650 1350 50  0000 L CNN
-F 2 "Package_TO_SOT_SMD:SOT-23" H 4650 1475 50  0001 L CIN
-F 3 "https://www.onsemi.com/pub/Collateral/2N3903-D.PDF" H 4450 1550 50  0001 L CNN
-F 4 "C81464" H 4450 1550 50  0001 C CNN "lcsc_part_number"
-F 5 "https://lcsc.com/product-detail/Transistors-NPN-PNP_ON-Semiconductor-MMBT3904LT1G_C81464.html" H 4450 1550 50  0001 C CNN "lcsc_url"
-F 6 "50" H 4450 1550 50  0001 C CNN "lcsc_min_qty"
-F 7 "MMBT3904LT1G" H 4450 1550 50  0001 C CNN "mfr_part_number"
-F 8 "SOT-23" H 4450 1550 50  0001 C CNN "package"
-	1    4450 1550
-	1    0    0    -1  
-$EndComp
-Text GLabel 4250 1550 0    50   Input ~ 0
+Text GLabel 4550 1350 0    50   Input ~ 0
 B1ON
+$Comp
+L Device:R_Small R1
+U 1 1 5FF54F49
+P 1200 4700
+F 0 "R1" H 1300 4800 50  0000 C CNN
+F 1 "10k2" H 1350 4600 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 1200 4700 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/2011091910_YAGEO-RT0603BRE0710K2L_C705802.pdf" H 1200 4700 50  0001 C CNN
+F 4 "C705802" H 1200 4700 50  0001 C CNN "lcsc_part_number"
+F 5 "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_YAGEO-RT0603BRE0710K2L_C705802.html" H 1200 4700 50  0001 C CNN "lcsc_url"
+F 6 "100" H 1200 4700 50  0001 C CNN "lcsc_min_qty"
+F 7 "RT0603BRE0710K2L" H 1200 4700 50  0001 C CNN "mfr_part_number"
+F 8 "0603" H 1200 4700 50  0001 C CNN "package"
+	1    1200 4700
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_Small R8
+U 1 1 5FF5AD86
+P 2800 4800
+F 0 "R8" H 2920 4852 50  0000 C CNN
+F 1 "10k2" H 2950 4750 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 2800 4800 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/2011091910_YAGEO-RT0603BRE0710K2L_C705802.pdf" H 2800 4800 50  0001 C CNN
+F 4 "C705802" H 2800 4800 50  0001 C CNN "lcsc_part_number"
+F 5 "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_YAGEO-RT0603BRE0710K2L_C705802.html" H 2800 4800 50  0001 C CNN "lcsc_url"
+F 6 "100" H 2800 4800 50  0001 C CNN "lcsc_min_qty"
+F 7 "RT0603BRE0710K2L" H 2800 4800 50  0001 C CNN "mfr_part_number"
+F 8 "0603" H 2800 4800 50  0001 C CNN "package"
+	1    2800 4800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2700 4900 2800 4900
+$Comp
+L Device:R_Small R4
+U 1 1 5FF5FEF7
+P 2800 5500
+F 0 "R4" V 2800 5500 50  0000 C CNN
+F 1 "10k2" V 2900 5450 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 2800 5500 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/2011091910_YAGEO-RT0603BRE0710K2L_C705802.pdf" H 2800 5500 50  0001 C CNN
+F 4 "C705802" H 2800 5500 50  0001 C CNN "lcsc_part_number"
+F 5 "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_YAGEO-RT0603BRE0710K2L_C705802.html" H 2800 5500 50  0001 C CNN "lcsc_url"
+F 6 "100" H 2800 5500 50  0001 C CNN "lcsc_min_qty"
+F 7 "RT0603BRE0710K2L" H 2800 5500 50  0001 C CNN "mfr_part_number"
+F 8 "0603" H 2800 5500 50  0001 C CNN "package"
+	1    2800 5500
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:R_Small R9
+U 1 1 5FF6AC4F
+P 3350 6800
+F 0 "R9" H 3470 6852 50  0000 C CNN
+F 1 "10k2" H 3500 6750 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 3350 6800 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/2011091910_YAGEO-RT0603BRE0710K2L_C705802.pdf" H 3350 6800 50  0001 C CNN
+F 4 "C705802" H 3350 6800 50  0001 C CNN "lcsc_part_number"
+F 5 "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_YAGEO-RT0603BRE0710K2L_C705802.html" H 3350 6800 50  0001 C CNN "lcsc_url"
+F 6 "100" H 3350 6800 50  0001 C CNN "lcsc_min_qty"
+F 7 "RT0603BRE0710K2L" H 3350 6800 50  0001 C CNN "mfr_part_number"
+F 8 "0603" H 3350 6800 50  0001 C CNN "package"
+	1    3350 6800
+	1    0    0    -1  
+$EndComp
+Text GLabel 4132 4324 2    50   Input ~ 0
+SCL
+Wire Wire Line
+	1200 4550 850  4550
+Connection ~ 1200 4550
+Wire Wire Line
+	850  4550 550  4550
+Connection ~ 850  4550
+Connection ~ 1600 4550
+Wire Wire Line
+	1200 4900 1500 4900
+Wire Wire Line
+	1200 4900 1150 4900
+Connection ~ 2800 4900
+Wire Wire Line
+	2800 4900 3050 4900
 $EndSCHEMATC
