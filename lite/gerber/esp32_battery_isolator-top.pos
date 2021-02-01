@@ -1,4 +1,4 @@
-### Module positions - created on Tuesday, January 05, 2021 at 11:30:31 AM ###
+### Module positions - created on Monday, February 01, 2021 at 09:43:19 PM ###
 ### Printed by Pcbnew version kicad (5.1.7-0-10_14)
 ## Unit = mm, Angle = deg.
 ## Side : top
@@ -7,7 +7,7 @@ C1        100n             C_0805_2012Metric            26.2500    47.4000  270.
 C2        CP_Small         C_Elec_5x5.4                 22.0000    40.0000   90.0000  top
 C3        CP_Small         C_Elec_5x5.4                 22.0000    47.5000  270.0000  top
 C4        1uF              CP_EIA-3216-18_Kemet-A       29.6000    11.0000   90.0000  top
-C5        100n             C_0805_2012Metric            31.5250    10.3750   90.0000  top
+C5        100n             C_0805_2012Metric            31.5000    10.3750   90.0000  top
 C6        100n             C_0805_2012Metric            30.4750     7.7750  180.0000  top
 C7        1uF              CP_EIA-3216-18_Kemet-A       31.6000     4.5500  270.0000  top
 C9        100n             C_0603_1608Metric            53.2500    45.2500  270.0000  top
@@ -33,16 +33,16 @@ R6        2.2k             R_0603_1608Metric            47.8000    49.5000  270.
 R7        2.2k             R_0603_1608Metric            53.8000    35.9000  270.0000  top
 R8        10k2             R_0603_1608Metric             9.5000    51.0000  180.0000  top
 R9        10k2             R_0603_1608Metric             9.5000    41.5000  270.0000  top
-R10       105k             R_0603_1608Metric             6.8000     9.9000  180.0000  top
-R11       20k              R_0603_1608Metric             8.6000     8.5000    0.0000  top
+R10       105k             R_0603_1608Metric             3.5000    10.0000  180.0000  top
+R11       20k              R_0603_1608Metric             4.7875     8.6000    0.0000  top
 R12       105k             R_0603_1608Metric            29.7250     3.2750  270.0000  top
-R13       20k              R_0603_1608Metric            19.6000     3.2500   90.0000  top
-R14       105k             R_0603_1608Metric             5.3000    11.3000  180.0000  top
+R13       20k              R_0603_1608Metric            28.0000     3.4000   90.0000  top
+R14       105k             R_0603_1608Metric             2.8000    11.3000  180.0000  top
 R15       105k             R_0603_1608Metric            26.3000    32.0000  180.0000  top
 R16       105k             R_0603_1608Metric            36.2000     8.6000    0.0000  top
 R17       105k             R_0603_1608Metric            35.3500    16.9700   90.0000  top
-R18       30k9             R_0603_1608Metric             8.5000     5.5000    0.0000  top
-R19       10k2             R_0603_1608Metric             8.5000     6.9000    0.0000  top
+R18       30k9             R_0603_1608Metric             8.8750     5.0000    0.0000  top
+R19       10k2             R_0603_1608Metric             7.7000     7.3000    0.0000  top
 R20       105k             R_0603_1608Metric            36.5900    25.8100   90.0000  top
 R21       30k9             R_0603_1608Metric             7.7000    34.9000  180.0000  top
 R22       10k2             R_0603_1608Metric             4.7000    34.4000  180.0000  top

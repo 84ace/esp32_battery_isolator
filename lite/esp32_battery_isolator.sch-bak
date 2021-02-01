@@ -218,7 +218,7 @@ F 8 "0603" H 2806 1320 50  0001 C CNN "package"
 	1    2806 1320
 	1    0    0    -1  
 $EndComp
-Text Notes 1950 4250 0    50   ~ 0
+Text Notes 1950 4400 0    50   ~ 0
 ESP-32
 Wire Notes Line
 	11218 4184 11218 4180
@@ -1382,36 +1382,36 @@ Wire Notes Line
 Text Notes 5750 2500 0    50   ~ 0
 Load 1 (fridge?)
 Wire Wire Line
-	5350 2550 5350 2500
+	5200 3300 5200 3250
 Wire Wire Line
-	5300 2550 5350 2550
+	5150 3300 5200 3300
 Wire Wire Line
-	5350 2650 5350 2700
+	5200 3400 5200 3450
 Wire Wire Line
-	5300 2650 5350 2650
-Text GLabel 5350 2500 1    50   Output ~ 0
+	5150 3400 5200 3400
+Text GLabel 5200 3250 1    50   Output ~ 0
 LOAD1
 $Comp
 L power:GND #PWR027
 U 1 1 5FD65F4F
-P 5350 2700
-F 0 "#PWR027" H 5350 2450 50  0001 C CNN
-F 1 "GND" H 5355 2527 50  0000 C CNN
-F 2 "" H 5350 2700 50  0001 C CNN
-F 3 "" H 5350 2700 50  0001 C CNN
-	1    5350 2700
+P 5200 3450
+F 0 "#PWR027" H 5200 3200 50  0001 C CNN
+F 1 "GND" H 5205 3277 50  0000 C CNN
+F 2 "" H 5200 3450 50  0001 C CNN
+F 3 "" H 5200 3450 50  0001 C CNN
+	1    5200 3450
 	1    0    0    -1  
 $EndComp
 $Comp
 L Connector:Conn_01x02_Male J5
 U 1 1 5FD65F62
-P 5100 2650
-F 0 "J5" H 5235 2825 50  0000 C CNN
-F 1 "LOAD1" H 5150 2400 50  0000 C CNN
-F 2 "Connector_AMASS:AMASS_XT60-F_1x02_P7.20mm_Vertical" H 5100 2650 50  0001 C CNN
-F 3 "~" H 5100 2650 50  0001 C CNN
-F 4 "https://www.frontlinehobbies.com.au/g-force-xt60-gold-connector-male-female-2pair-gf-1?gclid=CjwKCAjwrvv3BRAJEiwAhwOdM8-qgWv5jfFefjTFyJOH3A9PPJY-dncYXHNHYDGoyDbJGDFwuET0RRoCcNgQAvD_BwE" H 5100 2650 50  0001 C CNN "other_URL"
-	1    5100 2650
+P 4950 3400
+F 0 "J5" H 5085 3575 50  0000 C CNN
+F 1 "LOAD1" H 5000 3150 50  0000 C CNN
+F 2 "Connector_AMASS:AMASS_XT60-F_1x02_P7.20mm_Vertical" H 4950 3400 50  0001 C CNN
+F 3 "~" H 4950 3400 50  0001 C CNN
+F 4 "https://www.frontlinehobbies.com.au/g-force-xt60-gold-connector-male-female-2pair-gf-1?gclid=CjwKCAjwrvv3BRAJEiwAhwOdM8-qgWv5jfFefjTFyJOH3A9PPJY-dncYXHNHYDGoyDbJGDFwuET0RRoCcNgQAvD_BwE" H 4950 3400 50  0001 C CNN "other_URL"
+	1    4950 3400
 	1    0    0    1   
 $EndComp
 $Comp
@@ -1465,36 +1465,36 @@ B2C
 Text Notes 7800 2500 0    50   ~ 0
 Load 2 (freezer?)
 Wire Wire Line
-	7400 2550 7400 2500
+	7300 3300 7300 3250
 Wire Wire Line
-	7350 2550 7400 2550
+	7250 3300 7300 3300
 Wire Wire Line
-	7400 2650 7400 2700
+	7300 3400 7300 3450
 Wire Wire Line
-	7350 2650 7400 2650
-Text GLabel 7400 2500 1    50   Output ~ 0
+	7250 3400 7300 3400
+Text GLabel 7300 3250 1    50   Output ~ 0
 LOAD2
 $Comp
 L power:GND #PWR030
 U 1 1 5FD820ED
-P 7400 2700
-F 0 "#PWR030" H 7400 2450 50  0001 C CNN
-F 1 "GND" H 7405 2527 50  0000 C CNN
-F 2 "" H 7400 2700 50  0001 C CNN
-F 3 "" H 7400 2700 50  0001 C CNN
-	1    7400 2700
+P 7300 3450
+F 0 "#PWR030" H 7300 3200 50  0001 C CNN
+F 1 "GND" H 7305 3277 50  0000 C CNN
+F 2 "" H 7300 3450 50  0001 C CNN
+F 3 "" H 7300 3450 50  0001 C CNN
+	1    7300 3450
 	1    0    0    -1  
 $EndComp
 $Comp
 L Connector:Conn_01x02_Male J7
 U 1 1 5FD82100
-P 7150 2650
-F 0 "J7" H 7285 2825 50  0000 C CNN
-F 1 "LOAD2" H 7200 2400 50  0000 C CNN
-F 2 "Connector_AMASS:AMASS_XT60-F_1x02_P7.20mm_Vertical" H 7150 2650 50  0001 C CNN
-F 3 "~" H 7150 2650 50  0001 C CNN
-F 4 "https://www.frontlinehobbies.com.au/g-force-xt60-gold-connector-male-female-2pair-gf-1?gclid=CjwKCAjwrvv3BRAJEiwAhwOdM8-qgWv5jfFefjTFyJOH3A9PPJY-dncYXHNHYDGoyDbJGDFwuET0RRoCcNgQAvD_BwE" H 7150 2650 50  0001 C CNN "other_URL"
-	1    7150 2650
+P 7050 3400
+F 0 "J7" H 7185 3575 50  0000 C CNN
+F 1 "LOAD2" H 7100 3150 50  0000 C CNN
+F 2 "Connector_AMASS:AMASS_XT60-F_1x02_P7.20mm_Vertical" H 7050 3400 50  0001 C CNN
+F 3 "~" H 7050 3400 50  0001 C CNN
+F 4 "https://www.frontlinehobbies.com.au/g-force-xt60-gold-connector-male-female-2pair-gf-1?gclid=CjwKCAjwrvv3BRAJEiwAhwOdM8-qgWv5jfFefjTFyJOH3A9PPJY-dncYXHNHYDGoyDbJGDFwuET0RRoCcNgQAvD_BwE" H 7050 3400 50  0001 C CNN "other_URL"
+	1    7050 3400
 	1    0    0    1   
 $EndComp
 $Comp
@@ -1548,36 +1548,36 @@ B2C
 Text Notes 9850 2500 0    50   ~ 0
 Load 3 (lights?)
 Wire Wire Line
-	9450 2550 9450 2500
+	9400 3300 9400 3250
 Wire Wire Line
-	9400 2550 9450 2550
+	9350 3300 9400 3300
 Wire Wire Line
-	9450 2650 9450 2700
+	9400 3400 9400 3450
 Wire Wire Line
-	9400 2650 9450 2650
-Text GLabel 9450 2500 1    50   Output ~ 0
+	9350 3400 9400 3400
+Text GLabel 9400 3250 1    50   Output ~ 0
 LOAD3
 $Comp
 L power:GND #PWR045
 U 1 1 5FD8A180
-P 9450 2700
-F 0 "#PWR045" H 9450 2450 50  0001 C CNN
-F 1 "GND" H 9455 2527 50  0000 C CNN
-F 2 "" H 9450 2700 50  0001 C CNN
-F 3 "" H 9450 2700 50  0001 C CNN
-	1    9450 2700
+P 9400 3450
+F 0 "#PWR045" H 9400 3200 50  0001 C CNN
+F 1 "GND" H 9405 3277 50  0000 C CNN
+F 2 "" H 9400 3450 50  0001 C CNN
+F 3 "" H 9400 3450 50  0001 C CNN
+	1    9400 3450
 	1    0    0    -1  
 $EndComp
 $Comp
 L Connector:Conn_01x02_Male J8
 U 1 1 5FD8A193
-P 9200 2650
-F 0 "J8" H 9335 2825 50  0000 C CNN
-F 1 "LOAD3" H 9250 2400 50  0000 C CNN
-F 2 "Connector_AMASS:AMASS_XT60-F_1x02_P7.20mm_Vertical" H 9200 2650 50  0001 C CNN
-F 3 "~" H 9200 2650 50  0001 C CNN
-F 4 "https://www.frontlinehobbies.com.au/g-force-xt60-gold-connector-male-female-2pair-gf-1?gclid=CjwKCAjwrvv3BRAJEiwAhwOdM8-qgWv5jfFefjTFyJOH3A9PPJY-dncYXHNHYDGoyDbJGDFwuET0RRoCcNgQAvD_BwE" H 9200 2650 50  0001 C CNN "other_URL"
-	1    9200 2650
+P 9150 3400
+F 0 "J8" H 9285 3575 50  0000 C CNN
+F 1 "LOAD3" H 9200 3150 50  0000 C CNN
+F 2 "Connector_AMASS:AMASS_XT60-F_1x02_P7.20mm_Vertical" H 9150 3400 50  0001 C CNN
+F 3 "~" H 9150 3400 50  0001 C CNN
+F 4 "https://www.frontlinehobbies.com.au/g-force-xt60-gold-connector-male-female-2pair-gf-1?gclid=CjwKCAjwrvv3BRAJEiwAhwOdM8-qgWv5jfFefjTFyJOH3A9PPJY-dncYXHNHYDGoyDbJGDFwuET0RRoCcNgQAvD_BwE" H 9150 3400 50  0001 C CNN "other_URL"
+	1    9150 3400
 	1    0    0    1   
 $EndComp
 $Comp
