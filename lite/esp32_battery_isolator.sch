@@ -47,22 +47,6 @@ F 3 "" H 1600 4550 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L MAX17260:TACT-SWITCH SW2
-U 1 1 5F089A41
-P 3200 4500
-F 0 "SW2" H 3200 4755 50  0000 C CNN
-F 1 "KMR221GLFS" H 3200 4664 50  0000 C CNN
-F 2 "Button_Switch_SMD:SW_Push_1P1T_NO_CK_KMR2" H 3200 4777 60  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/1809292031_C-K-KMR221GLFS_C72443.pdf" H 3200 4671 60  0001 C CNN
-F 4 "C72443" H 3200 4500 50  0001 C CNN "lcsc_part_number"
-F 5 "https://lcsc.com/product-detail/Tactile-Switches_C-K_KMR221GLFS_C-K-KMR221GLFS_C72443.html" H 3200 4500 50  0001 C CNN "lcsc_url"
-F 6 "1" H 3200 4500 50  0001 C CNN "lcsc_min_qty"
-F 7 "KMR221GLFS" H 3200 4500 50  0001 C CNN "mfr_part_number"
-F 8 "KMR2" H 3200 4500 50  0001 C CNN "package"
-	1    3200 4500
-	1    0    0    -1  
-$EndComp
-$Comp
 L power:GND #PWR013
 U 1 1 5F08B08D
 P 3500 4500
@@ -269,7 +253,7 @@ L Connector:Conn_01x04_Female J2
 U 1 1 5F0D309D
 P 5292 4170
 F 0 "J2" H 5320 4146 50  0000 L CNN
-F 1 "Conn_01x04_Female" H 4750 3840 50  0000 L CNN
+F 1 "Conn_01x04_Female" H 4800 4390 50  0000 L CNN
 F 2 "Connector_PinSocket_2.54mm:PinSocket_1x04_P2.54mm_Vertical" H 5292 4170 50  0001 C CNN
 F 3 "~" H 5292 4170 50  0001 C CNN
 	1    5292 4170
@@ -289,51 +273,27 @@ $EndComp
 $Comp
 L power:+3V3 #PWR014
 U 1 1 5F106EBF
-P 4066 4090
-F 0 "#PWR014" H 4066 3940 50  0001 C CNN
-F 1 "+3V3" H 4081 4263 50  0000 C CNN
-F 2 "" H 4066 4090 50  0001 C CNN
-F 3 "" H 4066 4090 50  0001 C CNN
-	1    4066 4090
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	4132 4324 4066 4324
-Wire Wire Line
-	4066 4324 4066 4290
-$Comp
-L Device:R_Small R7
-U 1 1 5F10CED6
-P 4436 4192
-F 0 "R7" H 4550 4234 50  0000 C CNN
-F 1 "2.2k" H 4554 4148 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" H 4436 4192 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/1904031208_Walsin-Tech-Corp-2-2KR-222-5_C384262.pdf" H 4436 4192 50  0001 C CNN
-F 4 "C384262" H 4436 4192 50  0001 C CNN "lcsc_part_number"
-F 5 "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_Walsin-Tech-Corp-Walsin-Tech-Corp-2-2KR-222-5_C384262.html" H 4436 4192 50  0001 C CNN "lcsc_url"
-F 6 "100" H 4436 4192 50  0001 C CNN "lcsc_min_qty"
-F 7 "WR06X222 JTL" H 4436 4192 50  0001 C CNN "mfr_part_number"
-F 8 "0603" H 4436 4192 50  0001 C CNN "package"
-	1    4436 4192
+P 4050 4150
+F 0 "#PWR014" H 4050 4000 50  0001 C CNN
+F 1 "+3V3" H 4050 4300 50  0000 C CNN
+F 2 "" H 4050 4150 50  0001 C CNN
+F 3 "" H 4050 4150 50  0001 C CNN
+	1    4050 4150
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:+3V3 #PWR016
 U 1 1 5F10CEE0
-P 4436 4092
-F 0 "#PWR016" H 4436 3942 50  0001 C CNN
-F 1 "+3V3" H 4451 4265 50  0000 C CNN
-F 2 "" H 4436 4092 50  0001 C CNN
-F 3 "" H 4436 4092 50  0001 C CNN
-	1    4436 4092
+P 4350 4150
+F 0 "#PWR016" H 4350 4000 50  0001 C CNN
+F 1 "+3V3" H 4350 4300 50  0000 C CNN
+F 2 "" H 4350 4150 50  0001 C CNN
+F 3 "" H 4350 4150 50  0001 C CNN
+	1    4350 4150
 	1    0    0    -1  
 $EndComp
-Text GLabel 4502 4326 2    50   Input ~ 0
+Text GLabel 4400 4400 2    50   Input ~ 0
 SDA
-Wire Wire Line
-	4502 4326 4436 4326
-Wire Wire Line
-	4436 4326 4436 4292
 $Comp
 L power:GND #PWR012
 U 1 1 5F553B72
@@ -461,7 +421,7 @@ F 3 "http://www.ti.com/lit/ds/symlink/adc128d818.pdf" H 5300 6300 50  0001 C CNN
 F 4 "C139062" H 5300 6300 50  0001 C CNN "lcsc_part_number"
 F 5 "https://lcsc.com/product-detail/Analog-To-Digital-Converters-ADCs_Texas-Instruments_ADC128D818CIMTX-NOPB_Texas-Instruments-Texas-Instruments-ADC128D818CIMTX-NOPB_C139062.html" H 5300 6300 50  0001 C CNN "lcsc_url"
 F 6 "1" H 5300 6300 50  0001 C CNN "lcsc_min_qty"
-F 7 "https://lcsc.com/product-detail/Analog-To-Digital-Converters-ADCs_Texas-Instruments_ADC128D818CIMTX-NOPB_Texas-Instruments-Texas-Instruments-ADC128D818CIMTX-NOPB_C139062.html" H 5300 6300 50  0001 C CNN "mfr_part_number"
+F 7 "ADC128D818CIMTX" H 5300 6300 50  0001 C CNN "mfr_part_number"
 F 8 "TSSOP-16" H 5300 6300 50  0001 C CNN "package"
 	1    5300 6300
 	1    0    0    -1  
@@ -644,22 +604,6 @@ D+
 Text GLabel 8800 4850 0    50   Input ~ 0
 D-
 $Comp
-L Device:C_Small C10
-U 1 1 5F73731C
-P 9500 4250
-F 0 "C10" H 9250 4250 50  0000 L CNN
-F 1 "100n" H 9250 4150 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric" H 9500 4250 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/1910111742_YAGEO-AC0603KRX7R0BB104_C408909.pdf" H 9500 4250 50  0001 C CNN
-F 4 "C408909" H 9500 4250 50  0001 C CNN "lcsc_part_number"
-F 5 "https://lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_YAGEO-AC0603KRX7R0BB104_C408909.html" H 9500 4250 50  0001 C CNN "lcsc_url"
-F 6 "20" H 9500 4250 50  0001 C CNN "lcsc_min_qty"
-F 7 "AC0603KRX7R0BB104" H 9500 4250 50  0001 C CNN "mfr_part_number"
-F 8 "0603" H 9500 4250 50  0001 C CNN "package"
-	1    9500 4250
-	1    0    0    -1  
-$EndComp
-$Comp
 L MAX17260:GND #PWR038
 U 1 1 5F737323
 P 9500 4350
@@ -668,22 +612,6 @@ F 1 "GND" H 9500 4280 30  0001 C CNN
 F 2 "" H 9500 4350 60  0000 C CNN
 F 3 "" H 9500 4350 60  0000 C CNN
 	1    9500 4350
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:C_Small C9
-U 1 1 5F737332
-P 8400 4650
-F 0 "C9" H 8250 4955 50  0000 L CNN
-F 1 "100n" H 8255 4875 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric" H 8400 4650 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/1910111742_YAGEO-AC0603KRX7R0BB104_C408909.pdf" H 8400 4650 50  0001 C CNN
-F 4 "C408909" H 8400 4650 50  0001 C CNN "lcsc_part_number"
-F 5 "https://lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_YAGEO-AC0603KRX7R0BB104_C408909.html" H 8400 4650 50  0001 C CNN "lcsc_url"
-F 6 "20" H 8400 4650 50  0001 C CNN "lcsc_min_qty"
-F 7 "AC0603KRX7R0BB104" H 8400 4650 50  0001 C CNN "mfr_part_number"
-F 8 "0603" H 8400 4650 50  0001 C CNN "package"
-	1    8400 4650
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
@@ -811,22 +739,6 @@ Wire Wire Line
 Connection ~ 8350 5850
 Text Notes 9000 3850 0    50   ~ 0
 UART-USB
-$Comp
-L Device:R_Small R6
-U 1 1 5F105614
-P 4066 4190
-F 0 "R6" H 4200 4230 50  0000 C CNN
-F 1 "2.2k" H 4184 4146 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" H 4066 4190 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/1904031208_Walsin-Tech-Corp-2-2KR-222-5_C384262.pdf" H 4066 4190 50  0001 C CNN
-F 4 "C384262" H 4066 4190 50  0001 C CNN "lcsc_part_number"
-F 5 "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_Walsin-Tech-Corp-Walsin-Tech-Corp-2-2KR-222-5_C384262.html" H 4066 4190 50  0001 C CNN "lcsc_url"
-F 6 "100" H 4066 4190 50  0001 C CNN "lcsc_min_qty"
-F 7 "WR06X222 JTL" H 4066 4190 50  0001 C CNN "mfr_part_number"
-F 8 "0603" H 4066 4190 50  0001 C CNN "package"
-	1    4066 4190
-	1    0    0    -1  
-$EndComp
 Text Notes 4200 750  0    50   ~ 0
 Batt 1 isolator (starter)
 $Comp
@@ -850,7 +762,7 @@ L Device:CP_Small C2
 U 1 1 5F921787
 P 2150 3150
 F 0 "C2" H 1950 3200 50  0000 L CNN
-F 1 "CP_Small" H 1700 3100 50  0000 L CNN
+F 1 "22uF 35V" H 1700 3100 50  0000 L CNN
 F 2 "Capacitor_SMD:C_Elec_5x5.4" H 2150 3150 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/Honor-Elec-RVT1V220M0505_C23289.pdf" H 2150 3150 50  0001 C CNN
 F 4 "C23289" H 2150 3150 50  0001 C CNN "lcsc_part_number"
@@ -866,7 +778,7 @@ L Device:CP_Small C3
 U 1 1 5F922B54
 P 3250 3150
 F 0 "C3" H 3338 3196 50  0000 L CNN
-F 1 "CP_Small" H 3338 3105 50  0000 L CNN
+F 1 "22uF 35V" H 3338 3105 50  0000 L CNN
 F 2 "Capacitor_SMD:C_Elec_5x5.4" H 3250 3150 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/Honor-Elec-RVT1V220M0505_C23289.pdf" H 3250 3150 50  0001 C CNN
 F 4 "C23289" H 3250 3150 50  0001 C CNN "lcsc_part_number"
@@ -979,31 +891,15 @@ L MAX17260:TACT-SWITCH SW1
 U 1 1 5FA6E558
 P 3200 4050
 F 0 "SW1" H 3200 4305 50  0000 C CNN
-F 1 "KMR221GLFS" H 3200 4214 50  0000 C CNN
-F 2 "Button_Switch_SMD:SW_Push_1P1T_NO_CK_KMR2" H 3200 4327 60  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/1809292031_C-K-KMR221GLFS_C72443.pdf" H 3200 4221 60  0001 C CNN
-F 4 "C72443" H 3200 4050 50  0001 C CNN "lcsc_part_number"
-F 5 "https://lcsc.com/product-detail/Tactile-Switches_C-K_KMR221GLFS_C-K-KMR221GLFS_C72443.html" H 3200 4050 50  0001 C CNN "lcsc_url"
-F 6 "1" H 3200 4050 50  0001 C CNN "lcsc_min_qty"
-F 7 "KMR221GLFS" H 3200 4050 50  0001 C CNN "mfr_part_number"
-F 8 "KMR2" H 3200 4050 50  0001 C CNN "package"
+F 1 "TS4450P" H 3200 4214 50  0000 C CNN
+F 2 "Acea:TS4550TP" H 3200 4327 60  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/1912111437_SHOU-HAN-TS4550TP_C412373.pdf" H 3200 4221 60  0001 C CNN
+F 4 "C412373" H 3200 4050 50  0001 C CNN "lcsc_part_number"
+F 5 "https://lcsc.com/product-detail/Tactile-Switches_SHOU-HAN-TS4550TP_C412373.html" H 3200 4050 50  0001 C CNN "lcsc_url"
+F 6 "50" H 3200 4050 50  0001 C CNN "lcsc_min_qty"
+F 7 "TS4550TP" H 3200 4050 50  0001 C CNN "mfr_part_number"
+F 8 "4.5mm,4.5mm SMD" H 3200 4050 50  0001 C CNN "package"
 	1    3200 4050
-	1    0    0    -1  
-$EndComp
-$Comp
-L MAX17260:TACT-SWITCH SW3
-U 1 1 5FB487FE
-P 3250 7550
-F 0 "SW3" H 3250 7805 50  0000 C CNN
-F 1 "KMR221GLFS" H 3250 7714 50  0000 C CNN
-F 2 "Button_Switch_SMD:SW_Push_1P1T_NO_CK_KMR2" H 3250 7827 60  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/1809292031_C-K-KMR221GLFS_C72443.pdf" H 3250 7721 60  0001 C CNN
-F 4 "C72443" H 3250 7550 50  0001 C CNN "lcsc_part_number"
-F 5 "https://lcsc.com/product-detail/Tactile-Switches_C-K_KMR221GLFS_C-K-KMR221GLFS_C72443.html" H 3250 7550 50  0001 C CNN "lcsc_url"
-F 6 "1" H 3250 7550 50  0001 C CNN "lcsc_min_qty"
-F 7 "KMR221GLFS" H 3250 7550 50  0001 C CNN "mfr_part_number"
-F 8 "KMR2" H 3250 7550 50  0001 C CNN "package"
-	1    3250 7550
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -2018,7 +1914,7 @@ F 8 "0603" H 3350 6800 50  0001 C CNN "package"
 	1    3350 6800
 	1    0    0    -1  
 $EndComp
-Text GLabel 4132 4324 2    50   Input ~ 0
+Text GLabel 4000 4400 0    50   Input ~ 0
 SCL
 Wire Wire Line
 	1200 4550 850  4550
@@ -2039,4 +1935,108 @@ Wire Wire Line
 Connection ~ 9200 4150
 Wire Wire Line
 	9200 4150 9200 4100
+$Comp
+L Device:C_Small C9
+U 1 1 601C5520
+P 8400 4650
+F 0 "C9" H 8450 4750 50  0000 L CNN
+F 1 "100n" H 8450 4550 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric" H 8400 4650 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Huaxin-S-T-0805B104K250_C128353.pdf" H 8400 4650 50  0001 C CNN
+F 4 "C128353" H 8400 4650 50  0001 C CNN "lcsc_part_number"
+F 5 "https://lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Walsin-Tech-Corp-0805B104K250_C128353.html" H 8400 4650 50  0001 C CNN "lcsc_url"
+F 6 "100" H 8400 4650 50  0001 C CNN "lcsc_min_qty"
+F 7 "0805B104K250" H 8400 4650 50  0001 C CNN "mfr_part_number"
+F 8 "0805" H 8400 4650 50  0001 C CNN "package"
+	1    8400 4650
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C_Small C10
+U 1 1 601CE54D
+P 9500 4250
+F 0 "C10" H 9550 4350 50  0000 L CNN
+F 1 "100n" H 9550 4150 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric" H 9500 4250 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Huaxin-S-T-0805B104K250_C128353.pdf" H 9500 4250 50  0001 C CNN
+F 4 "C128353" H 9500 4250 50  0001 C CNN "lcsc_part_number"
+F 5 "https://lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Walsin-Tech-Corp-0805B104K250_C128353.html" H 9500 4250 50  0001 C CNN "lcsc_url"
+F 6 "100" H 9500 4250 50  0001 C CNN "lcsc_min_qty"
+F 7 "0805B104K250" H 9500 4250 50  0001 C CNN "mfr_part_number"
+F 8 "0805" H 9500 4250 50  0001 C CNN "package"
+	1    9500 4250
+	1    0    0    -1  
+$EndComp
+$Comp
+L MAX17260:TACT-SWITCH SW2
+U 1 1 601F5F30
+P 3200 4500
+F 0 "SW2" H 3200 4755 50  0000 C CNN
+F 1 "TS4450P" H 3200 4664 50  0000 C CNN
+F 2 "Acea:TS4550TP" H 3200 4777 60  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/1912111437_SHOU-HAN-TS4550TP_C412373.pdf" H 3200 4671 60  0001 C CNN
+F 4 "C412373" H 3200 4500 50  0001 C CNN "lcsc_part_number"
+F 5 "https://lcsc.com/product-detail/Tactile-Switches_SHOU-HAN-TS4550TP_C412373.html" H 3200 4500 50  0001 C CNN "lcsc_url"
+F 6 "50" H 3200 4500 50  0001 C CNN "lcsc_min_qty"
+F 7 "TS4550TP" H 3200 4500 50  0001 C CNN "mfr_part_number"
+F 8 "4.5mm,4.5mm SMD" H 3200 4500 50  0001 C CNN "package"
+	1    3200 4500
+	1    0    0    -1  
+$EndComp
+$Comp
+L MAX17260:TACT-SWITCH SW3
+U 1 1 601FAF2F
+P 3250 7550
+F 0 "SW3" H 3250 7805 50  0000 C CNN
+F 1 "TS4450P" H 3250 7714 50  0000 C CNN
+F 2 "Acea:TS4550TP" H 3250 7827 60  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/1912111437_SHOU-HAN-TS4550TP_C412373.pdf" H 3250 7721 60  0001 C CNN
+F 4 "C412373" H 3250 7550 50  0001 C CNN "lcsc_part_number"
+F 5 "https://lcsc.com/product-detail/Tactile-Switches_SHOU-HAN-TS4550TP_C412373.html" H 3250 7550 50  0001 C CNN "lcsc_url"
+F 6 "50" H 3250 7550 50  0001 C CNN "lcsc_min_qty"
+F 7 "TS4550TP" H 3250 7550 50  0001 C CNN "mfr_part_number"
+F 8 "4.5mm,4.5mm SMD" H 3250 7550 50  0001 C CNN "package"
+	1    3250 7550
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_Small R6
+U 1 1 6020020F
+P 4050 4250
+F 0 "R6" H 3900 4300 50  0000 L CNN
+F 1 "2.55K" H 3800 4200 50  0000 L CNN
+F 2 "LED_SMD:LED_0603_1608Metric" H 4050 4250 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Guangdong-Fenghua-Advanced-Tech-RS-03K2551FT_C304726.pdf" H 4050 4250 50  0001 C CNN
+F 4 "C304726" H 4050 4250 50  0001 C CNN "lcsc_part_number"
+F 5 "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_FH-Guangdong-Fenghua-Advanced-Tech-RS-03K2551FT_C304726.html" H 4050 4250 50  0001 C CNN "lcsc_url"
+F 6 "50" H 4050 4250 50  0001 C CNN "lcsc_min_qty"
+F 7 "RS-03K2551FT" H 4050 4250 50  0001 C CNN "mfr_part_number"
+F 8 "0603" H 4050 4250 50  0001 C CNN "package"
+	1    4050 4250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_Small R7
+U 1 1 60208E54
+P 4350 4250
+F 0 "R7" H 4400 4300 50  0000 L CNN
+F 1 "2.55K" H 4400 4200 50  0000 L CNN
+F 2 "LED_SMD:LED_0603_1608Metric" H 4350 4250 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Guangdong-Fenghua-Advanced-Tech-RS-03K2551FT_C304726.pdf" H 4350 4250 50  0001 C CNN
+F 4 "C304726" H 4350 4250 50  0001 C CNN "lcsc_part_number"
+F 5 "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_FH-Guangdong-Fenghua-Advanced-Tech-RS-03K2551FT_C304726.html" H 4350 4250 50  0001 C CNN "lcsc_url"
+F 6 "50" H 4350 4250 50  0001 C CNN "lcsc_min_qty"
+F 7 "RS-03K2551FT" H 4350 4250 50  0001 C CNN "mfr_part_number"
+F 8 "0603" H 4350 4250 50  0001 C CNN "package"
+	1    4350 4250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4000 4400 4050 4400
+Wire Wire Line
+	4050 4400 4050 4350
+Wire Wire Line
+	4400 4400 4350 4400
+Wire Wire Line
+	4350 4400 4350 4350
 $EndSCHEMATC
