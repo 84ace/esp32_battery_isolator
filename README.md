@@ -53,10 +53,6 @@
     </li>
     <li>
       <a href="#get-the-isolator">Get the Isolator</a>
-      <ul>
-        <li><a href="#buy">Buying it</a></li>
-        <li><a href="#building">Building it</a></li>
-      </ul>
     </li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
