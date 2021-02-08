@@ -81,7 +81,7 @@ I also thought that I should be able to turn the lights off in camp from the com
 <!-- MAIN FEATURES -->
 ## Main Features:
 * Dual battery input
-* Tripple load output
+* Triple load output
 * Charger input (From external MPPT/solar charge controller)
 * Current sensors
 * Temperature sensor
