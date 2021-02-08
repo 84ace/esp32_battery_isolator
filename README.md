@@ -52,15 +52,15 @@
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Getting Started</a>
+      <a href="#get-the-isolator">Get the Isolator</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
+        <li><a href="#buy">Buying it</a></li>
+        <li><a href="#building">Building it</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#made-with">Made with</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgements">Acknowledgements</a></li>
@@ -100,7 +100,11 @@ If you would like to contribute an app please contact me via the <a href="https:
 <!-- GETTING STARTED -->
 ## Get the Isolator
 
-There are two ways to get started with the ESP32 Battery Isolator, you can either take the easy(er) way and buy a pre-made unit from [here](https://placeholder.com/) or you can send the gerber files off to your favourite fab house, order the components, assemble the board and print the enclosure yourself.
+There are two ways to get started with the ESP32 Battery Isolator: 
+* You can either take the easy(er) way and buy a pre-made unit from [here](https://placeholder.com/) 
+* you can send the gerber files off to your favourite fab house, order the components, assemble the board and print the enclosure yourself.
+
+Your choice!
 
 <!-- ROADMAP -->
 ## Roadmap
