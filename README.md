@@ -135,7 +135,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Acea Quigg (84ace) - [@Racea_Quigg](https://twitter.com/@RaceaQuigg) - (aceaquigg84 [@] gmail.com)
+84ace - [@Racea_Quigg](https://twitter.com/@RaceaQuigg)
 
 Project Link: [https://github.com/84ace/esp32_battery_isolator](https://github.com/84ace)
 
