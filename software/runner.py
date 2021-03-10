@@ -18,13 +18,16 @@ rtc = RTC()
 debug = False
 
 # 1st boot ever?
-first_boot_ever = False
+first_boot_ever = False 
+#ToDo: look for first boot indicator 
 
 # is the i2c oled attached to the board?
-oled_attached = True
+oled_attached = False
+#ToDo: look for presence of device
 
 # is the ADC attached to the board?
 adc_attached = True
+#ToDo: look for presence of device
 
 # setup the 'mode button', enables wifi if held during bootup
 mode_button = Pin(33, Pin.IN) # mode button, GPIO33

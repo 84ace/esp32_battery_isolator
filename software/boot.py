@@ -6,7 +6,7 @@ display_boot_state()
 
 # show the boot splash screen to get some info to the user
 if oled_attached:
-	oled_update("BI LITE V0.01", "ACEA QUIGG 11/20", "BOOTING...", 3)
+	oled_update("BI LITE V0.02", "ACEA QUIGG 03/21", "BOOTING...", 3)
 
 # we need to do the following the first time after flashing micropython for webrepl setup:
 if first_boot_ever:
