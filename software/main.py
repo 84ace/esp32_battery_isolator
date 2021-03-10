@@ -24,10 +24,6 @@ bypass_wait = True
 wait_counter = 0
 error_loop = 0
 
-# let the user know we are in main.py
-if oled_attached:
-	oled_update("EXECUTING", "MAIN.PY...", "RUNNING...", 2)
-
 # grab the WiFi MAC
 #mac = WLAN().config('mac')
 
@@ -80,21 +76,21 @@ def looper():
 	batt_1_v_check = check_b1vd_voltage()
 	batt_2_v_check = check_b2vd_voltage()
 	batt_2_c_check = i2c_adc_current_check()
-	board_temp = get_board_temp()
+	#board_temp = get_board_temp()
 
 	if adc_attached:
 		adc_temp = i2c_adc_temp()
 
 	sleep(1)
 
-	#if oled_attached:
-	#	if batt_1_v[1] and batt_2_v[1]:
-	#		oled_update("BATTERY STATE:", "BATT1: " +  str(batt_1_v[0]) + ' ' + str(batt_1_v[1]), "BATT2: " + str(batt_2_v[0]) + ' ' + str(batt_2_v[1]), 2)
-	#		oled_update("BATTERY VOLTAGE:", "BATT1: " +  str(batt_1_v[2]), "BATT2: " + str(batt_2_v[2]), 2)
-	#	else:
-	#		oled_update("BATTERY STATE:", "BATT1: " +  str(batt_1_v[0]), "BATT2: " + str(batt_2_v[0]), 2)
-	#		oled_update("BATTERY VOLTAGE:", "BATT1: " +  str(batt_1_v[2]), "BATT2: " + str(batt_2_v[2]), 2)
-	#		#oled_update("TEMPERATURES:","BOARD:" + str(board_temp) + "C", "ADC:" + str(adc_temp) + "C", 1) # do we really care about the board temp?
+	if oled_attached:
+		if batt_1_v_check[1] and batt_2_v_check[1]:
+			oled_update("BATTERY STATE:", "BATT1: " +  str(batt_1_v_check[0]) + ' ' + str(batt_1_v_check[1]), "BATT2: " + str(batt_2_v_check[0]) + ' ' + str(batt_2_v_check[1]), 2)
+			oled_update("BATTERY VOLTAGE:", "BATT1: " +  str(batt_1_v_check[2]), "BATT2: " + str(batt_2_v_check[2]), 2)
+		else:
+			oled_update("BATTERY STATE:", "BATT1: " +  str(batt_1_v_check[0]), "BATT2: " + str(batt_2_v_check[0]), 2)
+			oled_update("BATTERY VOLTAGE:", "BATT1: " +  str(batt_1_v_check[2]), "BATT2: " + str(batt_2_v_check[2]), 2)
+			#oled_update("TEMPERATURES:","BOARD:" + str(board_temp) + "C", "ADC:" + str(adc_temp) + "C", 1) # do we really care about the board temp?
 
 	#if use_bluetooth:
 	#	adv_str_data = batt_1_v[0] + ',' + batt_1_v[2] + ',' + batt_2_v[0] + ',' + batt_2_v[2] + ',' + str(board_temp) 
@@ -152,7 +148,7 @@ while True:
 		print("BATT 2 MAX V:  ", batt_2_max_voltage)
 		print("BATT 2 CURRENT:", batt_2_current / (loops - 1))
 		print("-----")
-		print("BOARD TEMP IC: ", board_temp)
+		#print("BOARD TEMP IC: ", board_temp)
 		print("ADC TEMP:      ", adc_temp)
 		print("-----")
 

@@ -9,20 +9,20 @@ import usocket as socket
 import gc
 
 # enable the watchdog timer
-wdt = WDT(timeout=50000) # 50 second timeout for hardware watchdog
+wdt = WDT(timeout=5000000) # 50 second timeout for hardware watchdog
 
 # initialise the RTC's RAM
 rtc = RTC()
 
 # set debug to True to enable WiFi without pressing the mode button at boot
-debug = False
+debug = True
 
 # 1st boot ever?
 first_boot_ever = False 
 #ToDo: look for first boot indicator 
 
 # is the i2c oled attached to the board?
-oled_attached = False
+oled_attached = True
 #ToDo: look for presence of device
 
 # is the ADC attached to the board?
@@ -30,7 +30,7 @@ adc_attached = True
 #ToDo: look for presence of device
 
 # setup the 'mode button', enables wifi if held during bootup
-mode_button = Pin(33, Pin.IN) # mode button, GPIO33
+mode_button = Pin(33, Pin.IN)
 
 # timers
 sys_led_timer = Timer(-1)
@@ -64,29 +64,29 @@ if reset_cause() == DEEPSLEEP_RESET:
 	print("WOKEN FROM DEEPSLEEP ON LOOP: ", data)
 	sleep(1)
 
-	sys_ok_led = Pin(27) # system LED, GPIO27
+	sys_ok_led = Pin(27)
 	if sys_ok_led.value():
 		sys_ok_led = Pin(27, Pin.OUT, Pin.PULL_UP)
 		sys_ok_led.value(1)
 
-	batt_1_led = Pin(25) # batt 1 LED
+	batt_1_led = Pin(14) 
 	if batt_1_led.value():
-		batt_1_led = Pin(25, Pin.OUT, Pin.PULL_UP)
+		batt_1_led = Pin(14, Pin.OUT, Pin.PULL_UP)
 		batt_1_led.value(1)
 
-	batt_2_led = Pin(18) # batt 2 LED
+	batt_2_led = Pin(25) 
 	if batt_2_led.value():
-		batt_2_led = Pin(18, Pin.OUT, Pin.PULL_UP)
+		batt_2_led = Pin(25, Pin.OUT, Pin.PULL_UP)
 		batt_2_led.value(1)
 
-	batt_1_enabled = Pin(32) # batt 1 enabled
+	batt_1_enabled = Pin(32) 
 	if batt_1_enabled.value():
-		batt_1_enabled = Pin(32, Pin.OUT, Pin.PULL_UP)
+		batt_1_enabled = Pin(32, Pin.OUT)
 		batt_1_enabled.value(1)
 
-	batt_2_enabled = Pin(4) # batt 2 enabled
+	batt_2_enabled = Pin(26) 
 	if batt_2_enabled.value():
-		batt_2_enabled = Pin(4, Pin.OUT, Pin.PULL_UP)
+		batt_2_enabled = Pin(26, Pin.OUT)
 		batt_2_enabled.value(1)
 else:
 	print("storing data for the first time")
@@ -94,13 +94,13 @@ else:
 	sleep(1)
 
 	# initialise LEDs
-	sys_ok_led = Pin(27, Pin.OUT, Pin.PULL_DOWN) # system LED, GPIO27
-	batt_1_led = Pin(25, Pin.OUT, Pin.PULL_DOWN)  # battery 1 LED, GPIO25
-	batt_2_led = Pin(18, Pin.OUT, Pin.PULL_DOWN)  # battery 2 LED, GPIO18
+	sys_ok_led = Pin(27, Pin.OUT, Pin.PULL_DOWN)
+	batt_1_led = Pin(14, Pin.OUT, Pin.PULL_DOWN) 
+	batt_2_led = Pin(25, Pin.OUT, Pin.PULL_DOWN) 
 
 	# battery relays or MOSFETs
 	batt_1_enabled = Pin(32, Pin.OUT, Pin.PULL_DOWN)  # batt_1_enabled battery fet, GPIO32
-	batt_2_enabled = Pin(4, Pin.OUT, Pin.PULL_DOWN)  # batt_2_enabled battery fet, GPIO4
+	batt_2_enabled = Pin(26, Pin.OUT, Pin.PULL_DOWN)  # batt_2_enabled battery fet, GPIO4
 
 # setup the ADC
 battery_voltage_divider = ((105000+20000)/20000)
@@ -303,8 +303,8 @@ def check_b1vd_voltage():
 
 	batt_1_adc_voltage = i2c_adc_voltage_check(0x20)
 	batt_1_voltage = battery_voltage_divider * batt_1_adc_voltage * error
-	batt_1_led = Pin(25, Pin.OUT, Pin.PULL_DOWN)
-	batt_2_led = Pin(18, Pin.OUT, Pin.PULL_DOWN)
+	batt_1_led = Pin(14, Pin.OUT, Pin.PULL_DOWN)
+	batt_2_led = Pin(25, Pin.OUT, Pin.PULL_DOWN)
 
 	if batt_1_voltage < min_batt_1_voltage:
 		min_batt_1_voltage = batt_1_voltage
@@ -316,7 +316,7 @@ def check_b1vd_voltage():
 		batt_1_charging_indicator_timer.init(period=250, mode=Timer.PERIODIC, callback=lambda t:batt_1_led.value(not batt_1_led.value()))
 		#if int(minutes_since_counter_reset) % 2 == 0: # slow the rate of change down to 1 by every 2 mins
 		batt_1_enabled = Pin(32, Pin.OUT, Pin.PULL_UP)
-		batt_2_enabled = Pin(4, Pin.OUT, Pin.PULL_UP)
+		batt_2_enabled = Pin(26, Pin.OUT, Pin.PULL_UP)
 		batt_1_enabled.value(1)
 		batt_2_enabled.value(1)
 		charge_state(1, 1)
@@ -361,14 +361,14 @@ def check_b2vd_voltage():
 		batt_2_charging_indicator_timer.init(period=250, mode=Timer.PERIODIC, callback=lambda t:batt_2_led.value(not batt_2_led.value()))
 		state = 'CHG'
 		batt_1_enabled = Pin(32, Pin.OUT, Pin.PULL_UP)
-		batt_2_enabled = Pin(4, Pin.OUT, Pin.PULL_UP)
+		batt_2_enabled = Pin(26, Pin.OUT, Pin.PULL_UP)
 		batt_1_enabled.value(1)
 		batt_2_enabled.value(1)
 		charge_state(2, 1)
 
 	elif batt_2_voltage > batt_2_cuttoff_voltage:
 		batt_2_charging_indicator_timer.deinit()
-		batt_2_enabled = Pin(4, Pin.OUT, Pin.PULL_UP)
+		batt_2_enabled = Pin(26, Pin.OUT, Pin.PULL_UP)
 		batt_2_led.value(1)
 		state = 'ON'
 		charge_state(2, 0)
@@ -377,7 +377,7 @@ def check_b2vd_voltage():
 	else:
 		batt_2_charging_indicator_timer.deinit()
 		batt_2_led.value(0)
-		batt_2_enabled = Pin(4, Pin.OUT, Pin.PULL_DOWN)
+		batt_2_enabled = Pin(26, Pin.OUT, Pin.PULL_DOWN)
 		state = 'OFF'
 		charge_state(2, 0)
 		batt_2_enabled.value(0)
@@ -412,7 +412,7 @@ def set_pins_held():
 
 	global batt_2_enabled
 	if batt_2_enabled.value():
-		batt_2_enabled = Pin(4, Pin.OUT, Pin.PULL_UP)
+		batt_2_enabled = Pin(26, Pin.OUT, Pin.PULL_UP)
 		batt_2_enabled.value(1)
 		batt_2_enabled.PULL_HOLD
 

@@ -4,15 +4,9 @@ from runner import oled_attached, oled_update, display_boot_state, first_boot_ev
 # make the system LED flash to show that the unit is booting
 display_boot_state()
 
-# show the boot splash screen to get some info to the user
-if oled_attached:
-	oled_update("BI LITE V0.02", "ACEA QUIGG 03/21", "BOOTING...", 3)
-
 # we need to do the following the first time after flashing micropython for webrepl setup:
 if first_boot_ever:
 	import webrepl_setup
-	if oled_attached:
-		oled_update("WEBREPL SETUP...", "", "", 0)
 
 # if debug True connect WiFi etc., elif, the mode button is pressed during boot, connect WiFi etc.
 if not mode_button.value() or debug: # run if mode button not pressed at boot

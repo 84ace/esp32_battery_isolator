@@ -134,6 +134,6 @@ while True:
     #print(i2c_adc_voltage_in0())
     #print("batt2")
     #print(i2c_adc_voltage_in1())
-    i2c_adc_current()
+    #i2c_adc_current()
     print("")
-    sleep(1)
+    sleep(5)

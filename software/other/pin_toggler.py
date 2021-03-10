@@ -11,15 +11,15 @@ gc.collect()
 
 debug = True
 
-aux1 = Pin(32, Pin.OUT, Pin.PULL_DOWN)  # aux1 battery fet, GPIO32
-aux2 = Pin(4, Pin.OUT, Pin.PULL_DOWN)  # aux2 battery fet, GPIO4   
+batt1 = Pin(32, Pin.OUT, Pin.PULL_UP)
+batt2 = Pin(26, Pin.OUT, Pin.PULL_UP)
 
 # testing relays
 
 while True:
     print("Toggling...")
-    aux1.value(not aux1.value())
+    batt1.value(not batt1.value())
     sleep(2)
-    aux2.value(not aux1.value())
+    batt2.value(not batt2.value())
     sleep(2)
     
