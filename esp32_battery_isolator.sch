@@ -68,55 +68,55 @@ RXD
 $Comp
 L Device:LED D1
 U 1 1 5F05CC6B
-P 1550 1100
-F 0 "D1" V 1589 983 50  0000 R CNN
-F 1 "MAIN LED" V 1498 983 50  0000 R CNN
-F 2 "LED_SMD:LED_0603_1608Metric" H 1550 1100 50  0001 C CNN
-F 3 "" H 1550 1100 50  0001 C CNN
-F 4 "C2286" H 1550 1100 50  0001 C CNN "lcsc_part_number"
-F 5 "https://jlcpcb.com/parts/componentSearch?secondSortUuid=ac4c3bf204dc486cb0c9c3fc16ef0c61&name=Light%20Emitting%20Diodes%20(LED)&firstSortUuid=f972da204e9147268b09e5e9b0c6292d" H 1550 1100 50  0001 C CNN "lcsc_url"
-F 6 "0603" H 1550 1100 50  0001 C CNN "package"
-	1    1550 1100
+P 1959 1122
+F 0 "D1" V 1998 1005 50  0000 R CNN
+F 1 "MAIN LED" V 1907 1005 50  0000 R CNN
+F 2 "LED_SMD:LED_0603_1608Metric" H 1959 1122 50  0001 C CNN
+F 3 "" H 1959 1122 50  0001 C CNN
+F 4 "C2286" H 1959 1122 50  0001 C CNN "lcsc_part_number"
+F 5 "https://jlcpcb.com/parts/componentSearch?secondSortUuid=ac4c3bf204dc486cb0c9c3fc16ef0c61&name=Light%20Emitting%20Diodes%20(LED)&firstSortUuid=f972da204e9147268b09e5e9b0c6292d" H 1959 1122 50  0001 C CNN "lcsc_url"
+F 6 "0603" H 1959 1122 50  0001 C CNN "package"
+	1    1959 1122
 	0    -1   -1   0   
 $EndComp
 $Comp
 L power:GND #PWR03
 U 1 1 5F06058B
-P 1550 1450
-F 0 "#PWR03" H 1550 1200 50  0001 C CNN
-F 1 "GND" H 1690 1316 50  0000 C CNN
-F 2 "" H 1550 1450 50  0001 C CNN
-F 3 "" H 1550 1450 50  0001 C CNN
-	1    1550 1450
+P 1959 1472
+F 0 "#PWR03" H 1959 1222 50  0001 C CNN
+F 1 "GND" H 2099 1338 50  0000 C CNN
+F 2 "" H 1959 1472 50  0001 C CNN
+F 3 "" H 1959 1472 50  0001 C CNN
+	1    1959 1472
 	1    0    0    -1  
 $EndComp
-Text GLabel 1550 950  0    50   Input ~ 0
-SYS_OK_LED
+Text GLabel 1959 972  0    50   Input ~ 0
+B1_LED
 $Comp
 L power:GND #PWR06
 U 1 1 5F061708
-P 2150 1450
-F 0 "#PWR06" H 2150 1200 50  0001 C CNN
-F 1 "GND" H 2290 1316 50  0000 C CNN
-F 2 "" H 2150 1450 50  0001 C CNN
-F 3 "" H 2150 1450 50  0001 C CNN
-	1    2150 1450
+P 1131 1465
+F 0 "#PWR06" H 1131 1215 50  0001 C CNN
+F 1 "GND" H 1271 1331 50  0000 C CNN
+F 2 "" H 1131 1465 50  0001 C CNN
+F 3 "" H 1131 1465 50  0001 C CNN
+	1    1131 1465
 	1    0    0    -1  
 $EndComp
-Text GLabel 2150 950  0    50   Input ~ 0
-B1_LED
+Text GLabel 1131 965  0    50   Input ~ 0
+SYS_OK_LED
 $Comp
 L power:GND #PWR09
 U 1 1 5F063623
-P 2800 1450
-F 0 "#PWR09" H 2800 1200 50  0001 C CNN
-F 1 "GND" H 2940 1316 50  0000 C CNN
-F 2 "" H 2800 1450 50  0001 C CNN
-F 3 "" H 2800 1450 50  0001 C CNN
-	1    2800 1450
+P 2800 1459
+F 0 "#PWR09" H 2800 1209 50  0001 C CNN
+F 1 "GND" H 2940 1325 50  0000 C CNN
+F 2 "" H 2800 1459 50  0001 C CNN
+F 3 "" H 2800 1459 50  0001 C CNN
+	1    2800 1459
 	1    0    0    -1  
 $EndComp
-Text GLabel 2800 950  0    50   Input ~ 0
+Text GLabel 2800 959  0    50   Input ~ 0
 B2_LED
 Text Notes 1900 700  0    50   ~ 0
 Status LEDS\n
@@ -747,74 +747,74 @@ Wire Wire Line
 	3350 7000 2700 7000
 Connection ~ 3350 7000
 Wire Wire Line
-	3950 1800 3950 1750
+	3869 1813 3869 1763
 Wire Wire Line
-	3900 1800 3950 1800
+	3819 1813 3869 1813
 Wire Wire Line
-	3950 1900 3950 1950
+	3869 1913 3869 1963
 Wire Wire Line
-	3900 1900 3950 1900
-Text GLabel 3950 1750 1    50   Output ~ 0
+	3819 1913 3869 1913
+Text GLabel 3869 1763 1    50   Output ~ 0
 B1VM
 $Comp
 L power:GND #PWR018
 U 1 1 5FAC6DC8
-P 3950 1950
-F 0 "#PWR018" H 3950 1700 50  0001 C CNN
-F 1 "GND" H 3955 1777 50  0000 C CNN
-F 2 "" H 3950 1950 50  0001 C CNN
-F 3 "" H 3950 1950 50  0001 C CNN
-	1    3950 1950
+P 3869 1963
+F 0 "#PWR018" H 3869 1713 50  0001 C CNN
+F 1 "GND" H 3874 1790 50  0000 C CNN
+F 2 "" H 3869 1963 50  0001 C CNN
+F 3 "" H 3869 1963 50  0001 C CNN
+	1    3869 1963
 	1    0    0    -1  
 $EndComp
 $Comp
 L Connector:Conn_01x02_Male J1
 U 1 1 5FAC6DBE
-P 3700 1900
-F 0 "J1" H 3835 2075 50  0000 C CNN
-F 1 "BATT1" H 3700 2000 50  0000 C CNN
-F 2 "Acea:AMASS_XT60PW-M" H 3700 1900 50  0001 C CNN
-F 3 "~" H 3700 1900 50  0001 C CNN
-F 4 "" H 3700 1900 50  0001 C CNN "other_URL"
-F 5 "C98732" H 3700 1900 50  0001 C CNN "lcsc_part_number"
-	1    3700 1900
+P 3619 1913
+F 0 "J1" H 3754 2088 50  0000 C CNN
+F 1 "BATT1" H 3619 2013 50  0000 C CNN
+F 2 "Acea:AMASS_XT60PW-M" H 3619 1913 50  0001 C CNN
+F 3 "~" H 3619 1913 50  0001 C CNN
+F 4 "" H 3619 1913 50  0001 C CNN "other_URL"
+F 5 "C98732" H 3619 1913 50  0001 C CNN "lcsc_part_number"
+	1    3619 1913
 	1    0    0    1   
 $EndComp
 $Comp
 L Connector:Conn_01x02_Male J4
 U 1 1 5F07EB11
-P 5850 1900
-F 0 "J4" H 5985 2075 50  0000 C CNN
-F 1 "BATT2" H 5850 2000 50  0000 C CNN
-F 2 "Acea:AMASS_XT60PW-M" H 5850 1900 50  0001 C CNN
-F 3 "~" H 5850 1900 50  0001 C CNN
-F 4 "" H 5850 1900 50  0001 C CNN "other_URL"
-F 5 "C98732" H 5850 1900 50  0001 C CNN "lcsc_part_number"
-	1    5850 1900
+P 5765 1919
+F 0 "J4" H 5900 2094 50  0000 C CNN
+F 1 "BATT2" H 5765 2019 50  0000 C CNN
+F 2 "Acea:AMASS_XT60PW-M" H 5765 1919 50  0001 C CNN
+F 3 "~" H 5765 1919 50  0001 C CNN
+F 4 "" H 5765 1919 50  0001 C CNN "other_URL"
+F 5 "C98732" H 5765 1919 50  0001 C CNN "lcsc_part_number"
+	1    5765 1919
 	1    0    0    1   
 $EndComp
 $Comp
 L power:GND #PWR032
 U 1 1 5F07EB25
-P 6100 1950
-F 0 "#PWR032" H 6100 1700 50  0001 C CNN
-F 1 "GND" H 6105 1777 50  0000 C CNN
-F 2 "" H 6100 1950 50  0001 C CNN
-F 3 "" H 6100 1950 50  0001 C CNN
-	1    6100 1950
+P 6015 1969
+F 0 "#PWR032" H 6015 1719 50  0001 C CNN
+F 1 "GND" H 6020 1796 50  0000 C CNN
+F 2 "" H 6015 1969 50  0001 C CNN
+F 3 "" H 6015 1969 50  0001 C CNN
+	1    6015 1969
 	1    0    0    -1  
 $EndComp
 Wire Notes Line
 	6506 476  6504 476 
 Wire Wire Line
-	6050 1900 6100 1900
+	5965 1919 6015 1919
 Wire Wire Line
-	6100 1900 6100 1950
+	6015 1919 6015 1969
 Wire Wire Line
-	6050 1800 6100 1800
+	5965 1819 6015 1819
 Wire Wire Line
-	6100 1800 6100 1750
-Text GLabel 6100 1750 1    50   Output ~ 0
+	6015 1819 6015 1769
+Text GLabel 6015 1769 1    50   Output ~ 0
 B2VM
 $Comp
 L power:+3V3 #PWR0104
@@ -831,31 +831,17 @@ Text GLabel 4800 5700 0    50   Input ~ 0
 B1VD
 Text GLabel 4800 5800 0    50   Input ~ 0
 B2VD
-$Comp
-L Transistor_FET:QM6015D Q4
-U 1 1 5FB4BE84
-P 4750 1350
-F 0 "Q4" H 4954 1396 50  0000 L CNN
-F 1 "AP6679GH-HF" H 4950 1300 50  0000 L CNN
-F 2 "Package_TO_SOT_SMD:TO-252-2" H 4950 1275 50  0001 L CIN
-F 3 "" H 4750 1350 50  0001 L CNN
-F 4 "C124530" H 4750 1350 50  0001 C CNN "lcsc_part_number"
-F 5 "https://lcsc.com/product-detail/MOSFET_Advanced-Power-Elec-AP6679GH-HF_C124530.html/?href=jlc-SMT" H 4750 1350 50  0001 C CNN "lcsc_url"
-F 6 "TO-252-2" H 4750 1350 50  0001 C CNN "package"
-	1    4750 1350
-	1    0    0    -1  
-$EndComp
 Text GLabel 8100 1400 0    50   BiDi ~ 0
 COM
-Text GLabel 4850 1150 1    50   BiDi ~ 0
+Text GLabel 4832 1038 1    50   BiDi ~ 0
 B1C
 Wire Wire Line
-	4450 1000 4550 1000
+	4432 888  4532 888 
 Wire Wire Line
-	4550 1000 4550 1050
+	4532 888  4532 938 
 Wire Wire Line
-	4550 1250 4550 1350
-Text GLabel 4450 1000 0    50   BiDi ~ 0
+	4532 1138 4532 1238
+Text GLabel 4432 888  0    50   BiDi ~ 0
 B1VM
 $Comp
 L power:+3V3 #PWR0105
@@ -1004,51 +990,51 @@ Wire Notes Line
 Text Notes 5750 2500 0    50   ~ 0
 Load 1 (fridge?)
 Wire Wire Line
-	5200 3300 5200 3250
+	5177 3307 5177 3257
 Wire Wire Line
-	5150 3300 5200 3300
+	5127 3307 5177 3307
 Wire Wire Line
-	5200 3400 5200 3450
+	5177 3407 5177 3457
 Wire Wire Line
-	5150 3400 5200 3400
-Text GLabel 5200 3250 1    50   Output ~ 0
+	5127 3407 5177 3407
+Text GLabel 5177 3257 1    50   Output ~ 0
 LOAD1
 $Comp
 L power:GND #PWR027
 U 1 1 5FD65F4F
-P 5200 3450
-F 0 "#PWR027" H 5200 3200 50  0001 C CNN
-F 1 "GND" H 5205 3277 50  0000 C CNN
-F 2 "" H 5200 3450 50  0001 C CNN
-F 3 "" H 5200 3450 50  0001 C CNN
-	1    5200 3450
+P 5177 3457
+F 0 "#PWR027" H 5177 3207 50  0001 C CNN
+F 1 "GND" H 5182 3284 50  0000 C CNN
+F 2 "" H 5177 3457 50  0001 C CNN
+F 3 "" H 5177 3457 50  0001 C CNN
+	1    5177 3457
 	1    0    0    -1  
 $EndComp
 $Comp
 L Connector:Conn_01x02_Male J5
 U 1 1 5FD65F62
-P 4950 3400
-F 0 "J5" H 5085 3575 50  0000 C CNN
-F 1 "LOAD1" H 5000 3150 50  0000 C CNN
-F 2 "Acea:AMASS_XT60PW-F" H 4950 3400 50  0001 C CNN
-F 3 "~" H 4950 3400 50  0001 C CNN
-F 4 "" H 4950 3400 50  0001 C CNN "other_URL"
-F 5 "C428722" H 4950 3400 50  0001 C CNN "lcsc_part_number"
-	1    4950 3400
+P 4927 3407
+F 0 "J5" H 5062 3582 50  0000 C CNN
+F 1 "LOAD1" H 4977 3157 50  0000 C CNN
+F 2 "Acea:AMASS_XT60PW-F" H 4927 3407 50  0001 C CNN
+F 3 "~" H 4927 3407 50  0001 C CNN
+F 4 "" H 4927 3407 50  0001 C CNN "other_URL"
+F 5 "C428722" H 4927 3407 50  0001 C CNN "lcsc_part_number"
+	1    4927 3407
 	1    0    0    1   
 $EndComp
 Text GLabel 6200 2900 1    50   BiDi ~ 0
 LOAD1
 Wire Wire Line
 	6200 3300 6250 3300
-Text GLabel 5900 3100 0    50   Input ~ 0
+Text GLabel 5600 3299 0    50   Input ~ 0
 L1ON
 Wire Wire Line
 	5800 2750 5900 2750
 Wire Wire Line
 	5900 2750 5900 2800
 Wire Wire Line
-	5900 3000 5900 3100
+	5900 3000 5900 3099
 Text GLabel 5800 2750 0    50   Input ~ 0
 B2VM
 Text GLabel 6250 3300 2    50   BiDi ~ 0
@@ -1056,44 +1042,44 @@ B2C
 Text Notes 7800 2500 0    50   ~ 0
 Load 2 (freezer?)
 Wire Wire Line
-	7300 3300 7300 3250
+	7277 3313 7277 3263
 Wire Wire Line
-	7250 3300 7300 3300
+	7227 3313 7277 3313
 Wire Wire Line
-	7300 3400 7300 3450
+	7277 3413 7277 3463
 Wire Wire Line
-	7250 3400 7300 3400
-Text GLabel 7300 3250 1    50   Output ~ 0
+	7227 3413 7277 3413
+Text GLabel 7277 3263 1    50   Output ~ 0
 LOAD2
 $Comp
 L power:GND #PWR030
 U 1 1 5FD820ED
-P 7300 3450
-F 0 "#PWR030" H 7300 3200 50  0001 C CNN
-F 1 "GND" H 7305 3277 50  0000 C CNN
-F 2 "" H 7300 3450 50  0001 C CNN
-F 3 "" H 7300 3450 50  0001 C CNN
-	1    7300 3450
+P 7277 3463
+F 0 "#PWR030" H 7277 3213 50  0001 C CNN
+F 1 "GND" H 7282 3290 50  0000 C CNN
+F 2 "" H 7277 3463 50  0001 C CNN
+F 3 "" H 7277 3463 50  0001 C CNN
+	1    7277 3463
 	1    0    0    -1  
 $EndComp
 $Comp
 L Connector:Conn_01x02_Male J7
 U 1 1 5FD82100
-P 7050 3400
-F 0 "J7" H 7185 3575 50  0000 C CNN
-F 1 "LOAD2" H 7100 3150 50  0000 C CNN
-F 2 "Acea:AMASS_XT60PW-F" H 7050 3400 50  0001 C CNN
-F 3 "~" H 7050 3400 50  0001 C CNN
-F 4 "" H 7050 3400 50  0001 C CNN "other_URL"
-F 5 "C428722" H 7050 3400 50  0001 C CNN "lcsc_part_number"
-	1    7050 3400
+P 7027 3413
+F 0 "J7" H 7162 3588 50  0000 C CNN
+F 1 "LOAD2" H 7077 3163 50  0000 C CNN
+F 2 "Acea:AMASS_XT60PW-F" H 7027 3413 50  0001 C CNN
+F 3 "~" H 7027 3413 50  0001 C CNN
+F 4 "" H 7027 3413 50  0001 C CNN "other_URL"
+F 5 "C428722" H 7027 3413 50  0001 C CNN "lcsc_part_number"
+	1    7027 3413
 	1    0    0    1   
 $EndComp
 Text GLabel 8250 2900 1    50   BiDi ~ 0
 LOAD2
 Wire Wire Line
 	8250 3300 8300 3300
-Text GLabel 7950 3100 0    50   Input ~ 0
+Text GLabel 7650 3300 0    50   Input ~ 0
 L2ON
 Wire Wire Line
 	7850 2750 7950 2750
@@ -1108,44 +1094,44 @@ B2C
 Text Notes 9850 2500 0    50   ~ 0
 Load 3 (lights?)
 Wire Wire Line
-	9400 3300 9400 3250
+	9370 3300 9370 3250
 Wire Wire Line
-	9350 3300 9400 3300
+	9320 3300 9370 3300
 Wire Wire Line
-	9400 3400 9400 3450
+	9370 3400 9370 3450
 Wire Wire Line
-	9350 3400 9400 3400
-Text GLabel 9400 3250 1    50   Output ~ 0
+	9320 3400 9370 3400
+Text GLabel 9370 3250 1    50   Output ~ 0
 LOAD3
 $Comp
 L power:GND #PWR045
 U 1 1 5FD8A180
-P 9400 3450
-F 0 "#PWR045" H 9400 3200 50  0001 C CNN
-F 1 "GND" H 9405 3277 50  0000 C CNN
-F 2 "" H 9400 3450 50  0001 C CNN
-F 3 "" H 9400 3450 50  0001 C CNN
-	1    9400 3450
+P 9370 3450
+F 0 "#PWR045" H 9370 3200 50  0001 C CNN
+F 1 "GND" H 9375 3277 50  0000 C CNN
+F 2 "" H 9370 3450 50  0001 C CNN
+F 3 "" H 9370 3450 50  0001 C CNN
+	1    9370 3450
 	1    0    0    -1  
 $EndComp
 $Comp
 L Connector:Conn_01x02_Male J8
 U 1 1 5FD8A193
-P 9150 3400
-F 0 "J8" H 9285 3575 50  0000 C CNN
-F 1 "LOAD3" H 9200 3150 50  0000 C CNN
-F 2 "Acea:AMASS_XT60PW-F" H 9150 3400 50  0001 C CNN
-F 3 "~" H 9150 3400 50  0001 C CNN
-F 4 "" H 9150 3400 50  0001 C CNN "other_URL"
-F 5 "C428722" H 9150 3400 50  0001 C CNN "lcsc_part_number"
-	1    9150 3400
+P 9120 3400
+F 0 "J8" H 9255 3575 50  0000 C CNN
+F 1 "LOAD3" H 9170 3150 50  0000 C CNN
+F 2 "Acea:AMASS_XT60PW-F" H 9120 3400 50  0001 C CNN
+F 3 "~" H 9120 3400 50  0001 C CNN
+F 4 "" H 9120 3400 50  0001 C CNN "other_URL"
+F 5 "C428722" H 9120 3400 50  0001 C CNN "lcsc_part_number"
+	1    9120 3400
 	1    0    0    1   
 $EndComp
 Text GLabel 10300 2900 1    50   BiDi ~ 0
 LOAD3
 Wire Wire Line
 	10300 3300 10350 3300
-Text GLabel 10000 3100 0    50   Input ~ 0
+Text GLabel 9700 3300 0    50   Input ~ 0
 L3ON
 Wire Wire Line
 	9900 2750 10000 2750
@@ -1160,50 +1146,50 @@ B2C
 Text Notes 6350 750  0    50   ~ 0
 Batt 2 isolator (auxiliary)
 Wire Wire Line
-	6700 1250 6700 1350
+	6494 1107 6494 1207
 Wire Wire Line
-	6700 1000 6700 1050
+	6494 857  6494 907 
 Wire Wire Line
-	6600 1000 6700 1000
-Text GLabel 6600 1000 0    50   BiDi ~ 0
+	6394 857  6494 857 
+Text GLabel 6394 857  0    50   BiDi ~ 0
 B2VM
-Text GLabel 7000 1150 1    50   BiDi ~ 0
+Text GLabel 6794 1007 1    50   BiDi ~ 0
 COM
 $Comp
 L Connector:Conn_01x02_Male J6
 U 1 1 5FDBA5EF
-P 5200 900
-F 0 "J6" H 5335 1075 50  0000 C CNN
-F 1 "CHGR" H 5200 1000 50  0000 C CNN
-F 2 "Acea:AMASS_XT60PW-M" H 5200 900 50  0001 C CNN
-F 3 "~" H 5200 900 50  0001 C CNN
-F 4 "" H 5200 900 50  0001 C CNN "other_URL"
-F 5 "C98732" H 5200 900 50  0001 C CNN "lcsc_part_number"
-	1    5200 900 
+P 3609 887
+F 0 "J6" H 3744 1062 50  0000 C CNN
+F 1 "CHGR" H 3609 987 50  0000 C CNN
+F 2 "Acea:AMASS_XT60PW-M" H 3609 887 50  0001 C CNN
+F 3 "~" H 3609 887 50  0001 C CNN
+F 4 "" H 3609 887 50  0001 C CNN "other_URL"
+F 5 "C98732" H 3609 887 50  0001 C CNN "lcsc_part_number"
+	1    3609 887 
 	1    0    0    1   
 $EndComp
 $Comp
 L power:GND #PWR028
 U 1 1 5FDBA60B
-P 5450 950
-F 0 "#PWR028" H 5450 700 50  0001 C CNN
-F 1 "GND" H 5455 777 50  0000 C CNN
-F 2 "" H 5450 950 50  0001 C CNN
-F 3 "" H 5450 950 50  0001 C CNN
-	1    5450 950 
+P 3859 937
+F 0 "#PWR028" H 3859 687 50  0001 C CNN
+F 1 "GND" H 3864 764 50  0000 C CNN
+F 2 "" H 3859 937 50  0001 C CNN
+F 3 "" H 3859 937 50  0001 C CNN
+	1    3859 937 
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	5400 900  5450 900 
+	3809 887  3859 887 
 Wire Wire Line
-	5450 900  5450 950 
+	3859 887  3859 937 
 Wire Wire Line
-	5400 800  5450 800 
+	3809 787  3859 787 
 Wire Wire Line
-	5450 800  5450 750 
+	3859 787  3859 737 
 Text GLabel 8100 1200 0    50   BiDi ~ 0
 B1C
-Text GLabel 5450 750  1    50   BiDi ~ 0
+Text GLabel 3859 737  1    50   BiDi ~ 0
 B1C
 Wire Notes Line
 	9050 3700 9050 2200
@@ -1271,7 +1257,7 @@ B1CVD
 Text Notes 550  7650 0    50   ~ 0
 pins with pullups:\n14, 16, 17, 18, 19, 21, 22, 23
 Text Notes 3000 5350 0    50   ~ 0
-RTC_GPIO11
+RTC_GPIO10
 NoConn ~ 2700 6100
 Text Notes 3050 5750 0    50   ~ 0
 RTC_GPIO16
@@ -1338,10 +1324,10 @@ B2CM
 Wire Notes Line
 	500  3700 13050 3700
 Wire Wire Line
-	7000 1550 7050 1550
-Text GLabel 7050 1550 2    50   BiDi ~ 0
+	6794 1407 6844 1407
+Text GLabel 6844 1407 2    50   BiDi ~ 0
 B2C
-Text GLabel 6700 1350 0    50   Input ~ 0
+Text GLabel 6194 1407 0    50   Input ~ 0
 B2ON
 Wire Wire Line
 	1600 4700 1600 4550
@@ -1365,11 +1351,9 @@ F 3 "" H 1200 5100 50  0001 C CNN
 	1    1200 5100
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	4850 1550 4900 1550
-Text GLabel 4900 1550 2    50   BiDi ~ 0
+Text GLabel 4832 1438 3    50   BiDi ~ 0
 B1VM
-Text GLabel 4550 1350 0    50   Input ~ 0
+Text GLabel 4232 1438 0    50   Input ~ 0
 B1ON
 Text GLabel 4000 4400 0    50   Input ~ 0
 SCL
@@ -1400,29 +1384,29 @@ Wire Wire Line
 $Comp
 L Device:LED D3
 U 1 1 601D72B1
-P 2150 1100
-F 0 "D3" V 2189 983 50  0000 R CNN
-F 1 "MAIN LED" V 2098 983 50  0000 R CNN
-F 2 "LED_SMD:LED_0603_1608Metric" H 2150 1100 50  0001 C CNN
-F 3 "" H 2150 1100 50  0001 C CNN
-F 4 "C2286" H 2150 1100 50  0001 C CNN "lcsc_part_number"
-F 5 "https://jlcpcb.com/parts/componentSearch?secondSortUuid=ac4c3bf204dc486cb0c9c3fc16ef0c61&name=Light%20Emitting%20Diodes%20(LED)&firstSortUuid=f972da204e9147268b09e5e9b0c6292d" H 2150 1100 50  0001 C CNN "lcsc_url"
-F 6 "0603" H 2150 1100 50  0001 C CNN "package"
-	1    2150 1100
+P 1131 1115
+F 0 "D3" V 1170 998 50  0000 R CNN
+F 1 "MAIN LED" V 1079 998 50  0000 R CNN
+F 2 "LED_SMD:LED_0603_1608Metric" H 1131 1115 50  0001 C CNN
+F 3 "" H 1131 1115 50  0001 C CNN
+F 4 "C2286" H 1131 1115 50  0001 C CNN "lcsc_part_number"
+F 5 "https://jlcpcb.com/parts/componentSearch?secondSortUuid=ac4c3bf204dc486cb0c9c3fc16ef0c61&name=Light%20Emitting%20Diodes%20(LED)&firstSortUuid=f972da204e9147268b09e5e9b0c6292d" H 1131 1115 50  0001 C CNN "lcsc_url"
+F 6 "0603" H 1131 1115 50  0001 C CNN "package"
+	1    1131 1115
 	0    -1   -1   0   
 $EndComp
 $Comp
 L Device:LED D4
 U 1 1 601D961F
-P 2800 1100
-F 0 "D4" V 2839 983 50  0000 R CNN
-F 1 "MAIN LED" V 2748 983 50  0000 R CNN
-F 2 "LED_SMD:LED_0603_1608Metric" H 2800 1100 50  0001 C CNN
-F 3 "" H 2800 1100 50  0001 C CNN
-F 4 "C2286" H 2800 1100 50  0001 C CNN "lcsc_part_number"
-F 5 "https://jlcpcb.com/parts/componentSearch?secondSortUuid=ac4c3bf204dc486cb0c9c3fc16ef0c61&name=Light%20Emitting%20Diodes%20(LED)&firstSortUuid=f972da204e9147268b09e5e9b0c6292d" H 2800 1100 50  0001 C CNN "lcsc_url"
-F 6 "0603" H 2800 1100 50  0001 C CNN "package"
-	1    2800 1100
+P 2800 1109
+F 0 "D4" V 2839 992 50  0000 R CNN
+F 1 "MAIN LED" V 2748 992 50  0000 R CNN
+F 2 "LED_SMD:LED_0603_1608Metric" H 2800 1109 50  0001 C CNN
+F 3 "" H 2800 1109 50  0001 C CNN
+F 4 "C2286" H 2800 1109 50  0001 C CNN "lcsc_part_number"
+F 5 "https://jlcpcb.com/parts/componentSearch?secondSortUuid=ac4c3bf204dc486cb0c9c3fc16ef0c61&name=Light%20Emitting%20Diodes%20(LED)&firstSortUuid=f972da204e9147268b09e5e9b0c6292d" H 2800 1109 50  0001 C CNN "lcsc_url"
+F 6 "0603" H 2800 1109 50  0001 C CNN "package"
+	1    2800 1109
 	0    -1   -1   0   
 $EndComp
 $Comp
@@ -1515,57 +1499,57 @@ Connection ~ 10300 5850
 $Comp
 L Device:R_Small R2
 U 1 1 60200AF2
-P 1550 1350
-F 0 "R2" H 1670 1402 50  0000 C CNN
-F 1 "3.6k" H 1700 1300 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" H 1550 1350 50  0001 C CNN
-F 3 "" H 1550 1350 50  0001 C CNN
-F 4 "C22980" H 1550 1350 50  0001 C CNN "lcsc_part_number"
-F 5 "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_Uniroyal-Elec-0603WAF3601T5E_C22980.html/?href=jlc-SMT" H 1550 1350 50  0001 C CNN "lcsc_url"
-F 6 "0603" H 1550 1350 50  0001 C CNN "package"
-	1    1550 1350
+P 1959 1372
+F 0 "R2" H 2079 1424 50  0000 C CNN
+F 1 "3.6k" H 2109 1322 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 1959 1372 50  0001 C CNN
+F 3 "" H 1959 1372 50  0001 C CNN
+F 4 "C22980" H 1959 1372 50  0001 C CNN "lcsc_part_number"
+F 5 "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_Uniroyal-Elec-0603WAF3601T5E_C22980.html/?href=jlc-SMT" H 1959 1372 50  0001 C CNN "lcsc_url"
+F 6 "0603" H 1959 1372 50  0001 C CNN "package"
+	1    1959 1372
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R_Small R3
 U 1 1 6020A43C
-P 2150 1350
-F 0 "R3" H 2270 1402 50  0000 C CNN
-F 1 "3.6k" H 2300 1300 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" H 2150 1350 50  0001 C CNN
-F 3 "" H 2150 1350 50  0001 C CNN
-F 4 "C22980" H 2150 1350 50  0001 C CNN "lcsc_part_number"
-F 5 "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_Uniroyal-Elec-0603WAF3601T5E_C22980.html/?href=jlc-SMT" H 2150 1350 50  0001 C CNN "lcsc_url"
-F 6 "0603" H 2150 1350 50  0001 C CNN "package"
-	1    2150 1350
+P 1131 1365
+F 0 "R3" H 1251 1417 50  0000 C CNN
+F 1 "3.6k" H 1281 1315 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 1131 1365 50  0001 C CNN
+F 3 "" H 1131 1365 50  0001 C CNN
+F 4 "C22980" H 1131 1365 50  0001 C CNN "lcsc_part_number"
+F 5 "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_Uniroyal-Elec-0603WAF3601T5E_C22980.html/?href=jlc-SMT" H 1131 1365 50  0001 C CNN "lcsc_url"
+F 6 "0603" H 1131 1365 50  0001 C CNN "package"
+	1    1131 1365
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R_Small R5
 U 1 1 6020EC66
-P 2800 1350
-F 0 "R5" H 2920 1402 50  0000 C CNN
-F 1 "3.6k" H 2950 1300 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" H 2800 1350 50  0001 C CNN
-F 3 "" H 2800 1350 50  0001 C CNN
-F 4 "C22980" H 2800 1350 50  0001 C CNN "lcsc_part_number"
-F 5 "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_Uniroyal-Elec-0603WAF3601T5E_C22980.html/?href=jlc-SMT" H 2800 1350 50  0001 C CNN "lcsc_url"
-F 6 "0603" H 2800 1350 50  0001 C CNN "package"
-	1    2800 1350
+P 2800 1359
+F 0 "R5" H 2920 1411 50  0000 C CNN
+F 1 "3.6k" H 2950 1309 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 2800 1359 50  0001 C CNN
+F 3 "" H 2800 1359 50  0001 C CNN
+F 4 "C22980" H 2800 1359 50  0001 C CNN "lcsc_part_number"
+F 5 "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_Uniroyal-Elec-0603WAF3601T5E_C22980.html/?href=jlc-SMT" H 2800 1359 50  0001 C CNN "lcsc_url"
+F 6 "0603" H 2800 1359 50  0001 C CNN "package"
+	1    2800 1359
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R_Small R15
 U 1 1 6020FD96
-P 6700 1150
-F 0 "R15" H 6820 1202 50  0000 C CNN
-F 1 "200k" H 6836 1108 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" H 6700 1150 50  0001 C CNN
-F 3 "" H 6700 1150 50  0001 C CNN
-F 4 "C25811" H 6700 1150 50  0001 C CNN "lcsc_part_number"
-F 5 "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_Uniroyal-Elec-0603WAF2003T5E_C25811.html/?href=jlc-SMT" H 6700 1150 50  0001 C CNN "lcsc_url"
-F 6 "0603" H 6700 1150 50  0001 C CNN "package"
-	1    6700 1150
+P 6494 1007
+F 0 "R15" H 6614 1059 50  0000 C CNN
+F 1 "200k" H 6630 965 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 6494 1007 50  0001 C CNN
+F 3 "" H 6494 1007 50  0001 C CNN
+F 4 "C25811" H 6494 1007 50  0001 C CNN "lcsc_part_number"
+F 5 "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_Uniroyal-Elec-0603WAF2003T5E_C25811.html/?href=jlc-SMT" H 6494 1007 50  0001 C CNN "lcsc_url"
+F 6 "0603" H 6494 1007 50  0001 C CNN "package"
+	1    6494 1007
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -1613,15 +1597,15 @@ $EndComp
 $Comp
 L Transistor_FET:QM6015D Q6
 U 1 1 60236D81
-P 6900 1350
-F 0 "Q6" H 7104 1396 50  0000 L CNN
-F 1 "AP6679GH-HF" H 7100 1300 50  0000 L CNN
-F 2 "Package_TO_SOT_SMD:TO-252-2" H 7100 1275 50  0001 L CIN
-F 3 "" H 6900 1350 50  0001 L CNN
-F 4 "C124530" H 6900 1350 50  0001 C CNN "lcsc_part_number"
-F 5 "https://lcsc.com/product-detail/MOSFET_Advanced-Power-Elec-AP6679GH-HF_C124530.html/?href=jlc-SMT" H 6900 1350 50  0001 C CNN "lcsc_url"
-F 6 "TO-252-2" H 6900 1350 50  0001 C CNN "package"
-	1    6900 1350
+P 6694 1207
+F 0 "Q6" H 6898 1253 50  0000 L CNN
+F 1 "AP6679GH-HF" H 6894 1157 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:TO-252-2" H 6894 1132 50  0001 L CIN
+F 3 "" H 6694 1207 50  0001 L CNN
+F 4 "C124530" H 6694 1207 50  0001 C CNN "lcsc_part_number"
+F 5 "https://lcsc.com/product-detail/MOSFET_Advanced-Power-Elec-AP6679GH-HF_C124530.html/?href=jlc-SMT" H 6694 1207 50  0001 C CNN "lcsc_url"
+F 6 "TO-252-2" H 6694 1207 50  0001 C CNN "package"
+	1    6694 1207
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -1684,7 +1668,7 @@ $Comp
 L Device:R_Small R25
 U 1 1 602631DD
 P 3200 3000
-F 0 "R25" H 3050 3050 50  0000 L CNN
+F 0 "R25" H 2995 3052 50  0000 L CNN
 F 1 "200R" H 2950 2950 50  0000 L CNN
 F 2 "Resistor_SMD:R_0603_1608Metric" H 3200 3000 50  0001 C CNN
 F 3 "" H 3200 3000 50  0001 C CNN
@@ -1941,15 +1925,15 @@ Connection ~ 2700 3200
 $Comp
 L Device:R_Small R14
 U 1 1 601F5AA5
-P 4550 1150
-F 0 "R14" H 4670 1202 50  0000 C CNN
-F 1 "200k" H 4686 1108 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" H 4550 1150 50  0001 C CNN
-F 3 "" H 4550 1150 50  0001 C CNN
-F 4 "C25811" H 4550 1150 50  0001 C CNN "lcsc_part_number"
-F 5 "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_Uniroyal-Elec-0603WAF2003T5E_C25811.html/?href=jlc-SMT" H 4550 1150 50  0001 C CNN "lcsc_url"
-F 6 "0603" H 4550 1150 50  0001 C CNN "package"
-	1    4550 1150
+P 4532 1038
+F 0 "R14" H 4652 1090 50  0000 C CNN
+F 1 "200k" H 4668 996 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 4532 1038 50  0001 C CNN
+F 3 "" H 4532 1038 50  0001 C CNN
+F 4 "C25811" H 4532 1038 50  0001 C CNN "lcsc_part_number"
+F 5 "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_Uniroyal-Elec-0603WAF2003T5E_C25811.html/?href=jlc-SMT" H 4532 1038 50  0001 C CNN "lcsc_url"
+F 6 "0603" H 4532 1038 50  0001 C CNN "package"
+	1    4532 1038
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -1980,4 +1964,286 @@ F 6 "4.5mm,4.5mm SMD" H 3250 7550 50  0001 C CNN "package"
 	1    3250 7550
 	1    0    0    -1  
 $EndComp
+$Comp
+L Transistor_BJT:MMBT3904 Q1
+U 1 1 60498BC7
+P 4432 1438
+F 0 "Q1" H 4372 1718 50  0000 L CNN
+F 1 "MMBT3904" H 4054 1598 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 4632 1363 50  0001 L CIN
+F 3 "https://www.onsemi.com/pub/Collateral/2N3903-D.PDF" H 4432 1438 50  0001 L CNN
+F 4 "C20526" H 4432 1438 50  0001 C CNN "lcsc_part_number"
+F 5 "https://lcsc.com/product-detail/Transistors-NPN-PNP_Changjiang-Electronics-Tech-CJ-MMBT3904_C20526.html/?href=jlc-SMT" H 4432 1438 50  0001 C CNN "lcsc_url"
+F 6 "MMBT3904" H 4432 1438 50  0001 C CNN "mfr_part_number"
+F 7 "SOT-23" H 4432 1438 50  0001 C CNN "package"
+	1    4432 1438
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR022
+U 1 1 604A31D6
+P 4532 1638
+F 0 "#PWR022" H 4532 1388 50  0001 C CNN
+F 1 "GND" H 4537 1465 50  0000 C CNN
+F 2 "" H 4532 1638 50  0001 C CNN
+F 3 "" H 4532 1638 50  0001 C CNN
+	1    4532 1638
+	1    0    0    -1  
+$EndComp
+$Comp
+L Transistor_BJT:MMBT3904 Q5
+U 1 1 604A5A7B
+P 6394 1407
+F 0 "Q5" H 6604 1330 50  0000 L CNN
+F 1 "MMBT3904" H 6603 1242 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 6594 1332 50  0001 L CIN
+F 3 "https://www.onsemi.com/pub/Collateral/2N3903-D.PDF" H 6394 1407 50  0001 L CNN
+F 4 "C20526" H 6394 1407 50  0001 C CNN "lcsc_part_number"
+F 5 "https://lcsc.com/product-detail/Transistors-NPN-PNP_Changjiang-Electronics-Tech-CJ-MMBT3904_C20526.html/?href=jlc-SMT" H 6394 1407 50  0001 C CNN "lcsc_url"
+F 6 "MMBT3904" H 6394 1407 50  0001 C CNN "mfr_part_number"
+F 7 "SOT-23" H 6394 1407 50  0001 C CNN "package"
+	1    6394 1407
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR031
+U 1 1 604A5AAD
+P 6494 1607
+F 0 "#PWR031" H 6494 1357 50  0001 C CNN
+F 1 "GND" H 6499 1434 50  0000 C CNN
+F 2 "" H 6494 1607 50  0001 C CNN
+F 3 "" H 6494 1607 50  0001 C CNN
+	1    6494 1607
+	1    0    0    -1  
+$EndComp
+$Comp
+L Transistor_BJT:MMBT3904 Q3
+U 1 1 604ACDF6
+P 5800 3299
+F 0 "Q3" H 6010 3222 50  0000 L CNN
+F 1 "MMBT3904" H 6009 3134 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 6000 3224 50  0001 L CIN
+F 3 "https://www.onsemi.com/pub/Collateral/2N3903-D.PDF" H 5800 3299 50  0001 L CNN
+F 4 "C20526" H 5800 3299 50  0001 C CNN "lcsc_part_number"
+F 5 "https://lcsc.com/product-detail/Transistors-NPN-PNP_Changjiang-Electronics-Tech-CJ-MMBT3904_C20526.html/?href=jlc-SMT" H 5800 3299 50  0001 C CNN "lcsc_url"
+F 6 "MMBT3904" H 5800 3299 50  0001 C CNN "mfr_part_number"
+F 7 "SOT-23" H 5800 3299 50  0001 C CNN "package"
+	1    5800 3299
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR029
+U 1 1 604ACE28
+P 5900 3499
+F 0 "#PWR029" H 5900 3249 50  0001 C CNN
+F 1 "GND" H 5901 3364 50  0000 C CNN
+F 2 "" H 5900 3499 50  0001 C CNN
+F 3 "" H 5900 3499 50  0001 C CNN
+	1    5900 3499
+	1    0    0    -1  
+$EndComp
+$Comp
+L Transistor_BJT:MMBT3904 Q7
+U 1 1 604B26BA
+P 7850 3300
+F 0 "Q7" H 8060 3223 50  0000 L CNN
+F 1 "MMBT3904" H 8059 3135 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 8050 3225 50  0001 L CIN
+F 3 "https://www.onsemi.com/pub/Collateral/2N3903-D.PDF" H 7850 3300 50  0001 L CNN
+F 4 "C20526" H 7850 3300 50  0001 C CNN "lcsc_part_number"
+F 5 "https://lcsc.com/product-detail/Transistors-NPN-PNP_Changjiang-Electronics-Tech-CJ-MMBT3904_C20526.html/?href=jlc-SMT" H 7850 3300 50  0001 C CNN "lcsc_url"
+F 6 "MMBT3904" H 7850 3300 50  0001 C CNN "mfr_part_number"
+F 7 "SOT-23" H 7850 3300 50  0001 C CNN "package"
+	1    7850 3300
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR034
+U 1 1 604B26EC
+P 7950 3500
+F 0 "#PWR034" H 7950 3250 50  0001 C CNN
+F 1 "GND" H 7949 3362 50  0000 C CNN
+F 2 "" H 7950 3500 50  0001 C CNN
+F 3 "" H 7950 3500 50  0001 C CNN
+	1    7950 3500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Transistor_BJT:MMBT3904 Q9
+U 1 1 604B8663
+P 9900 3300
+F 0 "Q9" H 10110 3223 50  0000 L CNN
+F 1 "MMBT3904" H 10109 3135 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 10100 3225 50  0001 L CIN
+F 3 "https://www.onsemi.com/pub/Collateral/2N3903-D.PDF" H 9900 3300 50  0001 L CNN
+F 4 "C20526" H 9900 3300 50  0001 C CNN "lcsc_part_number"
+F 5 "https://lcsc.com/product-detail/Transistors-NPN-PNP_Changjiang-Electronics-Tech-CJ-MMBT3904_C20526.html/?href=jlc-SMT" H 9900 3300 50  0001 C CNN "lcsc_url"
+F 6 "MMBT3904" H 9900 3300 50  0001 C CNN "mfr_part_number"
+F 7 "SOT-23" H 9900 3300 50  0001 C CNN "package"
+	1    9900 3300
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR048
+U 1 1 604B8695
+P 10000 3500
+F 0 "#PWR048" H 10000 3250 50  0001 C CNN
+F 1 "GND" H 9997 3364 50  0000 C CNN
+F 2 "" H 10000 3500 50  0001 C CNN
+F 3 "" H 10000 3500 50  0001 C CNN
+	1    10000 3500
+	1    0    0    -1  
+$EndComp
+Connection ~ 6494 1207
+Connection ~ 5900 3099
+Wire Wire Line
+	5900 3099 5900 3100
+Connection ~ 7950 3100
+Connection ~ 10000 3100
+$Comp
+L Diode:B220 D6
+U 1 1 6051F519
+P 7444 1754
+F 0 "D6" V 7516 1668 50  0000 R CNN
+F 1 "SS52" V 7421 1671 50  0000 R CNN
+F 2 "Diode_SMD:D_SMB" H 7444 1579 50  0001 C CNN
+F 3 "http://www.jameco.com/Jameco/Products/ProdDS/1538777.pdf" H 7444 1754 50  0001 C CNN
+F 4 "C51497" H 7444 1754 50  0001 C CNN "lcsc_part_number"
+	1    7444 1754
+	0    -1   -1   0   
+$EndComp
+Connection ~ 4532 1238
+$Comp
+L Transistor_FET:QM6015D Q4
+U 1 1 5FB4BE84
+P 4732 1238
+F 0 "Q4" H 4924 1380 50  0000 L CNN
+F 1 "AP6679GH-HF" H 4931 1299 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:TO-252-2" H 4932 1163 50  0001 L CIN
+F 3 "" H 4732 1238 50  0001 L CNN
+F 4 "C124530" H 4732 1238 50  0001 C CNN "lcsc_part_number"
+F 5 "https://lcsc.com/product-detail/MOSFET_Advanced-Power-Elec-AP6679GH-HF_C124530.html/?href=jlc-SMT" H 4732 1238 50  0001 C CNN "lcsc_url"
+F 6 "TO-252-2" H 4732 1238 50  0001 C CNN "package"
+	1    4732 1238
+	1    0    0    -1  
+$EndComp
+$Comp
+L Diode:B220 D5
+U 1 1 605386EE
+P 5238 1735
+F 0 "D5" V 5312 1912 50  0000 R CNN
+F 1 "SS52" V 5217 2014 50  0000 R CNN
+F 2 "Diode_SMD:D_SMB" H 5238 1560 50  0001 C CNN
+F 3 "http://www.jameco.com/Jameco/Products/ProdDS/1538777.pdf" H 5238 1735 50  0001 C CNN
+F 4 "C51497" H 5238 1735 50  0001 C CNN "lcsc_part_number"
+	1    5238 1735
+	0    -1   -1   0   
+$EndComp
+Text GLabel 5238 1585 1    50   BiDi ~ 0
+B1C
+Text GLabel 5238 1885 3    50   BiDi ~ 0
+B1VM
+Text Notes 4337 2165 0    50   ~ 0
+Body diode protection
+Text GLabel 7444 1904 3    50   BiDi ~ 0
+B2C
+Text GLabel 7444 1604 1    50   BiDi ~ 0
+COM
+Text Notes 6537 2136 0    50   ~ 0
+Body diode protection
+$Comp
+L Diode:1N4148WS D7
+U 1 1 607A1210
+P 5175 2586
+F 0 "D7" V 5081 2710 50  0000 L CNN
+F 1 "1N4148WS" V 5181 2710 50  0000 L CNN
+F 2 "Diode_SMD:D_SOD-323" H 5175 2411 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Changjiang-Electronics-Tech-CJ-1N4148WS_C2128.pdf" H 5175 2586 50  0001 C CNN
+F 4 "C2128" H 5175 2586 50  0001 C CNN "lcsc_part_number"
+F 5 "https://lcsc.com/product-detail/Switching-Diode_Changjiang-Electronics-Tech-CJ-1N4148WS_C2128.html/?href=jlc-SMT" H 5175 2586 50  0001 C CNN "lcsc_url"
+F 6 "1N4148WS" H 5175 2586 50  0001 C CNN "mfr_part_number"
+	1    5175 2586
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR049
+U 1 1 607A705A
+P 5175 2736
+F 0 "#PWR049" H 5175 2486 50  0001 C CNN
+F 1 "GND" H 5180 2563 50  0000 C CNN
+F 2 "" H 5175 2736 50  0001 C CNN
+F 3 "" H 5175 2736 50  0001 C CNN
+	1    5175 2736
+	1    0    0    -1  
+$EndComp
+Text GLabel 5202 2324 2    50   Output ~ 0
+LOAD1
+Wire Wire Line
+	5175 2436 5175 2324
+Wire Wire Line
+	5175 2324 5202 2324
+$Comp
+L Diode:1N4148WS D8
+U 1 1 607B4165
+P 7273 2595
+F 0 "D8" V 7179 2719 50  0000 L CNN
+F 1 "1N4148WS" V 7279 2719 50  0000 L CNN
+F 2 "Diode_SMD:D_SOD-323" H 7273 2420 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Changjiang-Electronics-Tech-CJ-1N4148WS_C2128.pdf" H 7273 2595 50  0001 C CNN
+F 4 "C2128" H 7273 2595 50  0001 C CNN "lcsc_part_number"
+F 5 "https://lcsc.com/product-detail/Switching-Diode_Changjiang-Electronics-Tech-CJ-1N4148WS_C2128.html/?href=jlc-SMT" H 7273 2595 50  0001 C CNN "lcsc_url"
+F 6 "1N4148WS" H 7273 2595 50  0001 C CNN "mfr_part_number"
+	1    7273 2595
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR050
+U 1 1 607B4197
+P 7273 2745
+F 0 "#PWR050" H 7273 2495 50  0001 C CNN
+F 1 "GND" H 7278 2572 50  0000 C CNN
+F 2 "" H 7273 2745 50  0001 C CNN
+F 3 "" H 7273 2745 50  0001 C CNN
+	1    7273 2745
+	1    0    0    -1  
+$EndComp
+Text GLabel 7298 2330 2    50   Output ~ 0
+LOAD2
+Wire Wire Line
+	7273 2445 7273 2330
+Wire Wire Line
+	7273 2330 7298 2330
+$Comp
+L Diode:1N4148WS D9
+U 1 1 607C0527
+P 9366 2594
+F 0 "D9" V 9272 2718 50  0000 L CNN
+F 1 "1N4148WS" V 9372 2718 50  0000 L CNN
+F 2 "Diode_SMD:D_SOD-323" H 9366 2419 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Changjiang-Electronics-Tech-CJ-1N4148WS_C2128.pdf" H 9366 2594 50  0001 C CNN
+F 4 "C2128" H 9366 2594 50  0001 C CNN "lcsc_part_number"
+F 5 "https://lcsc.com/product-detail/Switching-Diode_Changjiang-Electronics-Tech-CJ-1N4148WS_C2128.html/?href=jlc-SMT" H 9366 2594 50  0001 C CNN "lcsc_url"
+F 6 "1N4148WS" H 9366 2594 50  0001 C CNN "mfr_part_number"
+	1    9366 2594
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR051
+U 1 1 607C0559
+P 9366 2744
+F 0 "#PWR051" H 9366 2494 50  0001 C CNN
+F 1 "GND" H 9371 2571 50  0000 C CNN
+F 2 "" H 9366 2744 50  0001 C CNN
+F 3 "" H 9366 2744 50  0001 C CNN
+	1    9366 2744
+	1    0    0    -1  
+$EndComp
+Text GLabel 9401 2330 2    50   Output ~ 0
+LOAD3
+Wire Wire Line
+	9366 2444 9366 2330
+Wire Wire Line
+	9366 2330 9401 2330
+Text Notes 3049 5639 0    50   ~ 0
+RTC_GPIO14
 $EndSCHEMATC
