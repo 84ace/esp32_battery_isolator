@@ -2,7 +2,7 @@
 <export version="D">
   <design>
     <source>/Users/acea/projects/hardware/esp32_battery_isolator/esp32_battery_isolator.sch</source>
-    <date>Friday, 12 March 2021 at 10:45:25 pm</date>
+    <date>Wednesday, 07 April 2021 at 11:07:17 am</date>
     <tool>Eeschema (5.1.7-0-10_14)</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -179,47 +179,6 @@
       <libsource lib="Connector" part="Conn_01x02_Male" description="Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5FAC6DBE</tstamp>
-    </comp>
-    <comp ref="J4">
-      <value>BATT2</value>
-      <footprint>Acea:AMASS_XT60PW-M</footprint>
-      <datasheet>~</datasheet>
-      <fields>
-        <field name="lcsc_part_number">C98732</field>
-      </fields>
-      <libsource lib="Connector" part="Conn_01x02_Male" description="Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamp>5F07EB11</tstamp>
-    </comp>
-    <comp ref="U6">
-      <value>CC6903SO-30A</value>
-      <footprint>Package_SO:SOP-8_3.9x4.9mm_P1.27mm</footprint>
-      <datasheet>http://www.allegromicro.com/~/media/Files/Datasheets/ACS780-Datasheet.ashx?la=en</datasheet>
-      <fields>
-        <field name="lcsc_min_qty">1</field>
-        <field name="lcsc_part_number">C469388</field>
-        <field name="lcsc_url">https://lcsc.com/product-detail/Current-Sensors_Cross-chip-CC6903SO-30A_C469388.html</field>
-        <field name="mfr_part_number">CC6903SO-30A&#xD;</field>
-        <field name="package">SOP-8</field>
-      </fields>
-      <libsource lib="Sensor_Current" part="CC6903-30A" description="±30A Bidirectional Hall-Effect Current Sensor, +3.0V supply, 40mV/A, PSOF-7"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamp>5FAFE442</tstamp>
-    </comp>
-    <comp ref="U4">
-      <value>CC6903SO-30A</value>
-      <footprint>Package_SO:SOP-8_3.9x4.9mm_P1.27mm</footprint>
-      <datasheet>http://www.allegromicro.com/~/media/Files/Datasheets/ACS780-Datasheet.ashx?la=en</datasheet>
-      <fields>
-        <field name="lcsc_min_qty">1</field>
-        <field name="lcsc_part_number">C469388</field>
-        <field name="lcsc_url">https://lcsc.com/product-detail/Current-Sensors_Cross-chip-CC6903SO-30A_C469388.html</field>
-        <field name="mfr_part_number">CC6903SO-30A&#xD;</field>
-        <field name="package">SOP-8</field>
-      </fields>
-      <libsource lib="Sensor_Current" part="CC6903-30A" description="±30A Bidirectional Hall-Effect Current Sensor, +3.0V supply, 40mV/A, PSOF-7"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamp>5FD53F67</tstamp>
     </comp>
     <comp ref="J5">
       <value>LOAD1</value>
@@ -421,18 +380,6 @@
       <sheetpath names="/" tstamps="/"/>
       <tstamp>6020EC66</tstamp>
     </comp>
-    <comp ref="R15">
-      <value>200k</value>
-      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
-      <fields>
-        <field name="lcsc_part_number">C25811</field>
-        <field name="lcsc_url">https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_Uniroyal-Elec-0603WAF2003T5E_C25811.html/?href=jlc-SMT</field>
-        <field name="package">0603</field>
-      </fields>
-      <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamp>6020FD96</tstamp>
-    </comp>
     <comp ref="R20">
       <value>200k</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
@@ -468,18 +415,6 @@
       <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>60230730</tstamp>
-    </comp>
-    <comp ref="Q6">
-      <value>AP6679GH-HF</value>
-      <footprint>Package_TO_SOT_SMD:TO-252-2</footprint>
-      <fields>
-        <field name="lcsc_part_number">C124530</field>
-        <field name="lcsc_url">https://lcsc.com/product-detail/MOSFET_Advanced-Power-Elec-AP6679GH-HF_C124530.html/?href=jlc-SMT</field>
-        <field name="package">TO-252-2</field>
-      </fields>
-      <libsource lib="Transistor_FET" part="QM6015D" description="-35A Id, -60V Vds, P-Channel Power MOSFET, 25mOhm Ron, 25.0nC Qg (typ), TO252"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamp>60236D81</tstamp>
     </comp>
     <comp ref="Q10">
       <value>AP6679GH-HF</value>
@@ -784,20 +719,6 @@
       <sheetpath names="/" tstamps="/"/>
       <tstamp>60498BC7</tstamp>
     </comp>
-    <comp ref="Q5">
-      <value>MMBT3904</value>
-      <footprint>Package_TO_SOT_SMD:SOT-23</footprint>
-      <datasheet>https://www.onsemi.com/pub/Collateral/2N3903-D.PDF</datasheet>
-      <fields>
-        <field name="lcsc_part_number">C20526</field>
-        <field name="lcsc_url">https://lcsc.com/product-detail/Transistors-NPN-PNP_Changjiang-Electronics-Tech-CJ-MMBT3904_C20526.html/?href=jlc-SMT</field>
-        <field name="mfr_part_number">MMBT3904</field>
-        <field name="package">SOT-23</field>
-      </fields>
-      <libsource lib="Transistor_BJT" part="MMBT3904" description="0.2A Ic, 40V Vce, Small Signal NPN Transistor, SOT-23"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamp>604A5A7B</tstamp>
-    </comp>
     <comp ref="Q3">
       <value>MMBT3904</value>
       <footprint>Package_TO_SOT_SMD:SOT-23</footprint>
@@ -840,40 +761,6 @@
       <sheetpath names="/" tstamps="/"/>
       <tstamp>604B8663</tstamp>
     </comp>
-    <comp ref="D6">
-      <value>SS52</value>
-      <footprint>Diode_SMD:D_SMB</footprint>
-      <datasheet>http://www.jameco.com/Jameco/Products/ProdDS/1538777.pdf</datasheet>
-      <fields>
-        <field name="lcsc_part_number">C51497</field>
-      </fields>
-      <libsource lib="Diode" part="B220" description="20V 2A Schottky Barrier Rectifier Diode, SMB"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamp>6051F519</tstamp>
-    </comp>
-    <comp ref="Q4">
-      <value>AP6679GH-HF</value>
-      <footprint>Package_TO_SOT_SMD:TO-252-2</footprint>
-      <fields>
-        <field name="lcsc_part_number">C124530</field>
-        <field name="lcsc_url">https://lcsc.com/product-detail/MOSFET_Advanced-Power-Elec-AP6679GH-HF_C124530.html/?href=jlc-SMT</field>
-        <field name="package">TO-252-2</field>
-      </fields>
-      <libsource lib="Transistor_FET" part="QM6015D" description="-35A Id, -60V Vds, P-Channel Power MOSFET, 25mOhm Ron, 25.0nC Qg (typ), TO252"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamp>5FB4BE84</tstamp>
-    </comp>
-    <comp ref="D5">
-      <value>SS52</value>
-      <footprint>Diode_SMD:D_SMB</footprint>
-      <datasheet>http://www.jameco.com/Jameco/Products/ProdDS/1538777.pdf</datasheet>
-      <fields>
-        <field name="lcsc_part_number">C51497</field>
-      </fields>
-      <libsource lib="Diode" part="B220" description="20V 2A Schottky Barrier Rectifier Diode, SMB"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamp>605386EE</tstamp>
-    </comp>
     <comp ref="D7">
       <value>1N4148WS</value>
       <footprint>Diode_SMD:D_SOD-323</footprint>
@@ -912,6 +799,143 @@
       <libsource lib="Diode" part="1N4148WS" description="75V 0.15A Fast switching Diode, SOD-323"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>607C0527</tstamp>
+    </comp>
+    <comp ref="U6">
+      <value>CC6903SO-30A</value>
+      <footprint>Package_SO:SOP-8_3.9x4.9mm_P1.27mm</footprint>
+      <datasheet>http://www.allegromicro.com/~/media/Files/Datasheets/ACS780-Datasheet.ashx?la=en</datasheet>
+      <fields>
+        <field name="lcsc_min_qty">1</field>
+        <field name="lcsc_part_number">C469388</field>
+        <field name="lcsc_url">https://lcsc.com/product-detail/Current-Sensors_Cross-chip-CC6903SO-30A_C469388.html</field>
+        <field name="mfr_part_number">CC6903SO-30A&#xD;</field>
+        <field name="package">SOP-8</field>
+      </fields>
+      <libsource lib="Sensor_Current" part="CC6903-30A" description="±30A Bidirectional Hall-Effect Current Sensor, +3.0V supply, 40mV/A, PSOF-7"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5FAFE442</tstamp>
+    </comp>
+    <comp ref="U4">
+      <value>CC6903SO-30A</value>
+      <footprint>Package_SO:SOP-8_3.9x4.9mm_P1.27mm</footprint>
+      <datasheet>http://www.allegromicro.com/~/media/Files/Datasheets/ACS780-Datasheet.ashx?la=en</datasheet>
+      <fields>
+        <field name="lcsc_min_qty">1</field>
+        <field name="lcsc_part_number">C469388</field>
+        <field name="lcsc_url">https://lcsc.com/product-detail/Current-Sensors_Cross-chip-CC6903SO-30A_C469388.html</field>
+        <field name="mfr_part_number">CC6903SO-30A&#xD;</field>
+        <field name="package">SOP-8</field>
+      </fields>
+      <libsource lib="Sensor_Current" part="CC6903-30A" description="±30A Bidirectional Hall-Effect Current Sensor, +3.0V supply, 40mV/A, PSOF-7"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5FD53F67</tstamp>
+    </comp>
+    <comp ref="D6">
+      <value>SS52</value>
+      <footprint>Diode_SMD:D_SMB</footprint>
+      <datasheet>http://www.jameco.com/Jameco/Products/ProdDS/1538777.pdf</datasheet>
+      <fields>
+        <field name="lcsc_part_number">C51497</field>
+      </fields>
+      <libsource lib="Diode" part="B220" description="20V 2A Schottky Barrier Rectifier Diode, SMB"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>6051F519</tstamp>
+    </comp>
+    <comp ref="Q5">
+      <value>MMBT3904</value>
+      <footprint>Package_TO_SOT_SMD:SOT-23</footprint>
+      <datasheet>https://www.onsemi.com/pub/Collateral/2N3903-D.PDF</datasheet>
+      <fields>
+        <field name="lcsc_part_number">C20526</field>
+        <field name="lcsc_url">https://lcsc.com/product-detail/Transistors-NPN-PNP_Changjiang-Electronics-Tech-CJ-MMBT3904_C20526.html/?href=jlc-SMT</field>
+        <field name="mfr_part_number">MMBT3904</field>
+        <field name="package">SOT-23</field>
+      </fields>
+      <libsource lib="Transistor_BJT" part="MMBT3904" description="0.2A Ic, 40V Vce, Small Signal NPN Transistor, SOT-23"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>604A5A7B</tstamp>
+    </comp>
+    <comp ref="Q6">
+      <value>AP6679GH-HF</value>
+      <footprint>Package_TO_SOT_SMD:TO-252-2</footprint>
+      <fields>
+        <field name="lcsc_part_number">C124530</field>
+        <field name="lcsc_url">https://lcsc.com/product-detail/MOSFET_Advanced-Power-Elec-AP6679GH-HF_C124530.html/?href=jlc-SMT</field>
+        <field name="package">TO-252-2</field>
+      </fields>
+      <libsource lib="Transistor_FET" part="QM6015D" description="-35A Id, -60V Vds, P-Channel Power MOSFET, 25mOhm Ron, 25.0nC Qg (typ), TO252"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>60236D81</tstamp>
+    </comp>
+    <comp ref="R15">
+      <value>200k</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="lcsc_part_number">C25811</field>
+        <field name="lcsc_url">https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_Uniroyal-Elec-0603WAF2003T5E_C25811.html/?href=jlc-SMT</field>
+        <field name="package">0603</field>
+      </fields>
+      <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>6020FD96</tstamp>
+    </comp>
+    <comp ref="J4">
+      <value>BATT2</value>
+      <footprint>Acea:AMASS_XT60PW-M</footprint>
+      <datasheet>~</datasheet>
+      <fields>
+        <field name="lcsc_part_number">C98732</field>
+      </fields>
+      <libsource lib="Connector" part="Conn_01x02_Male" description="Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5F07EB11</tstamp>
+    </comp>
+    <comp ref="Q11">
+      <value>AP6679GH</value>
+      <footprint>Acea:TRANS_AONR21321</footprint>
+      <fields>
+        <field name="lcsc_part_number">C431196</field>
+        <field name="package">DFN 3x3</field>
+      </fields>
+      <libsource lib="Transistor_FET" part="QM6015D" description="-35A Id, -60V Vds, P-Channel Power MOSFET, 25mOhm Ron, 25.0nC Qg (typ), TO252"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>606325E3</tstamp>
+    </comp>
+    <comp ref="Q4">
+      <value>AP6679GH</value>
+      <footprint>Acea:TRANS_AONR21321</footprint>
+      <fields>
+        <field name="lcsc_part_number">C431196</field>
+        <field name="package">DFN 3x3</field>
+      </fields>
+      <libsource lib="Transistor_FET" part="QM6015D" description="-35A Id, -60V Vds, P-Channel Power MOSFET, 25mOhm Ron, 25.0nC Qg (typ), TO252"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>606486BE</tstamp>
+    </comp>
+    <comp ref="Q12">
+      <value>MMBT3904</value>
+      <footprint>Package_TO_SOT_SMD:SOT-23</footprint>
+      <datasheet>https://www.onsemi.com/pub/Collateral/2N3903-D.PDF</datasheet>
+      <fields>
+        <field name="lcsc_part_number">C20526</field>
+        <field name="lcsc_url">https://lcsc.com/product-detail/Transistors-NPN-PNP_Changjiang-Electronics-Tech-CJ-MMBT3904_C20526.html/?href=jlc-SMT</field>
+        <field name="mfr_part_number">MMBT3904</field>
+        <field name="package">SOT-23</field>
+      </fields>
+      <libsource lib="Transistor_BJT" part="MMBT3904" description="0.2A Ic, 40V Vce, Small Signal NPN Transistor, SOT-23"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>606A25F9</tstamp>
+    </comp>
+    <comp ref="J9">
+      <value>Conn_01x02_Male</value>
+      <footprint>Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical</footprint>
+      <datasheet>~</datasheet>
+      <fields>
+        <field name="lcsc_part_number">C20079</field>
+      </fields>
+      <libsource lib="Connector" part="Conn_01x02_Male" description="Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>606AD30F</tstamp>
     </comp>
   </components>
   <libparts>
@@ -1348,64 +1372,65 @@
   </libraries>
   <nets>
     <net code="1" name="GND">
-      <node ref="D9" pin="2"/>
-      <node ref="R19" pin="2"/>
-      <node ref="C3" pin="2"/>
+      <node ref="Q12" pin="2"/>
+      <node ref="J4" pin="1"/>
+      <node ref="Q5" pin="2"/>
+      <node ref="U4" pin="5"/>
+      <node ref="U6" pin="5"/>
       <node ref="J2" pin="1"/>
-      <node ref="R13" pin="2"/>
-      <node ref="C2" pin="2"/>
-      <node ref="R22" pin="2"/>
-      <node ref="J6" pin="1"/>
-      <node ref="R24" pin="2"/>
-      <node ref="R2" pin="2"/>
+      <node ref="D9" pin="2"/>
       <node ref="D8" pin="2"/>
-      <node ref="R11" pin="2"/>
+      <node ref="D7" pin="2"/>
       <node ref="Q9" pin="2"/>
       <node ref="Q7" pin="2"/>
-      <node ref="J3" pin="5"/>
-      <node ref="SW1" pin="2"/>
-      <node ref="U1" pin="1"/>
-      <node ref="D7" pin="2"/>
       <node ref="Q3" pin="2"/>
+      <node ref="Q1" pin="2"/>
+      <node ref="SW3" pin="2"/>
+      <node ref="SW2" pin="2"/>
+      <node ref="R26" pin="2"/>
+      <node ref="C9" pin="2"/>
+      <node ref="C10" pin="2"/>
+      <node ref="U1" pin="1"/>
+      <node ref="C7" pin="2"/>
+      <node ref="C6" pin="2"/>
+      <node ref="C5" pin="2"/>
+      <node ref="C4" pin="2"/>
+      <node ref="R4" pin="1"/>
       <node ref="U1" pin="15"/>
-      <node ref="R3" pin="2"/>
-      <node ref="R5" pin="2"/>
-      <node ref="J8" pin="1"/>
-      <node ref="Q5" pin="2"/>
-      <node ref="C11" pin="2"/>
-      <node ref="J7" pin="1"/>
+      <node ref="C1" pin="2"/>
       <node ref="C12" pin="2"/>
+      <node ref="C11" pin="2"/>
+      <node ref="R5" pin="2"/>
+      <node ref="R3" pin="2"/>
+      <node ref="R2" pin="2"/>
+      <node ref="R24" pin="2"/>
+      <node ref="R22" pin="2"/>
+      <node ref="R13" pin="2"/>
+      <node ref="R19" pin="2"/>
+      <node ref="J6" pin="1"/>
+      <node ref="J8" pin="1"/>
       <node ref="U1" pin="38"/>
       <node ref="U1" pin="39"/>
-      <node ref="C1" pin="2"/>
+      <node ref="J7" pin="1"/>
       <node ref="J5" pin="1"/>
-      <node ref="R4" pin="1"/>
-      <node ref="C4" pin="2"/>
-      <node ref="C5" pin="2"/>
-      <node ref="C6" pin="2"/>
-      <node ref="U4" pin="5"/>
-      <node ref="C7" pin="2"/>
-      <node ref="C10" pin="2"/>
-      <node ref="C9" pin="2"/>
-      <node ref="R26" pin="2"/>
+      <node ref="J1" pin="1"/>
       <node ref="U3" pin="4"/>
-      <node ref="U6" pin="5"/>
-      <node ref="SW2" pin="2"/>
       <node ref="U3" pin="7"/>
       <node ref="U3" pin="8"/>
-      <node ref="SW3" pin="2"/>
-      <node ref="Q1" pin="2"/>
+      <node ref="SW1" pin="2"/>
       <node ref="U5" pin="3"/>
-      <node ref="J4" pin="1"/>
-      <node ref="J1" pin="1"/>
+      <node ref="C3" pin="2"/>
+      <node ref="C2" pin="2"/>
+      <node ref="R11" pin="2"/>
+      <node ref="J3" pin="5"/>
     </net>
     <net code="2" name="Net-(D1-Pad1)">
-      <node ref="D1" pin="1"/>
       <node ref="R2" pin="1"/>
+      <node ref="D1" pin="1"/>
     </net>
-    <net code="3" name="SYS_OK_LED">
+    <net code="3" name="B1_LED">
+      <node ref="U1" pin="13"/>
       <node ref="D1" pin="2"/>
-      <node ref="U1" pin="12"/>
     </net>
     <net code="4" name="B2VD">
       <node ref="U3" pin="15"/>
@@ -1418,59 +1443,60 @@
     <net code="6" name="Net-(U1-Pad29)">
       <node ref="U1" pin="29"/>
     </net>
-    <net code="7" name="Net-(U1-Pad27)">
-      <node ref="U1" pin="27"/>
-    </net>
-    <net code="8" name="Net-(U1-Pad28)">
+    <net code="7" name="Net-(U1-Pad28)">
       <node ref="U1" pin="28"/>
     </net>
-    <net code="9" name="Net-(U1-Pad21)">
+    <net code="8" name="Net-(U1-Pad21)">
       <node ref="U1" pin="21"/>
     </net>
-    <net code="10" name="Net-(U1-Pad22)">
+    <net code="9" name="Net-(U1-Pad22)">
       <node ref="U1" pin="22"/>
     </net>
-    <net code="11" name="Net-(U1-Pad17)">
+    <net code="10" name="Net-(U1-Pad17)">
       <node ref="U1" pin="17"/>
     </net>
-    <net code="12" name="Net-(U1-Pad18)">
+    <net code="11" name="Net-(U1-Pad18)">
       <node ref="U1" pin="18"/>
     </net>
-    <net code="13" name="Net-(U1-Pad20)">
+    <net code="12" name="Net-(U1-Pad20)">
       <node ref="U1" pin="20"/>
     </net>
-    <net code="14" name="Net-(U1-Pad19)">
+    <net code="13" name="Net-(U1-Pad19)">
       <node ref="U1" pin="19"/>
     </net>
-    <net code="15" name="B2ON">
-      <node ref="U1" pin="11"/>
+    <net code="14" name="B2ON">
       <node ref="Q5" pin="1"/>
+      <node ref="U1" pin="11"/>
     </net>
-    <net code="16" name="Net-(R4-Pad2)">
+    <net code="15" name="Net-(R4-Pad2)">
       <node ref="U1" pin="14"/>
       <node ref="R4" pin="2"/>
     </net>
-    <net code="17" name="+3V3">
-      <node ref="C6" pin="1"/>
-      <node ref="R9" pin="2"/>
-      <node ref="U4" pin="8"/>
+    <net code="16" name="+3V3">
       <node ref="C3" pin="1"/>
-      <node ref="C7" pin="1"/>
-      <node ref="C10" pin="1"/>
-      <node ref="R7" pin="1"/>
-      <node ref="R6" pin="1"/>
-      <node ref="R8" pin="1"/>
+      <node ref="C6" pin="1"/>
       <node ref="R1" pin="1"/>
-      <node ref="U6" pin="8"/>
-      <node ref="C12" pin="1"/>
-      <node ref="U3" pin="5"/>
-      <node ref="C11" pin="1"/>
       <node ref="U5" pin="5"/>
+      <node ref="U1" pin="2"/>
+      <node ref="R9" pin="2"/>
+      <node ref="C10" pin="1"/>
+      <node ref="U3" pin="5"/>
+      <node ref="C12" pin="1"/>
+      <node ref="C7" pin="1"/>
       <node ref="J2" pin="2"/>
       <node ref="R18" pin="1"/>
+      <node ref="C11" pin="1"/>
+      <node ref="U6" pin="8"/>
+      <node ref="R8" pin="1"/>
       <node ref="R25" pin="1"/>
+      <node ref="R6" pin="1"/>
+      <node ref="U4" pin="8"/>
+      <node ref="R7" pin="1"/>
       <node ref="U2" pin="2"/>
-      <node ref="U1" pin="2"/>
+    </net>
+    <net code="17" name="FANON">
+      <node ref="U1" pin="27"/>
+      <node ref="Q12" pin="1"/>
     </net>
     <net code="18" name="Net-(U1-Pad30)">
       <node ref="U1" pin="30"/>
@@ -1482,24 +1508,24 @@
       <node ref="U1" pin="32"/>
     </net>
     <net code="21" name="SDA">
+      <node ref="U3" pin="2"/>
+      <node ref="R7" pin="2"/>
       <node ref="J2" pin="4"/>
       <node ref="U1" pin="33"/>
-      <node ref="R7" pin="2"/>
-      <node ref="U3" pin="2"/>
     </net>
     <net code="22" name="RXD">
-      <node ref="U5" pin="6"/>
       <node ref="U1" pin="34"/>
+      <node ref="U5" pin="6"/>
     </net>
     <net code="23" name="TXD">
-      <node ref="U5" pin="7"/>
       <node ref="U1" pin="35"/>
+      <node ref="U5" pin="7"/>
     </net>
     <net code="24" name="SCL">
-      <node ref="R6" pin="2"/>
       <node ref="U3" pin="3"/>
-      <node ref="U1" pin="36"/>
+      <node ref="R6" pin="2"/>
       <node ref="J2" pin="3"/>
+      <node ref="U1" pin="36"/>
     </net>
     <net code="25" name="Net-(U1-Pad37)">
       <node ref="U1" pin="37"/>
@@ -1517,8 +1543,8 @@
       <node ref="U1" pin="7"/>
     </net>
     <net code="30" name="B1ON">
-      <node ref="U1" pin="8"/>
       <node ref="Q1" pin="1"/>
+      <node ref="U1" pin="8"/>
     </net>
     <net code="31" name="Net-(U3-Pad10)">
       <node ref="U3" pin="10"/>
@@ -1532,8 +1558,8 @@
       <node ref="U3" pin="13"/>
     </net>
     <net code="34" name="B1CVD">
-      <node ref="R21" pin="2"/>
       <node ref="R22" pin="1"/>
+      <node ref="R21" pin="2"/>
       <node ref="U3" pin="14"/>
     </net>
     <net code="35" name="Net-(U3-Pad6)">
@@ -1543,9 +1569,9 @@
       <node ref="U3" pin="9"/>
     </net>
     <net code="37" name="Net-(C4-Pad1)">
-      <node ref="U3" pin="1"/>
       <node ref="C5" pin="1"/>
       <node ref="C4" pin="1"/>
+      <node ref="U3" pin="1"/>
     </net>
     <net code="38" name="D+">
       <node ref="U5" pin="1"/>
@@ -1559,8 +1585,8 @@
       <node ref="U5" pin="4"/>
     </net>
     <net code="41" name="Net-(C9-Pad1)">
-      <node ref="U5" pin="8"/>
       <node ref="C9" pin="1"/>
+      <node ref="U5" pin="8"/>
     </net>
     <net code="42" name="Net-(J3-Pad4)">
       <node ref="J3" pin="4"/>
@@ -1569,163 +1595,171 @@
       <node ref="J3" pin="6"/>
     </net>
     <net code="44" name="5V">
-      <node ref="D2" pin="2"/>
       <node ref="J3" pin="1"/>
+      <node ref="D2" pin="2"/>
     </net>
     <net code="45" name="B1VM">
-      <node ref="D5" pin="1"/>
-      <node ref="Q4" pin="3"/>
-      <node ref="R10" pin="1"/>
       <node ref="R14" pin="1"/>
+      <node ref="R10" pin="1"/>
+      <node ref="Q4" pin="3"/>
       <node ref="J1" pin="2"/>
     </net>
     <net code="46" name="B1VD">
-      <node ref="R11" pin="1"/>
       <node ref="R10" pin="2"/>
+      <node ref="R11" pin="1"/>
       <node ref="U3" pin="16"/>
     </net>
     <net code="47" name="RST">
-      <node ref="U1" pin="3"/>
-      <node ref="SW1" pin="1"/>
       <node ref="R1" pin="2"/>
       <node ref="C1" pin="1"/>
+      <node ref="SW1" pin="1"/>
+      <node ref="U1" pin="3"/>
     </net>
-    <net code="48" name="COM">
-      <node ref="Q6" pin="2"/>
-      <node ref="U4" pin="4"/>
-      <node ref="U4" pin="3"/>
-      <node ref="D6" pin="2"/>
-    </net>
-    <net code="49" name="Net-(Q1-Pad3)">
-      <node ref="Q1" pin="3"/>
-      <node ref="Q4" pin="1"/>
-      <node ref="R14" pin="2"/>
-    </net>
-    <net code="50" name="B2C">
-      <node ref="D6" pin="1"/>
-      <node ref="U6" pin="4"/>
-      <node ref="Q2" pin="3"/>
-      <node ref="Q8" pin="3"/>
-      <node ref="Q10" pin="3"/>
-      <node ref="Q6" pin="3"/>
-      <node ref="U6" pin="3"/>
-    </net>
-    <net code="51" name="Net-(U6-Pad6)">
-      <node ref="U6" pin="6"/>
-    </net>
-    <net code="52" name="B2CM">
-      <node ref="U6" pin="7"/>
-      <node ref="R23" pin="1"/>
-    </net>
-    <net code="53" name="Net-(U4-Pad6)">
-      <node ref="U4" pin="6"/>
-    </net>
-    <net code="54" name="B1CM">
-      <node ref="U4" pin="7"/>
-      <node ref="R21" pin="1"/>
-    </net>
-    <net code="55" name="LOAD1">
-      <node ref="D7" pin="1"/>
+    <net code="48" name="LOAD1">
       <node ref="J5" pin="2"/>
+      <node ref="D7" pin="1"/>
       <node ref="Q2" pin="2"/>
     </net>
-    <net code="56" name="LOAD2">
+    <net code="49" name="B2C">
+      <node ref="Q8" pin="3"/>
+      <node ref="Q10" pin="3"/>
+      <node ref="Q2" pin="3"/>
+      <node ref="J9" pin="2"/>
+      <node ref="Q6" pin="3"/>
+      <node ref="D6" pin="1"/>
+      <node ref="U6" pin="3"/>
+      <node ref="U6" pin="4"/>
+    </net>
+    <net code="50" name="LOAD2">
+      <node ref="Q8" pin="2"/>
       <node ref="D8" pin="1"/>
       <node ref="J7" pin="2"/>
-      <node ref="Q8" pin="2"/>
     </net>
-    <net code="57" name="Net-(Q7-Pad3)">
+    <net code="51" name="Net-(Q7-Pad3)">
       <node ref="Q7" pin="3"/>
       <node ref="Q8" pin="1"/>
       <node ref="R17" pin="2"/>
     </net>
-    <net code="58" name="LOAD3">
-      <node ref="J8" pin="2"/>
+    <net code="52" name="LOAD3">
       <node ref="Q10" pin="2"/>
+      <node ref="J8" pin="2"/>
       <node ref="D9" pin="1"/>
     </net>
-    <net code="59" name="Net-(Q10-Pad1)">
+    <net code="53" name="Net-(Q10-Pad1)">
+      <node ref="Q9" pin="3"/>
       <node ref="Q10" pin="1"/>
       <node ref="R20" pin="2"/>
-      <node ref="Q9" pin="3"/>
     </net>
-    <net code="60" name="Net-(Q5-Pad3)">
-      <node ref="Q6" pin="1"/>
-      <node ref="R15" pin="2"/>
-      <node ref="Q5" pin="3"/>
+    <net code="54" name="B1C">
+      <node ref="J6" pin="2"/>
+      <node ref="U4" pin="2"/>
+      <node ref="Q11" pin="3"/>
+      <node ref="U4" pin="1"/>
     </net>
-    <net code="61" name="3v3VD">
+    <net code="55" name="3v3VD">
       <node ref="U3" pin="12"/>
       <node ref="R18" pin="2"/>
       <node ref="R19" pin="1"/>
     </net>
-    <net code="62" name="Net-(D3-Pad1)">
+    <net code="56" name="Net-(D3-Pad1)">
       <node ref="R3" pin="1"/>
       <node ref="D3" pin="1"/>
     </net>
-    <net code="63" name="B1_LED">
-      <node ref="U1" pin="13"/>
+    <net code="57" name="SYS_OK_LED">
       <node ref="D3" pin="2"/>
+      <node ref="U1" pin="12"/>
     </net>
-    <net code="64" name="Net-(D4-Pad1)">
-      <node ref="D4" pin="1"/>
+    <net code="58" name="Net-(D4-Pad1)">
       <node ref="R5" pin="1"/>
+      <node ref="D4" pin="1"/>
     </net>
-    <net code="65" name="B2_LED">
+    <net code="59" name="B2_LED">
       <node ref="D4" pin="2"/>
       <node ref="U1" pin="10"/>
     </net>
-    <net code="66" name="B2VM">
-      <node ref="R15" pin="1"/>
-      <node ref="R20" pin="1"/>
-      <node ref="R17" pin="1"/>
-      <node ref="R16" pin="1"/>
+    <net code="60" name="B2VM">
       <node ref="C2" pin="1"/>
-      <node ref="R12" pin="1"/>
-      <node ref="D2" pin="1"/>
-      <node ref="U6" pin="2"/>
-      <node ref="U6" pin="1"/>
-      <node ref="J4" pin="2"/>
       <node ref="U2" pin="3"/>
+      <node ref="J4" pin="2"/>
+      <node ref="D2" pin="1"/>
+      <node ref="R15" pin="1"/>
+      <node ref="R16" pin="1"/>
+      <node ref="U6" pin="1"/>
+      <node ref="U6" pin="2"/>
+      <node ref="R17" pin="1"/>
+      <node ref="R20" pin="1"/>
+      <node ref="R12" pin="1"/>
     </net>
-    <net code="67" name="Net-(Q2-Pad1)">
-      <node ref="Q2" pin="1"/>
+    <net code="61" name="B1CM">
+      <node ref="U4" pin="7"/>
+      <node ref="R21" pin="1"/>
+    </net>
+    <net code="62" name="B2CM">
+      <node ref="U6" pin="7"/>
+      <node ref="R23" pin="1"/>
+    </net>
+    <net code="63" name="Net-(Q2-Pad1)">
       <node ref="Q3" pin="3"/>
+      <node ref="Q2" pin="1"/>
       <node ref="R16" pin="2"/>
     </net>
-    <net code="68" name="Net-(R25-Pad2)">
-      <node ref="U2" pin="1"/>
+    <net code="64" name="Net-(R25-Pad2)">
       <node ref="R25" pin="2"/>
       <node ref="R26" pin="1"/>
+      <node ref="U2" pin="1"/>
     </net>
-    <net code="69" name="BOOT">
+    <net code="65" name="BOOT">
       <node ref="SW2" pin="1"/>
       <node ref="R8" pin="2"/>
       <node ref="U1" pin="25"/>
     </net>
-    <net code="70" name="MODE">
-      <node ref="SW3" pin="1"/>
+    <net code="66" name="MODE">
       <node ref="R9" pin="1"/>
       <node ref="U1" pin="9"/>
+      <node ref="SW3" pin="1"/>
     </net>
-    <net code="71" name="L1ON">
-      <node ref="Q3" pin="1"/>
+    <net code="67" name="L1ON">
       <node ref="U1" pin="23"/>
+      <node ref="Q3" pin="1"/>
     </net>
-    <net code="72" name="L2ON">
+    <net code="68" name="L2ON">
       <node ref="Q7" pin="1"/>
       <node ref="U1" pin="16"/>
     </net>
-    <net code="73" name="L3ON">
+    <net code="69" name="L3ON">
       <node ref="U1" pin="26"/>
       <node ref="Q9" pin="1"/>
     </net>
-    <net code="74" name="B1C">
-      <node ref="D5" pin="2"/>
+    <net code="70" name="Net-(U6-Pad6)">
+      <node ref="U6" pin="6"/>
+    </net>
+    <net code="71" name="COM">
+      <node ref="D6" pin="2"/>
+      <node ref="Q6" pin="2"/>
+      <node ref="U4" pin="4"/>
+      <node ref="U4" pin="3"/>
+    </net>
+    <net code="72" name="Net-(U4-Pad6)">
+      <node ref="U4" pin="6"/>
+    </net>
+    <net code="73" name="Net-(Q5-Pad3)">
+      <node ref="Q6" pin="1"/>
+      <node ref="Q5" pin="3"/>
+      <node ref="R15" pin="2"/>
+    </net>
+    <net code="74" name="Net-(Q1-Pad3)">
+      <node ref="Q4" pin="1"/>
+      <node ref="Q11" pin="1"/>
+      <node ref="R14" pin="2"/>
+      <node ref="Q1" pin="3"/>
+    </net>
+    <net code="75" name="Net-(Q11-Pad2)">
       <node ref="Q4" pin="2"/>
-      <node ref="U4" pin="1"/>
-      <node ref="U4" pin="2"/>
-      <node ref="J6" pin="2"/>
+      <node ref="Q11" pin="2"/>
+    </net>
+    <net code="76" name="FANGND">
+      <node ref="Q12" pin="3"/>
+      <node ref="J9" pin="1"/>
     </net>
   </nets>
 </export>
