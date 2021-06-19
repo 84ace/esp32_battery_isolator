@@ -42,6 +42,7 @@ float systemTemperature = 25;
 float systemVoltageDivider = 1.322; 
 float currentVoltageDivider = 1.33;
 float batteryVoltageDivider = 7.16;
+float milliVoltPerAmp = 0.045;
 float b1Voltage = 0.0;
 float b2Voltage = 0.0;
 float b1Current = 0.0;
@@ -62,6 +63,7 @@ int l1EnPin = 15;
 int l2EnPin = 13;
 int l3EnPin = 4;
 
+int pwmValue = 255;
 int loopDelay = 500;
 
 bool sysLedBlinkState = HIGH;
@@ -71,7 +73,7 @@ long loopTimer;
 void setup() {
   Wire.begin();
   Serial.begin(115200);
-  SerialBT.begin("Isolator"); //Bluetooth device name
+  //SerialBT.begin("Isolator"); //Bluetooth device name
   adc.begin();
   pinMode(buttonPin, INPUT);
   pinMode(sysLedPin, OUTPUT);
@@ -105,7 +107,6 @@ void loop() {
   
   }
   if (SerialBT.available()) {
-    
     SerialBT.print("Received:");// write on BT app
     SerialBT.println(receivedChar);// write on BT app      
     Serial.print ("Received:");//print on serial monitor
@@ -199,22 +200,27 @@ void loop() {
       if (i == 0) {
         dtostrf(systemTemperature, 3, 2, staticTextToDisplay);
         staticText("Temp (C):", staticTextToDisplay);
+        adcLoop();
       } 
       if (i == 1) {
         dtostrf(b1Voltage, 3, 2, staticTextToDisplay);
         staticText("B1 (V):", staticTextToDisplay);
+        adcLoop();
       } 
       if (i == 2) {
         dtostrf(b2Voltage, 3, 2, staticTextToDisplay);
         staticText("B2 (V):", staticTextToDisplay);
+        adcLoop();
       } 
       if (i == 3) {
         dtostrf(b1Current, 3, 2, staticTextToDisplay);
         staticText("B1 (A):", staticTextToDisplay);
+        adcLoop();
       }
       if (i == 4) {
         dtostrf(b2Current, 3, 2, staticTextToDisplay);
         staticText("B2 (A):", staticTextToDisplay);
+        adcLoop();
       }
       updateIsolator();
     }
@@ -223,7 +229,6 @@ void loop() {
 }
 
 void adcLoop() {
-  // IN0-IN6 ...
   for (int i = 0; i < 7; i++) {
     if (i == 4) {
         systemVoltage = adc.readConverted(i) * systemVoltageDivider;
@@ -235,10 +240,10 @@ void adcLoop() {
       b2Voltage = adc.readConverted(i) * batteryVoltageDivider;
     } 
     if (i == 2) {
-      b1Current = (adc.readConverted(i) * currentVoltageDivider - (systemVoltage / 2)) / 0.044;
+      b1Current = (adc.readConverted(i) * currentVoltageDivider - (systemVoltage / 2)) / milliVoltPerAmp;
     } 
     if (i == 3) {
-      b1Current = (adc.readConverted(i) * currentVoltageDivider - (systemVoltage / 2)) / 0.044;
+      b2Current = (adc.readConverted(i) * currentVoltageDivider - (systemVoltage / 2)) / milliVoltPerAmp;
     }
   }
   // ... and the internal temp sensor
@@ -250,7 +255,38 @@ void updateIsolator() {
   digitalWrite(sysLedPin, sysLedBlinkState);
   if (autoMode == 1) {
     if (systemTemperature < maxAllowedBoardTemp) {
+      if (b1Voltage <= 12.8) {
+        Serial.println("B1 ON STANDYBY");
+        Serial.print("b1Voltage < 12.8: ");
+        Serial.println(b1Voltage);
+        digitalWrite(b1LedPin, LOW);
+        digitalWrite(b1EnPin, LOW);
+        Serial.println("B1 OFF");
+      } 
+      else if (b1Voltage >= 12.8) {
+        Serial.println("B1 IS CURRENT SOURCE");
+        Serial.print("b1Voltage => 12.8: ");
+        Serial.println(b1Voltage);
+        Serial.print("b2Voltage: ");
+        Serial.println(b2Voltage);
+        digitalWrite(b1LedPin, HIGH);
+        digitalWrite(b2LedPin, HIGH);
+
+        //digitalWrite(b1EnPin, HIGH);
+        digitalWrite(b2EnPin, HIGH);
+        Serial.println("B1 ON");
+        Serial.println("B2 ON");
+
+        //digitalWrite(l1EnPin, HIGH);
+        //digitalWrite(l2EnPin, HIGH);
+        //digitalWrite(l3EnPin, HIGH);
+        Serial.println("L1 ON");
+        Serial.println("L2 ON");
+        Serial.println("L3 ON");
+      }
+
       if (b2Voltage < 11.5) {
+        Serial.println("B2 CRITICALLY LOW!!!");
         Serial.print("b2Voltage < 11.5: ");
         Serial.println(b2Voltage);
         Serial.print("b1Voltage: ");
@@ -270,7 +306,9 @@ void updateIsolator() {
         Serial.println("L1 OFF");
         Serial.println("L2 OFF");
         Serial.println("L3 OFF");
-      } else if (b2Voltage < 11.8){
+      } 
+      else if (b2Voltage < 11.8){
+        Serial.println("B2 LOW!");
         Serial.print("b2Voltage < 11.8: ");
         Serial.println(b2Voltage);
         Serial.print("b1Voltage: ");
@@ -284,20 +322,59 @@ void updateIsolator() {
         Serial.println("B1 OFF");
         Serial.println("B2 ON");
 
-        digitalWrite(l1EnPin, HIGH);
+        //digitalWrite(l1EnPin, HIGH);
         digitalWrite(l2EnPin, LOW);
         digitalWrite(l3EnPin, LOW);
         Serial.println("L1 ON");
         Serial.println("L2 OFF");
         Serial.println("L3 OFF");
-      } else if (b1Voltage < 12.8) {
-        Serial.print("b1Voltage < 12.8: ");
-        Serial.println(b1Voltage);
-        Serial.print("b2Voltage: ");
+      } 
+      else if (b2Voltage < 12.8){
+        Serial.println("B2 IS LOAD SOURCE");
+        Serial.print("b2Voltage  12.8: ");
         Serial.println(b2Voltage);
+        Serial.print("b1Voltage: ");
+        Serial.println(b1Voltage);
+
         digitalWrite(b1LedPin, LOW);
         digitalWrite(b2LedPin, HIGH);
-      } else {
+
+        digitalWrite(b1EnPin, LOW);
+        digitalWrite(b2EnPin, HIGH);
+        Serial.println("B1 OFF");
+        Serial.println("B2 ON");
+
+        //digitalWrite(l1EnPin, HIGH);
+        //digitalWrite(l2EnPin, HIGH);
+        //digitalWrite(l3EnPin, HIGH);
+        Serial.println("L1 ON");
+        Serial.println("L2 ON");
+        Serial.println("L3 ON");
+      } 
+      else if (b2Voltage >= 12.8){
+        Serial.println("B2 IS CURRENT SOURCE");
+        Serial.print("b2Voltage > 12.8: ");
+        Serial.println(b2Voltage);
+        Serial.print("b1Voltage: ");
+        Serial.println(b1Voltage);
+
+        digitalWrite(b1LedPin, HIGH);
+        digitalWrite(b2LedPin, HIGH);
+
+        digitalWrite(b1EnPin, HIGH);
+        digitalWrite(b2EnPin, HIGH);
+        Serial.println("B1 OFF");
+        Serial.println("B2 ON");
+
+        //digitalWrite(l1EnPin, HIGH);
+        //digitalWrite(l2EnPin, HIGH);
+        //digitalWrite(l3EnPin, HIGH);
+        Serial.println("L1 ON");
+        Serial.println("L2 ON");
+        Serial.println("L3 ON");
+      } 
+      else {
+        Serial.println("B2 IS CURRENT SOURCE");
         digitalWrite(b1LedPin, HIGH);
         digitalWrite(b2LedPin, HIGH);
 
@@ -306,21 +383,32 @@ void updateIsolator() {
         Serial.println("B1 ON");
         Serial.println("B2 ON");
 
-        digitalWrite(l1EnPin, HIGH);
-        digitalWrite(l2EnPin, HIGH);
-        digitalWrite(l3EnPin, HIGH);
+        //digitalWrite(l1EnPin, HIGH);
+        //digitalWrite(l2EnPin, HIGH);
+        //digitalWrite(l3EnPin, HIGH);
         Serial.println("L1 ON");
         Serial.println("L2 ON");
         Serial.println("L3 ON");
       }
-    } else {
+    } 
+    else {
       dtostrf(systemTemperature, 3, 2, staticTextToDisplay);
       staticText("OVERTEMP!", staticTextToDisplay);
       Serial.print("OVERTEMP: ");
       Serial.println(systemTemperature);
 
       //ToDo:
+      /*
       //limit current flow based on temperature
+      // see https://github.com/espressif/arduino-esp32/blob/master/libraries/ESP32/examples/AnalogOut/LEDCSoftwareFade/LEDCSoftwareFade.ino
+      if (b1Current < b2Current) { //B1 charged by B2
+        pwmValue = 5.1 * (125 - systemTemperature);
+        analogWrite(b1EnPin, pwmValue);
+      } 
+      else if (b2Current < b1Current) { //B2 charged by B1
+        pwmValue = 5.1 * (125 - systemTemperature);
+        analogWrite(b1EnPin, pwmValue);
+      } */
 
       digitalWrite(b1LedPin, LOW);
       digitalWrite(b2LedPin, HIGH);
@@ -330,9 +418,9 @@ void updateIsolator() {
       Serial.println("B1 OFF");
       Serial.println("B2 ON");
 
-      digitalWrite(l1EnPin, HIGH);
-      digitalWrite(l2EnPin, HIGH);
-      digitalWrite(l3EnPin, HIGH);
+      //digitalWrite(l1EnPin, HIGH);
+      //digitalWrite(l2EnPin, HIGH);
+      //digitalWrite(l3EnPin, HIGH);
       Serial.println("L1 ON");
       Serial.println("L2 ON");
       Serial.println("L3 ON");
