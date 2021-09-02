@@ -1,0 +1,12 @@
+{
+  "additionalFiles": "",
+  "builtInLibrariesFolders": "/Applications/Arduino.app/Contents/Java/libraries",
+  "builtInToolsFolders": "/Applications/Arduino.app/Contents/Java/tools-builder,/Applications/Arduino.app/Contents/Java/hardware/tools/avr,/Users/acea/Library/Arduino15/packages",
+  "compiler.optimization_flags": "",
+  "customBuildProperties": "build.path=/Users/acea/projects/hardware/esp32_battery_isolator/software/ArduinoOutput,build.warn_data_percentage=75,runtime.tools.mkspiffs.path=/Users/acea/Library/Arduino15/packages/esp32/tools/mkspiffs/0.2.3,runtime.tools.mkspiffs-0.2.3.path=/Users/acea/Library/Arduino15/packages/esp32/tools/mkspiffs/0.2.3,runtime.tools.xtensa-esp32-elf-gcc.path=/Users/acea/Library/Arduino15/packages/esp32/tools/xtensa-esp32-elf-gcc/1.22.0-97-gc752ad5-5.2.0,runtime.tools.xtensa-esp32-elf-gcc-1.22.0-97-gc752ad5-5.2.0.path=/Users/acea/Library/Arduino15/packages/esp32/tools/xtensa-esp32-elf-gcc/1.22.0-97-gc752ad5-5.2.0,runtime.tools.esptool_py.path=/Users/acea/Library/Arduino15/packages/esp32/tools/esptool_py/3.0.0,runtime.tools.esptool_py-3.0.0.path=/Users/acea/Library/Arduino15/packages/esp32/tools/esptool_py/3.0.0",
+  "fqbn": "esp32:esp32:esp32:PSRAM=disabled,PartitionScheme=default,CPUFreq=240,FlashMode=dio,FlashFreq=80,FlashSize=4M,UploadSpeed=460800,DebugLevel=warn",
+  "hardwareFolders": "/Applications/Arduino.app/Contents/Java/hardware,/Users/acea/Library/Arduino15/packages,/Users/acea/Documents/Arduino/hardware",
+  "otherLibrariesFolders": "/Users/acea/Documents/Arduino/libraries",
+  "runtime.ide.version": "10814",
+  "sketchLocation": "/Users/acea/projects/hardware/esp32_battery_isolator/software/arduino/main/main.ino"
+}

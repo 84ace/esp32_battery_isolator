@@ -1,4 +1,4 @@
-19096208406874840
+19101043160818840
 Acea
 20x20_fan
 
@@ -434,6 +434,13 @@ RN2483
 47
 47
 Acea
+Raytac-MDBT42V-512KV2-0-0-MFG
+
+
+0
+29
+29
+Acea
 Relay_SPST_NO_HFV7-P-012-HST
 Relay SPST-NO Omron Serie G5Q, http://omronfs.omron.com/en_US/ecb/products/pdf/en-g5q.pdf
 Relay SPST-NO Omron Serie G5Q
@@ -469,6 +476,13 @@ SLO1365H680MTT
 2
 2
 Acea
+SOD1608D
+
+
+0
+2
+2
+Acea
 SOIC127P599X173-8N
 MIC5239-3.3YM
 Integrated Circuit
@@ -497,6 +511,13 @@ Integrated Circuit
 9
 9
 Acea
+SOP50P600X148-17N
+
+
+0
+17
+17
+Acea
 SOP65P490X110-8N
 
 
@@ -518,12 +539,26 @@ SOT95P280X145-5N
 5
 5
 Acea
+STMicroelectronics-SOT23-6L-0-0-IPC_A
+
+
+0
+6
+6
+Acea
 SW_Push_1P1T_NO_Vertical_GT-TS171E-H014-L1
 https://katalog.we-online.com/em/datasheet/434133025816.pdf
 tactile switch Wurth Wuerth
 0
 4
 2
+Acea
+TE_T4142412051-000
+
+
+0
+5
+5
 Acea
 TO-92
 <b>TO 92</b>
@@ -721,14 +756,7 @@ XTAL_ABLS-8.000MHZ-B2-T
 2
 2
 Acea
-aces_electronics_grey_back
-
-
-0
-0
-0
-Acea
-aces_electronics_grey_front
+aces_electronics_micro
 
 
 0
@@ -742,19 +770,12 @@ aces_electronics_small
 0
 0
 Acea
-aces_electronics_small_back
+esp8285-m3
 
 
 0
-0
-0
-Acea
-aces_electronics_small_front
-
-
-0
-0
-0
+12
+12
 Acea
 keystone_82_1xAAA_doube
 https://www.keyelco.com/product-pdf.cfm?p=827

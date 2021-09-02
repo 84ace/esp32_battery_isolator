@@ -54,12 +54,12 @@ int maxAllowedBoardTemp = 80;
 
 int autoMode = 1;
 int buttonPin = 33;
-int sysLedPin = 14;
-int b1LedPin = 27;
-int b2LedPin = 25;
-int b1EnPin = 26;
-int b2EnPin = 32;
-int l1EnPin = 15;
+int sysLedPin = 18; //deprecated
+int b1LedPin = 19; //deprecated
+int b2LedPin = 23; //deprecated
+int b1EnPin = 32;
+int b2EnPin = 25;
+int l1EnPin = 14;
 int l2EnPin = 13;
 int l3EnPin = 4;
 
