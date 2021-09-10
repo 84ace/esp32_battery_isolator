@@ -437,7 +437,6 @@ void staticText(char* line1, char* line2) {
   display.println(F(line1));
   display.println(F(line2));
   display.display();
-  delay(1000);
 
 }
 

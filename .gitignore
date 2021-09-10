@@ -1,2 +1,5 @@
 
 **.DS_Store
+software/arduino/ArduinoOutput/
+**.vscode/
+software/ArduinoOutput/build.options.json
