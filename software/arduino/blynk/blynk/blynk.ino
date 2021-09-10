@@ -21,6 +21,8 @@
 #define OLED_RESET 4        // Reset pin # (or -1 if sharing Arduino reset pin)
 #define SCREEN_ADDRESS 0x3C ///< See datasheet for Address; 0x3D for 128x64, 0x3C for 128x32
 
+char auth[] = "pX5sSlM-W175Zs_KnO9OHuXQ-55sdPdU";
+
 char version[] = "v001";
 bool debugVoltages = false; // ToDo: move this into setup and catch a button press to enable
 bool debugBLE = false;
@@ -72,8 +74,6 @@ const int freq = 5000;
 const int b1PWMChannel = 1;
 const int b2PWMChannel = 2;
 const int resolution = 8;
-
-char auth[] = "pX5sSlM-W175Zs_KnO9OHuXQ-55sdPdU";
 
 char staticTextToDisplay[22] = "";
 char minBuffer[] = "-25.00";
