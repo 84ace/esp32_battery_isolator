@@ -7,6 +7,11 @@
 #include <BlynkSimpleEsp32_BLE.h>
 #include <BLEDevice.h>
 #include <BLEServer.h>
+#include <WiFi.h>
+#include <WiFiClient.h>
+#include <WebServer.h>
+#include <ESPmDNS.h>
+#include <Update.h>
 
 #define BLYNK_USE_DIRECT_CONNECT
 
@@ -22,12 +27,18 @@
 #define SCREEN_ADDRESS 0x3C ///< See datasheet for Address; 0x3D for 128x64, 0x3C for 128x32
 
 char auth[] = "pX5sSlM-W175Zs_KnO9OHuXQ-55sdPdU";
-
 char version[] = "v001";
+
+const char* sw_version = "20210911";
+const char* host = "isolator";
+const char* ssid = "isolator";
+const char* password = "isolator";
+
 bool debugVoltages = false; // ToDo: move this into setup and catch a button press to enable
 bool debugBLE = false;
 bool debugPWM = false;
 bool debugAppCommands = false;
+bool debugTiming = false;
 bool notificationsOn = true;
 bool notificationAllowed = false;
 
@@ -48,6 +59,7 @@ float currentVoltageDivider = 1.33;
 float batteryVoltageDivider = 7.16;
 float milliVoltPerAmp = 0.045;
 
+int buttonState = 1;  
 float systemVoltage = 0.00;
 float systemTemperature = 25.00;
 float battery1Voltage = 0.00;
@@ -101,11 +113,17 @@ byte seconds;
 byte minutes;
 byte hours;
 
+WebServer server(80);
+
 Adafruit_SSD1306 display = Adafruit_SSD1306(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
 ADC128D818 adc(0x1D);
 
 BlynkTimer timer0;
+
+const char* serverIndex =
+"<p>Please upload a .bin file to upgrade your isolator.<p><p>Wait at least 60 seconds before freaking out, you will see the OLED start cycling again when it is done.<p><form method='POST' action='/update' enctype='multipart/form-data'><input type='file' name='update'><input type='submit' value='Update'></form>";
+
 
 void PWMSetup()
 {
@@ -120,7 +138,7 @@ void PWMSetup()
 
 void gpioSetup()
 {
-  pinMode(buttonPin, INPUT);
+  pinMode(buttonPin, INPUT_PULLUP);
   pinMode(sysLED, OUTPUT);
   pinMode(b1EnPin, OUTPUT);
   pinMode(b2EnPin, OUTPUT);
@@ -169,17 +187,20 @@ void timeKeeper()
     {
       days = 0;
     }
-    Serial.print(days, DEC);
-    Serial.print("d");
-    Serial.print(":");
-    Serial.print(hours, DEC);
-    Serial.print("h");
-    Serial.print(":");
-    Serial.print(minutes, DEC);
-    Serial.print("m");
-    Serial.print(":");
-    Serial.print(seconds, DEC);
-    Serial.println("s");
+    if (debugTiming)
+    {
+      Serial.print(days, DEC);
+      Serial.print("d");
+      Serial.print(":");
+      Serial.print(hours, DEC);
+      Serial.print("h");
+      Serial.print(":");
+      Serial.print(minutes, DEC);
+      Serial.print("m");
+      Serial.print(":");
+      Serial.print(seconds, DEC);
+      Serial.println("s");
+    }
   }
 }
 
@@ -637,10 +658,79 @@ void setup()
   timer0.setInterval(5000L, sendDataOverBLE);
 
   digitalWrite(sysLED, 1);
+
+  if (buttonState == LOW) 
+  {
+    WiFi.softAP(ssid, password);
+    Serial.println();
+    Serial.print("software version: ");
+    Serial.println(sw_version);
+    Serial.print("host: ");
+    Serial.println(host);
+    Serial.print("ssid: ");
+    Serial.println(ssid);
+    Serial.print("password: ");
+    Serial.println(password);
+    IPAddress IP = WiFi.softAPIP();
+    Serial.print("url: http://");
+    Serial.print(IP);
+
+    /*use mdns for host name resolution*/
+  if (!MDNS.begin(host)) { //http://isolator.local
+    Serial.println("Error setting up MDNS responder!");
+    while (1) {
+      delay(1000);
+    }
+  }
+  Serial.println("mDNS responder started");
+
+  /*return index page which is stored in serverIndex */
+  server.on("/", HTTP_GET, []() {
+    Serial.println("server.on(/)");
+    server.sendHeader("Connection", "close");
+    server.send(200, "text/html", serverIndex);
+  });
+  server.on("/serverIndex", HTTP_GET, []() {
+    Serial.println("server.on(/serverIndex)");
+    server.sendHeader("Connection", "close");
+    server.send(200, "text/html", serverIndex);
+  });
+  /*handling uploading firmware file */
+  server.on("/update", HTTP_POST, []() {
+    Serial.println("server.on(/update)");
+    server.sendHeader("Connection", "close");
+    server.send(200, "text/plain", (Update.hasError()) ? "FAIL" : "OK");
+    ESP.restart();
+  }, []() {
+    HTTPUpload& upload = server.upload();
+    if (upload.status == UPLOAD_FILE_START) {
+      Serial.printf("Update: %s\n", upload.filename.c_str());
+      if (!Update.begin(UPDATE_SIZE_UNKNOWN)) { //start with max available size
+        Update.printError(Serial);
+      }
+    } else if (upload.status == UPLOAD_FILE_WRITE) {
+      /* flashing firmware to ESP*/
+      if (Update.write(upload.buf, upload.currentSize) != upload.currentSize) {
+        Update.printError(Serial);
+      }
+    } else if (upload.status == UPLOAD_FILE_END) {
+      if (Update.end(true)) { //true to set the size to the current progress
+        Serial.printf("Update Success: %u\nRebooting...\n", upload.totalSize);
+      } else {
+        Update.printError(Serial);
+      }
+    }
+  });
+  server.begin();
+  }
 }
 
 void loop()
 {
   Blynk.run();
   timer0.run(); // Initiates BlynkTimer
+  server.handleClient();
+
+  // check the mode button
+  buttonState = digitalRead(buttonPin);
 }
