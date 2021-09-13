@@ -12,6 +12,7 @@
 #include <WebServer.h>
 #include <ESPmDNS.h>
 #include <Update.h>
+#include "OneButton.h"
 
 #define BLYNK_USE_DIRECT_CONNECT
 
@@ -38,7 +39,8 @@ bool debugVoltages = false; // ToDo: move this into setup and catch a button pre
 bool debugBLE = false;
 bool debugPWM = false;
 bool debugAppCommands = false;
-bool debugTiming = false;
+bool debugTiming = true;
+bool menuDebug = true;
 bool notificationsOn = true;
 bool notificationAllowed = false;
 
@@ -52,17 +54,13 @@ const int b1EnPin = 25; //32 in prod
 const int b2EnPin = 18; //25 in prod
 const int l1EnPin = 14;
 const int l2EnPin = 13;
-const int l3EnPin = 4;
+const int l3EnPin = sysLED; //4 in prod
 
 float systemVoltageDivider = 1.322;
 float currentVoltageDivider = 1.33;
 float batteryVoltageDivider = 7.16;
 float milliVoltPerAmp = 0.045;
 
-int buttonState = 1;  
-int lastButtonState = LOW;
-unsigned long lastDebounceTime = 0; 
-unsigned long debounceDelay = 150;
 float systemVoltage = 0.00;
 float systemTemperature = 25.00;
 float battery1Voltage = 0.00;
@@ -89,6 +87,31 @@ const int freq = 5000;
 const int b1PWMChannel = 1;
 const int b2PWMChannel = 2;
 const int resolution = 8;
+bool smallText = false;
+bool suspendOLEDUpdates = false;
+
+int l0 = 0;
+int l1 = 0;
+int l2 = 0;
+int l3 = 0;
+int l4 = 0;
+bool singlePress = false;
+bool doublePress = false;
+int multiPress = 0;
+bool longPress = false;
+bool menuMode = false;
+bool menuOpen = false;
+bool ioMenuMode = false;
+bool b1MenuMode = false;
+bool b1MenuAuto = false;
+bool b2MenuMode = false;
+bool l1MenuMode = false;
+bool l2MenuMode = false;
+bool l3MenuMode = false;
+bool b1MenuOn = false;
+bool b1MenuOff = false;
+bool limitsMenuMode = false;
+bool uploadMenuMode = false;
 
 char staticTextToDisplay[22] = "";
 char minBuffer[] = "-25.00";
@@ -111,10 +134,10 @@ int OLEDEvent = 0;
 int updatesInLoop = 5;
 
 unsigned long previousTime = 0;
-byte days;
-byte seconds;
-byte minutes;
-byte hours;
+int days = 0;
+int seconds = 0;
+int minutes = 0;
+int hours = 0;
 
 WebServer server(80);
 
@@ -123,6 +146,17 @@ Adafruit_SSD1306 display = Adafruit_SSD1306(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, 
 ADC128D818 adc(0x1D);
 
 BlynkTimer timer0;
+
+OneButton button(buttonPin, true);
+
+// save the millis when a button press has started.
+unsigned long pressStartTime;
+
+ICACHE_RAM_ATTR void checkTicks()
+{
+  // include all buttons here to be checked
+  button.tick(); // just call tick() to check the state.
+}
 
 const char* serverIndex =
 "<p>Please upload a .bin file to upgrade your isolator.<p><p>Wait at least 60 seconds before freaking out, you will see the OLED start cycling again when it is done.<p><form method='POST' action='/update' enctype='multipart/form-data'><input type='file' name='update'><input type='submit' value='Update'></form>";
@@ -150,14 +184,70 @@ void gpioSetup()
   pinMode(l3EnPin, OUTPUT);
 }
 
-void staticText(char *line1, char *line2)
+// this function will be called when the button was pressed 1 time only.
+void singleClick()
+{
+  Serial.println("singleClick() detected.");
+  singlePress = true;
+  menuNavigator();
+} // singleClick
+
+
+// this function will be called when the button was pressed 2 times in a short timeframe.
+void doubleClick()
+{
+  Serial.println("doubleClick() detected.");
+  doublePress = true;
+  menuNavigator();
+} // doubleClick
+
+
+// this function will be called when the button was pressed multiple times in a short timeframe.
+void multiClick()
+{
+  Serial.print("multiClick(");
+  Serial.print(button.getNumberClicks());
+  Serial.println(") detected.");
+  menuNavigator();
+} // multiClick
+
+
+// this function will be called when the button was held down for 1 second or more.
+void pressStart()
+{
+  Serial.println("pressStart()");
+  pressStartTime = millis() - 1000; // as set in setPressTicks()
+} // pressStart()
+
+
+// this function will be called when the button was released after a long hold.
+void pressStop()
+{
+  Serial.print("longPress(");
+  Serial.print(millis() - pressStartTime);
+  Serial.println(") detected.");
+  longPress = true;
+  menuNavigator();
+} // pressStop()
+
+
+void staticText(char *line1, char *line2, char *line3 = "", char *line4 = "")
 {
   display.clearDisplay();
-  display.setTextSize(2);
+  if (!smallText)
+  {
+    display.setTextSize(2);
+  }
+  else 
+  {
+    display.setTextSize(1);
+  }
   display.setTextColor(SSD1306_WHITE);
   display.setCursor(00, 0);
   display.println(F(line1));
   display.println(F(line2));
+  display.println(F(line3));
+  display.println(F(line4));
   display.display();
 }
 
@@ -192,52 +282,75 @@ void timeKeeper()
     }
     if (debugTiming)
     {
-      Serial.print(days, DEC);
+      Serial.print(days);
       Serial.print("d");
-      Serial.print(":");
-      Serial.print(hours, DEC);
+      Serial.print(hours);
       Serial.print("h");
-      Serial.print(":");
-      Serial.print(minutes, DEC);
+      Serial.print(minutes);
       Serial.print("m");
-      Serial.print(":");
-      Serial.print(seconds, DEC);
+      Serial.print(seconds);
       Serial.println("s");
     }
   }
 }
 
 void OLEDUpdater()
-{
-  if (OLEDEvent == 0)
+{  
+  if (!suspendOLEDUpdates)
   {
-    dtostrf(systemTemperature, 3, 2, staticTextToDisplay);
-    staticText("Temp (C):", staticTextToDisplay);
-    OLEDEvent++;
-  }
-  else if (OLEDEvent == 1)
-  {
-    dtostrf(battery1Voltage, 3, 2, staticTextToDisplay);
-    staticText("B1 (V):", staticTextToDisplay);
-    OLEDEvent++;
-  }
-  else if (OLEDEvent == 2)
-  {
-    dtostrf(battery2Voltage, 3, 2, staticTextToDisplay);
-    staticText("B2 (V):", staticTextToDisplay);
-    OLEDEvent++;
-  }
-  else if (OLEDEvent == 3)
-  {
-    dtostrf(battery1Current, 3, 2, staticTextToDisplay);
-    staticText("B1 (A):", staticTextToDisplay);
-    OLEDEvent++;
-  }
-  else if (OLEDEvent == 4)
-  {
-    dtostrf(battery2Current, 3, 2, staticTextToDisplay);
-    staticText("B2 (A):", staticTextToDisplay);
-    OLEDEvent = 0;
+    if (OLEDEvent == 0)
+    {
+      dtostrf(systemTemperature, 3, 2, staticTextToDisplay);
+      staticText("Temp (C):", staticTextToDisplay);
+      OLEDEvent++;
+    }
+    else if (OLEDEvent == 1)
+    {
+      dtostrf(battery1Voltage, 3, 2, staticTextToDisplay);
+      staticText("B1 (V):", staticTextToDisplay);
+      OLEDEvent++;
+    }
+    else if (OLEDEvent == 2)
+    {
+      dtostrf(battery2Voltage, 3, 2, staticTextToDisplay);
+      staticText("B2 (V):", staticTextToDisplay);
+      OLEDEvent++;
+    }
+    else if (OLEDEvent == 3)
+    {
+      dtostrf(battery1Current, 3, 2, staticTextToDisplay);
+      staticText("B1 (A):", staticTextToDisplay);
+      OLEDEvent++;
+    }
+    else if (OLEDEvent == 4)
+    {
+      dtostrf(battery2Current, 3, 2, staticTextToDisplay);
+      staticText("B2 (A):", staticTextToDisplay);
+      OLEDEvent++;
+    }
+    else if (OLEDEvent == 5)
+    {
+      char SingleInt[13] = "00000000";
+      char uptime[13] = "00000000";
+      smallText = true;
+      memset(uptime,0,sizeof(uptime)); //Ensure it's empty.
+      itoa(days,SingleInt,10);
+      strcat(uptime,SingleInt);
+      strcat(uptime,"d");
+      itoa(hours,SingleInt,10);
+      strcat(uptime,SingleInt);
+      strcat(uptime,"h");
+      itoa(minutes,SingleInt,10);
+      strcat(uptime,SingleInt);
+      strcat(uptime,"m");
+      itoa(seconds,SingleInt,10);
+      strcat(uptime,SingleInt);
+      strcat(uptime,"s");
+
+      staticText("DEBUG:", uptime);
+      smallText = false;
+      OLEDEvent = 0;
+    }
   }
 }
 
@@ -289,7 +402,10 @@ void readFromADC()
           b2Healthy = true;
           digitalWrite(l1EnPin, HIGH);
           digitalWrite(l2EnPin, HIGH);
-          digitalWrite(l3EnPin, HIGH);
+          if (!l3Mode)
+          {
+            digitalWrite(l3EnPin, HIGH);
+          }
         }
       }
       if (battery1Voltage < battery1VoltageMin)
@@ -304,6 +420,7 @@ void readFromADC()
       {
         b2Healthy = true;
       }
+
       else
       {
         if (battery2Voltage <= 11.5)
@@ -333,10 +450,7 @@ void readFromADC()
           {
             digitalWrite(l2EnPin, LOW);
           }
-          if (!l3Mode)
-          {
-            digitalWrite(l3EnPin, LOW);
-          }
+          digitalWrite(l3EnPin, LOW);
         }
         else if (battery2Voltage >= 11.8)
         {
@@ -363,9 +477,7 @@ void readFromADC()
             digitalWrite(l2EnPin, LOW);
           }
           if (!l3Mode)
-          {
             digitalWrite(l3EnPin, LOW);
-          }
         }
         else if (battery2Voltage < 12.8)
         {
@@ -383,7 +495,10 @@ void readFromADC()
           b2Healthy = true;
           digitalWrite(l1EnPin, HIGH);
           digitalWrite(l2EnPin, HIGH);
-          digitalWrite(l3EnPin, HIGH);
+          if (!l3Mode)
+          {
+            digitalWrite(l3EnPin, HIGH);
+          }
         }
         else
         {
@@ -395,7 +510,10 @@ void readFromADC()
           b2Healthy = true;
           digitalWrite(l1EnPin, HIGH);
           digitalWrite(l2EnPin, HIGH);
-          digitalWrite(l3EnPin, HIGH);
+          if (!l3Mode)
+          {
+            digitalWrite(l3EnPin, HIGH);
+          }
         }
       }
       if (battery2Voltage < battery2VoltageMin)
@@ -472,12 +590,25 @@ void readFromADC()
           battery2PWMVal--;
         }
       }
+      if (l1Mode)
+      {
+        digitalWrite(l1EnPin, HIGH);
+      }
+      if (l2Mode)
+      {
+        digitalWrite(l2EnPin, HIGH);
+      }
+      if (l3Mode)
+      {
+        digitalWrite(l3EnPin, LOW);
+      }
+
     }
     // ... and the internal temp sensor
     systemTemperature = adc.readTemperatureConverted();
     if (systemTemperature > maxAllowedBoardTemp)
     {
-      Blynk.notify("Isolator Temperature HIGH!!!");
+      Blynk.notify("ISOLATOR: Temperature HIGH!!!");
       if (battery1PWMVal > minPWMVal)
       {
         battery1PWMVal -= 3; // ramp B1 current down fast
@@ -508,7 +639,7 @@ void sendBatch0Data()
 {
   if (debugBLE)
   {
-    Serial.println("Batch0 firing...");
+    Serial.println("Batch0 BLE firing...");
   }
   Blynk.virtualWrite(V0, battery1Voltage);
   Blynk.virtualWrite(V1, battery2Voltage);
@@ -520,7 +651,7 @@ void sendBatch1Data()
 {
   if (debugBLE)
   {
-    Serial.println("Batch1 firing...");
+    Serial.println("Batch1 BLE firing...");
   }
   dtostrf(battery1VoltageMin, 1, 2, minBuffer);
   dtostrf(battery1VoltageMax, 1, 2, maxBuffer);
@@ -534,33 +665,6 @@ void sendBatch1Data()
   dtostrf(battery2CurrentMin, 1, 2, minBuffer);
   dtostrf(battery2CurrentMax, 1, 2, maxBuffer);
   Blynk.virtualWrite(V7, minBuffer, ",", maxBuffer);
-}
-
-
-void checkButtonState()
-{
-  // check the mode button
-  int reading = digitalRead(buttonPin);
-
-  if (reading != lastButtonState) {
-    // reset the debouncing timer
-    lastDebounceTime = millis();
-  }
-
-  if ((millis() - lastDebounceTime) > debounceDelay) {
-    // whatever the reading is at, it's been there for longer than the debounce
-    // delay, so take it as the actual current state:
-
-    // if the button state has changed:
-    if (reading != buttonState) {
-      buttonState = reading;
-
-      // only toggle the LED if the new button state is HIGH
-      if (buttonState == LOW) {
-        startWifi();
-      }
-    }
-  }
 }
 
 
@@ -628,6 +732,227 @@ server.on("/update", HTTP_POST, []() {
 });
 server.begin();
 }
+
+void menuNavigator()
+{
+  suspendOLEDUpdates = true; // only display the menu on the OLED
+  if (menuDebug)
+  {
+    Serial.print("l0: ");
+    Serial.println(l0);
+    Serial.print("l1: ");
+    Serial.println(l1);
+    Serial.print("l2: ");
+    Serial.println(l2);
+    Serial.print("l3: ");
+    Serial.println(l3);
+    Serial.print("l4: ");
+    Serial.println(l4);
+  }
+  
+  // l0 modes
+  if ((singlePress && l0 == 0) || (singlePress && l1 == 10))
+  {
+    if (menuDebug)
+    {
+      Serial.println("entered SETTINGS MENU");
+    }
+    staticText("SETTINGS", "MENU");
+    singlePress = false;
+    l0 = 1;
+    l1 = 1;
+  }
+
+  // l1 modes
+  if (singlePress && l1 == 1) //set menuMode back to 0 when exiting menu
+  {
+    if (menuDebug)
+    {
+    Serial.println("IO MODE");
+    }
+    singlePress = false;
+    staticText("IO", "MODE");
+    l1 = 2;
+  }
+  if (singlePress && l1 == 2)
+  { 
+    if (menuDebug)
+    {
+      Serial.println("LIMITS MODE");
+    }
+    singlePress = false;
+    staticText("LIMITS", "MODE");
+    l1 = 3;
+  }
+  if (singlePress && l1 == 3)
+  {
+    if (menuDebug)
+    {
+      Serial.println("WIFI .BIN UPLOAD");
+    }
+    singlePress = false;
+    staticText("WIFI .BIN", "UPLOAD");
+    l1 = 4;
+  }
+
+  if (longPress && l1 == 4)
+  {  
+    if (menuDebug)
+    {
+      Serial.println("BACK");
+    }
+    longPress = false;
+    singlePress = true;
+    staticText("BACK", "");
+    l1 = 10;
+    l2 = 0;
+  }
+  
+  
+  if (doublePress && l1 == 2)
+  {
+    if (menuDebug)
+    {
+      Serial.println("B1 MODE");
+    }
+    doublePress = false;
+    staticText("B1", "MODE");
+    l1 = 0;
+    l2 = 1;
+  }
+  if (singlePress && l2 == 1)
+  {
+    if (menuDebug)
+    {
+      Serial.println("B2 MODE");
+    }
+    singlePress = false;
+    staticText("B2", "MODE");
+    l2 = 2;
+  }
+  if (singlePress && l2 == 2)
+  {
+    if (menuDebug)
+    {
+      Serial.println("L1 MODE");
+    }
+    singlePress = false;
+    staticText("L1", "MODE");
+    l2 = 3;
+  }
+  if (singlePress && l2 == 3)
+  {
+    if (menuDebug)
+    {
+      Serial.println("L2 MODE");
+    }
+    singlePress = false;
+    staticText("L2", "MODE");
+    l2 = 4;
+  }
+  if (singlePress && l2 == 4)
+  {
+    if (menuDebug)
+    {
+      Serial.println("L3 MODE");
+    }
+    singlePress = false;
+    staticText("L3", "MODE");
+  }
+  if (longPress && l2 == 4)
+  {
+    if (menuDebug)
+    {
+      Serial.println("BACK");
+    }
+    longPress = false;
+    singlePress = true;
+    staticText("BACK", "");
+    l1 = 10;
+    l2 = 0;
+    l3 = 0;
+  }
+
+
+  if (doublePress && l1 == 3)
+  {
+    if (menuDebug)
+    {
+      Serial.println("CHANGE LIMITS");
+    }
+    doublePress = false;
+    staticText("CHANGE", "LIMITS");
+    l1 = 6;
+  }
+  if (doublePress && l1 == 6)
+  {
+    if (menuDebug)
+    {
+      Serial.println("NYI");
+    }
+    doublePress = false;
+    staticText("NOT YET IM", "PLEMENTED");
+    l1 = 10;
+    singlePress = true;
+  }
+  if (longPress && l3 == 6)
+  {
+    if (menuDebug)
+    {
+      Serial.println("BACK");
+    }
+    longPress = false;
+    singlePress = true;
+    staticText("BACK", "");
+    l1 = 10;
+    l2 = 0;
+    l3 = 0;
+  }
+    
+  if (doublePress && l1 == 4)
+  {
+    if (menuDebug)
+    {
+      Serial.println("UPLOAD FIRMWARE");
+    }
+    doublePress = false;
+    staticText("UPLOAD", "FIRMWARE");
+    smallText = true;
+    staticText("UPLOAD MODE:", "http://192.168.4.1", "SSID:isolator", "PWD:isolator");
+    startWifi();
+    smallText = false;
+  }
+  if (longPress && l1 == 4)
+  {
+
+    if (menuDebug)
+    {
+      Serial.println("BACK");
+    }
+    WiFi.mode(WIFI_OFF);
+    longPress = false;
+    singlePress = true;
+    staticText("BACK", "");
+    l1 = 10;
+    l2 = 0;
+    l3 = 0;
+  }
+
+if (menuDebug)
+  {
+    Serial.print("l0: ");
+    Serial.println(l0);
+    Serial.print("l1: ");
+    Serial.println(l1);
+    Serial.print("l2: ");
+    Serial.println(l2);
+    Serial.print("l3: ");
+    Serial.println(l3);
+    Serial.print("l4: ");
+    Serial.println(l4);
+  }
+}
+  
 
 
 BLYNK_WRITE(V8) // B1 Overide (starter)
@@ -734,10 +1059,11 @@ void setup()
   display.setRotation(2);
   display.clearDisplay();
 
-  staticText("Isolator", version);
+  staticText("ISOLATOR", version);
 
   Serial.begin(115200);
-  Serial.println("Isolator is running...");
+  Serial.print("software version: ");
+  Serial.println(sw_version);
 
   Blynk.setDeviceName("Isolator_v001");
 
@@ -746,26 +1072,32 @@ void setup()
 
   adc.begin();
 
-  Blynk.begin(auth);
-
   // Setup a function to be called every x seconds
   timer0.setInterval(200L, readFromADC);
   timer0.setInterval(1000L, timeKeeper);
   timer0.setInterval(2000L, OLEDUpdater);
   timer0.setInterval(5000L, sendDataOverBLE);
 
-  digitalWrite(sysLED, 1);
+  digitalWrite(sysLED, 1); // only used in dev
 
-  
+  attachInterrupt(digitalPinToInterrupt(buttonPin), checkTicks, CHANGE);
+
+  // link the xxxclick functions to be called on xxxclick event.
+  button.attachClick(singleClick);
+  button.attachDoubleClick(doubleClick);
+  button.attachMultiClick(multiClick);
+
+  button.setPressTicks(1000); // that is the time when LongPressStart is called
+  button.attachLongPressStart(pressStart);
+  button.attachLongPressStop(pressStop);
+
+  Blynk.begin(auth);
 }
 
 void loop()
 {
-  Blynk.run();
   timer0.run(); // Initiates BlynkTimer
   server.handleClient();
-  checkButtonState();
-
-  
-
+  button.tick();
+  Blynk.run();
 }
