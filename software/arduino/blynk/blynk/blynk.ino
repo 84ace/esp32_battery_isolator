@@ -760,21 +760,24 @@ void menuNavigator()
     staticText("SETTINGS", "MENU");
     singlePress = false;
     l0 = 1;
-    l1 = 1;
+    l1 = 0;
+    l2 = 0;
+    l3 = 0;
   }
 
   // l1 modes
-  if (singlePress && l1 == 1) //set menuMode back to 0 when exiting menu
+  if (doublePress && l0 == 1 && l1 == 0) //set menuMode back to 0 when exiting menu
   {
     if (menuDebug)
     {
     Serial.println("IO MODE");
     }
+    doublePress = false;
     singlePress = false;
     staticText("IO", "MODE");
-    l1 = 2;
+    l1 = 1;
   }
-  if (singlePress && l1 == 2)
+  if (singlePress && l1 == 1 && l2 == 0)
   { 
     if (menuDebug)
     {
@@ -782,9 +785,9 @@ void menuNavigator()
     }
     singlePress = false;
     staticText("LIMITS", "MODE");
-    l1 = 3;
+    l1 = 2;
   }
-  if (singlePress && l1 == 3)
+  if (singlePress && l1 == 2 && l2 == 0)
   {
     if (menuDebug)
     {
@@ -792,10 +795,10 @@ void menuNavigator()
     }
     singlePress = false;
     staticText("WIFI .BIN", "UPLOAD");
-    l1 = 4;
+    l1 = 3;
   }
 
-  if (longPress && l1 == 4)
+  if (longPress && l1 == 3 && l2 == 0)
   {  
     if (menuDebug)
     {
@@ -808,8 +811,8 @@ void menuNavigator()
     l2 = 0;
   }
   
-  
-  if (doublePress && l1 == 2)
+  // B1 modes
+  if (doublePress && l1 == 1 && l2 == 0 && l3 == 0)
   {
     if (menuDebug)
     {
@@ -817,10 +820,93 @@ void menuNavigator()
     }
     doublePress = false;
     staticText("B1", "MODE");
-    l1 = 0;
     l2 = 1;
+    l3 = 0;
   }
-  if (singlePress && l2 == 1)
+  if (doublePress && l1 == 1 && l2 == 1 && l3 == 0)
+  {
+    if (menuDebug)
+    {
+      Serial.println("B1 AUTO");
+    }
+    doublePress = false;
+    staticText("B1", "AUTO");
+    l3 = 1;
+  }
+  if (doublePress && l1 ==1 && l2 == 1 && l3 == 1)
+  {
+    if (menuDebug)
+    {
+      Serial.println("B1 AUTO SELECTED");
+    }
+    doublePress = false;
+    staticText("AUTO", "SELECTED");
+    l1 = 10;
+
+    // do stuff here to put B1 in auto mode
+    // must long click to go back
+
+  }
+  if (singlePress && l1 == 1 && l2 == 1 && l3 == 1)
+  {
+    if (menuDebug)
+    {
+      Serial.println("B1 ON");
+    }
+    singlePress = false;
+    staticText("B1", "ON");
+    l3 = 2;
+  }
+  if (doublePress && l1 == 1 && l2 == 1 && l3 == 2)
+  {
+    if (menuDebug)
+    {
+      Serial.println("B1 ON SELECTED");
+    }
+    doublePress = false;
+    staticText("ON", "SELECTED");
+    l1 = 10;
+
+    // do stuff here to put B1 in on mode
+    // must long click to go back
+
+  }
+  if (singlePress && l1 == 1 && l2 == 1 && l3 == 2)
+  {
+    if (menuDebug)
+    {
+      Serial.println("B1 OFF");
+    }
+    singlePress = false;
+    staticText("B1", "OFF");
+    l3 = 3;
+  }
+  if (doublePress && l1 == 1 && l2 == 1 && l3 == 3)
+  {
+    if (menuDebug)
+    {
+      Serial.println("B1 OFF SELECTED");
+    }
+    doublePress = false;
+    staticText("OFF", "SELECTED");
+
+    // do stuff here to put B1 in off mode
+    // must long click to go back
+  }
+  if (longPress && l2 == 1 && l3 == 3)
+  {
+    if (menuDebug)
+    {
+      Serial.println("BACK");
+    }
+    singlePress = true;
+    longPress = false;
+    staticText("BACK", "");
+    l1 = 10;
+  }
+
+  // B2 modes
+  if (singlePress && l1 == 1 && l2 == 1 && l3 == 0)
   {
     if (menuDebug)
     {
@@ -830,7 +916,91 @@ void menuNavigator()
     staticText("B2", "MODE");
     l2 = 2;
   }
-  if (singlePress && l2 == 2)
+  if (doublePress && l1 == 1 && l2 == 2 && l3 == 0)
+  {
+    if (menuDebug)
+    {
+      Serial.println("B2 AUTO");
+    }
+    doublePress = false;
+    staticText("B2", "AUTO");
+    l3 = 1;
+  }
+  if (doublePress && l1 == 1 && l2 == 2 && l3 == 1)
+  {
+    if (menuDebug)
+    {
+      Serial.println("B2 AUTO SELECTED");
+    }
+    doublePress = false;
+    staticText("AUTO", "SELECTED");
+    l1 = 10;
+
+    // do stuff here to put B2 in auto mode
+    // must long click to go back
+
+  }
+  if (singlePress && l1 == 1 && l2 == 2 && l3 == 1)
+  {
+    if (menuDebug)
+    {
+      Serial.println("B2 ON");
+    }
+    singlePress = false;
+    staticText("B2", "ON");
+    l3 = 2;
+  }
+  if (doublePress && l1 == 1 && l2 == 2 && l3 == 2)
+  {
+    if (menuDebug)
+    {
+      Serial.println("B2 ON SELECTED");
+    }
+    singlePress = false;
+    staticText("ON", "SELECTED");
+    l1 = 10;
+
+    // do stuff here to put B2 in on mode
+    // must long click to go back
+
+  }
+  if (singlePress && l1 == 1 && l2 == 2 && l3 == 2)
+  {
+    if (menuDebug)
+    {
+      Serial.println("B2 OFF");
+    }
+    singlePress = false;
+    staticText("B2", "OFF");
+    l3 = 3;
+  }
+  if (doublePress && l1 == 1 && l2 == 2 && l3 == 2)
+  {
+    if (menuDebug)
+    {
+      Serial.println("B2 OFF SELECTED");
+    }
+    doublePress = false;
+    staticText("OFF", "SELECTED");
+
+    // do stuff here to put B2 in off mode
+    // must long click to go back
+
+  }
+  if (longPress && l1 == 1 && l2 == 2 && l3 == 3)
+  {
+    if (menuDebug)
+    {
+      Serial.println("BACK");
+    }
+    singlePress = true;
+    longPress = false;
+    staticText("BACK", "");
+    l1 = 10;
+  }
+
+  // L1 modes
+  if (singlePress && l1 == 1 && l2 == 2 && l3 == 0)
   {
     if (menuDebug)
     {
@@ -840,7 +1010,91 @@ void menuNavigator()
     staticText("L1", "MODE");
     l2 = 3;
   }
-  if (singlePress && l2 == 3)
+  if (doublePress && l1 ==1 && l2 == 3 && l3 == 0)
+  {
+    if (menuDebug)
+    {
+      Serial.println("L1 AUTO");
+    }
+    doublePress = false;
+    staticText("L1", "AUTO");
+    l3 = 1;
+  }
+  if (doublePress && l1 ==1 && l2 == 3 && l3 == 1)
+  {
+    if (menuDebug)
+    {
+      Serial.println("L1 AUTO SELECTED");
+    }
+    doublePress = false;
+    staticText("AUTO", "SELECTED");
+    l1 = 10;
+
+    // do stuff here to put L1 in auto mode
+    // must long click to go back
+
+  }
+  if (singlePress && l1 ==1 && l2 == 3 && l3 == 1)
+  {
+    if (menuDebug)
+    {
+      Serial.println("L1 ON");
+    }
+    singlePress = false;
+    staticText("L1", "ON");
+    l3 = 2;
+  }
+  if (doublePress && l1 == 1 && l2 == 3 && l3 == 2)
+  {
+    if (menuDebug)
+    {
+      Serial.println("L1 ON SELECTED");
+    }
+    doublePress = false;
+    staticText("ON", "SELECTED");
+    l1 = 10;
+
+    // do stuff here to put L1 in on mode
+    // must long click to go back
+
+  }
+  if (singlePress && l1 == 1 && l2 == 3 && l3 == 2)
+  {
+    if (menuDebug)
+    {
+      Serial.println("L1 OFF");
+    }
+    singlePress = false;
+    staticText("L1", "OFF");
+    l3 = 3;
+  }
+  if (doublePress && l1 == 1 && l2 == 3 && l3 == 3)
+  {
+    if (menuDebug)
+    {
+      Serial.println("L1 OFF SELECTED");
+    }
+    doublePress = false;
+    staticText("OFF", "SELECTED");
+
+    // do stuff here to put L1 in off mode
+    // must long click to go back
+
+  }
+  if (longPress && l1 == 1 && l2 == 3 && l3 == 3)
+  {
+    if (menuDebug)
+    {
+      Serial.println("BACK");
+    }
+    singlePress = true;
+    longPress = false;
+    staticText("BACK", "");
+    l1 = 10;
+  }
+
+  // l2 modes
+  if (singlePress && l1 == 1 && l2 == 3 && l3 == 0)
   {
     if (menuDebug)
     {
@@ -850,7 +1104,90 @@ void menuNavigator()
     staticText("L2", "MODE");
     l2 = 4;
   }
-  if (singlePress && l2 == 4)
+  if (doublePress && l1 ==1 && l2 == 4 && l3 == 0)
+  {
+    if (menuDebug)
+    {
+      Serial.println("L2 AUTO");
+    }
+    doublePress = false;
+    staticText("L2", "AUTO");
+    l3 = 1;
+  }
+  if (doublePress && l1 ==1 && l2 == 4 && l3 == 1)
+  {
+    if (menuDebug)
+    {
+      Serial.println("L2 AUTO SELECTED");
+    }
+    doublePress = false;
+    staticText("AUTO", "SELECTED");
+    l1 = 10;
+
+    // do stuff here to put L1 in auto mode
+    // must long click to go back
+
+  }
+  if (singlePress && l1 ==1 && l2 == 4 && l3 == 1)
+  {
+    if (menuDebug)
+    {
+      Serial.println("L2 ON");
+    }
+    singlePress = false;
+    staticText("L2", "ON");
+    l3 = 2;
+  }
+  if (doublePress && l1 == 1 && l2 == 4 && l3 == 2)
+  {
+    if (menuDebug)
+    {
+      Serial.println("L2 ON SELECTED");
+    }
+    doublePress = false;
+    staticText("ON", "SELECTED");
+    l1 = 10;
+
+    // do stuff here to put L2 in on mode
+    // must long click to go back
+
+  }
+  if (singlePress && l1 == 1 && l2 == 4 && l3 == 2)
+  {
+    if (menuDebug)
+    {
+      Serial.println("L2 OFF");
+    }
+    singlePress = false;
+    staticText("L2", "OFF");
+    l3 = 3;
+  }
+  if (doublePress && l1 == 1 && l2 == 4 && l3 == 3)
+  {
+    if (menuDebug)
+    {
+      Serial.println("L2 OFF SELECTED");
+    }
+    doublePress = false;
+    staticText("OFF", "SELECTED");
+
+    // do stuff here to put L2 in off mode
+    // must long click to go back
+  }
+  if (longPress && l1 == 1 && l2 == 4 && l3 == 3)
+  {
+    if (menuDebug)
+    {
+      Serial.println("BACK");
+    }
+    singlePress = true;
+    longPress = false;
+    staticText("BACK", "");
+    l1 = 10;
+  }
+
+  // l3 modes
+  if (singlePress && l1 == 1 && l2 == 4 && l3 == 0)
   {
     if (menuDebug)
     {
@@ -858,23 +1195,93 @@ void menuNavigator()
     }
     singlePress = false;
     staticText("L3", "MODE");
+    l2 = 5;
   }
-  if (longPress && l2 == 4)
+  if (doublePress && l1 ==1 && l2 == 5 && l3 == 0)
+  {
+    if (menuDebug)
+    {
+      Serial.println("L3 AUTO");
+    }
+    doublePress = false;
+    staticText("L3", "AUTO");
+    l3 = 1;
+  }
+  if (doublePress && l1 ==1 && l2 == 5 && l3 == 1)
+  {
+    if (menuDebug)
+    {
+      Serial.println("L3 AUTO SELECTED");
+    }
+    doublePress = false;
+    staticText("AUTO", "SELECTED");
+    l1 = 10;
+
+    // do stuff here to put L3 in auto mode
+    // must long click to go back
+  }
+  if (singlePress && l1 ==1 && l2 == 5 && l3 == 1)
+  {
+    if (menuDebug)
+    {
+      Serial.println("L3 ON");
+    }
+    singlePress = false;
+    staticText("L3", "ON");
+    l3 = 2;
+  }
+  if (doublePress && l1 == 1 && l2 == 5 && l3 == 2)
+  {
+    if (menuDebug)
+    {
+      Serial.println("L3 ON SELECTED");
+    }
+    doublePress = false;
+    staticText("ON", "SELECTED");
+    l1 = 10;
+
+    // do stuff here to put L2 in on mode
+    // must long click to go back
+  }
+  if (singlePress && l1 == 1 && l2 == 5 && l3 == 2)
+  {
+    if (menuDebug)
+    {
+      Serial.println("L3 OFF");
+    }
+    singlePress = false;
+    staticText("L3", "OFF");
+    l3 = 3;
+  }
+  if (doublePress && l1 == 1 && l2 == 5 && l3 == 3)
+  {
+    if (menuDebug)
+    {
+      Serial.println("L3 OFF SELECTED");
+    }
+    doublePress = false;
+    staticText("OFF", "SELECTED");
+
+    // do stuff here to put L2 in off mode
+    // must long click to go back
+    
+  }
+  if (longPress && l1 == 1 && l2 == 5 && l3 == 3)
   {
     if (menuDebug)
     {
       Serial.println("BACK");
     }
-    longPress = false;
     singlePress = true;
+    longPress = false;
     staticText("BACK", "");
     l1 = 10;
-    l2 = 0;
-    l3 = 0;
   }
 
 
-  if (doublePress && l1 == 3)
+
+
+  if (doublePress && l1 == 2 && l2 == 0)
   {
     if (menuDebug)
     {
@@ -882,20 +1289,22 @@ void menuNavigator()
     }
     doublePress = false;
     staticText("CHANGE", "LIMITS");
-    l1 = 6;
+    l1 = 2;
+    l2 = 6;
   }
-  if (doublePress && l1 == 6)
+  if (doublePress && l1 == 2 && l2 == 6)
   {
     if (menuDebug)
     {
       Serial.println("NYI");
     }
     doublePress = false;
+    singlePress = true;
     staticText("NOT YET IM", "PLEMENTED");
     l1 = 10;
-    singlePress = true;
+    // must long click to go back
   }
-  if (longPress && l3 == 6)
+  if (longPress && l1 == 2 && l2 == 6)
   {
     if (menuDebug)
     {
@@ -905,8 +1314,6 @@ void menuNavigator()
     singlePress = true;
     staticText("BACK", "");
     l1 = 10;
-    l2 = 0;
-    l3 = 0;
   }
     
   if (doublePress && l1 == 4)
