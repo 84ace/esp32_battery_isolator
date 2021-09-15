@@ -1,3 +1,7 @@
+#define BLYNK_USE_DIRECT_CONNECT
+
+/* Comment this out to disable prints and save space */
+#define BLYNK_PRINT Serial
 
 #include "Wire.h"
 #include "ADC128D818.h"
@@ -13,11 +17,6 @@
 #include <ESPmDNS.h>
 #include <Update.h>
 #include "OneButton.h"
-
-#define BLYNK_USE_DIRECT_CONNECT
-
-/* Comment this out to disable prints and save space */
-#define BLYNK_PRINT Serial
 
 /* Fill-in your Template ID (only if using Blynk.Cloud) */
 //#define BLYNK_TEMPLATE_ID   "YourTemplateID"
@@ -130,6 +129,8 @@ int loopDelay = 500;
 
 int batchEvent = 0;
 int OLEDEvent = 0;
+int connectedToBlynk = 0;
+extern bool appState;
 
 int updatesInLoop = 5;
 
@@ -330,10 +331,11 @@ void OLEDUpdater()
     }
     else if (OLEDEvent == 5)
     {
-      char SingleInt[13] = "00000000";
-      char uptime[13] = "00000000";
+      char SingleInt[21] = "00000000";
+      char uptime[21] = "";
       smallText = true;
-      memset(uptime,0,sizeof(uptime)); //Ensure it's empty.
+      memset(uptime,0,sizeof(uptime)); // ensure it's empty, probably redundant 
+      strcat(uptime,"Uptime: ");
       itoa(days,SingleInt,10);
       strcat(uptime,SingleInt);
       strcat(uptime,"d");
@@ -1279,8 +1281,6 @@ void menuNavigator()
   }
 
 
-
-
   if (doublePress && l1 == 2 && l2 == 0)
   {
     if (menuDebug)
@@ -1460,6 +1460,26 @@ BLYNK_WRITE(V12) // L3 Overide (lights?)
 }
 
 
+void updateConnectionDetails() 
+{
+  if (appState) 
+  {
+    if (appState != connectedToBlynk)
+    { 
+      connectedToBlynk = appState;
+      if (connectedToBlynk)
+      {
+        staticText("APP", "CONNECT");
+      }
+      else 
+      {
+        staticText("APP", "DISCONNECT");
+      }
+    }
+  }
+}
+
+
 void setup()
 {
   display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS);
@@ -1501,10 +1521,12 @@ void setup()
   Blynk.begin(auth);
 }
 
+
 void loop()
 {
   timer0.run(); // Initiates BlynkTimer
   server.handleClient();
   button.tick();
   Blynk.run();
+  updateConnectionDetails();
 }
