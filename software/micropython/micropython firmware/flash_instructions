@@ -1,8 +1,0 @@
-# Flash instructions:
-# Grab the latest stable from https://micropython.org/download/esp32/
-# Something like https://micropython.org/resources/firmware/esp32-idf4-20210202-v1.14.bin
-# Hold down the boot button and press the reset button, let go of each
-esptool.py --chip esp32 erase_flash
-# Hold down the boot button and press the reset button, let go of each
-esptool.py --chip esp32 write_flash -z 0x1000 ~/Downloads/esp32-idf4-20200902-v1.13.bin
-# Then connect to REPL via tty.usbserial, or the like

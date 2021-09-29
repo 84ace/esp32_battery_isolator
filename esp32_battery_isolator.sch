@@ -5,8 +5,8 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
 Title "ESP32 Battery Isolator"
-Date "2021-09-02"
-Rev "F"
+Date "2021-09-23"
+Rev "G"
 Comp "Acea Quigg"
 Comment1 ""
 Comment2 ""
@@ -69,35 +69,35 @@ Text Notes 1966 3855 0    50   ~ 0
 ESP-32
 Wire Notes Line
 	11218 4184 11218 4180
-Text GLabel 7650 5850 0    50   Input ~ 0
+Text GLabel 7277 5841 0    50   Input ~ 0
 B1VD
 $Comp
 L power:GND #PWR040
 U 1 1 5F0570E9
-P 7750 6050
-F 0 "#PWR040" H 7750 5800 50  0001 C CNN
-F 1 "GND" H 7755 5877 50  0000 C CNN
-F 2 "" H 7750 6050 50  0001 C CNN
-F 3 "" H 7750 6050 50  0001 C CNN
-	1    7750 6050
+P 7377 6041
+F 0 "#PWR040" H 7377 5791 50  0001 C CNN
+F 1 "GND" H 7382 5868 50  0000 C CNN
+F 2 "" H 7377 6041 50  0001 C CNN
+F 3 "" H 7377 6041 50  0001 C CNN
+	1    7377 6041
 	1    0    0    -1  
 $EndComp
-Text GLabel 8350 5650 1    50   Output ~ 0
+Text GLabel 7977 5641 1    50   Output ~ 0
 B2VM
-Text GLabel 8250 5850 0    50   Input ~ 0
+Text GLabel 7877 5841 0    50   Input ~ 0
 B2VD
 $Comp
 L power:GND #PWR041
 U 1 1 5F05BD0E
-P 8350 6050
-F 0 "#PWR041" H 8350 5800 50  0001 C CNN
-F 1 "GND" H 8355 5877 50  0000 C CNN
-F 2 "" H 8350 6050 50  0001 C CNN
-F 3 "" H 8350 6050 50  0001 C CNN
-	1    8350 6050
+P 7977 6041
+F 0 "#PWR041" H 7977 5791 50  0001 C CNN
+F 1 "GND" H 7982 5868 50  0000 C CNN
+F 2 "" H 7977 6041 50  0001 C CNN
+F 3 "" H 7977 6041 50  0001 C CNN
+	1    7977 6041
 	1    0    0    -1  
 $EndComp
-Text GLabel 7750 5650 1    50   Input ~ 0
+Text GLabel 7377 5641 1    50   Input ~ 0
 B1VM
 Text GLabel 2700 6300 2    50   BiDi ~ 0
 SDA
@@ -200,8 +200,6 @@ Text Notes 1300 700  0    50   ~ 0
 DC-DC Buck (40V to 3.3V 600mA)
 Wire Notes Line
 	4700 7800 4650 7800
-Wire Notes Line
-	4156 476  4154 476 
 Text GLabel 3050 4900 2    50   Input ~ 0
 BOOT
 Text GLabel 2871 4579 0    50   Input ~ 0
@@ -290,7 +288,7 @@ F 3 "" H 6200 5350 50  0001 C CNN
 	1    6200 5350
 	1    0    0    -1  
 $EndComp
-Text Notes 3800 6200 0    50   ~ 0
+Text Notes 5028 7481 0    50   ~ 0
 2.56V full-range
 $Comp
 L power:GND #PWR019
@@ -451,36 +449,36 @@ USB
 $Comp
 L Device:R_Small R10
 U 1 1 5F8521DC
-P 7750 5750
-F 0 "R10" H 7870 5802 50  0000 C CNN
-F 1 "200k" H 7886 5708 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" H 7750 5750 50  0001 C CNN
-F 3 "" H 7750 5750 50  0001 C CNN
-F 4 "C25811" H 7750 5750 50  0001 C CNN "lcsc_part_number"
-F 5 "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_Uniroyal-Elec-0603WAF2003T5E_C25811.html/?href=jlc-SMT" H 7750 5750 50  0001 C CNN "lcsc_url"
-F 6 "0603" H 7750 5750 50  0001 C CNN "package"
-	1    7750 5750
+P 7377 5741
+F 0 "R10" H 7497 5793 50  0000 C CNN
+F 1 "200k" H 7513 5699 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 7377 5741 50  0001 C CNN
+F 3 "" H 7377 5741 50  0001 C CNN
+F 4 "C25811" H 7377 5741 50  0001 C CNN "lcsc_part_number"
+F 5 "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_Uniroyal-Elec-0603WAF2003T5E_C25811.html/?href=jlc-SMT" H 7377 5741 50  0001 C CNN "lcsc_url"
+F 6 "0603" H 7377 5741 50  0001 C CNN "package"
+	1    7377 5741
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R_Small R11
 U 1 1 5F852B2F
-P 7750 5950
-F 0 "R11" H 7870 6002 50  0000 C CNN
-F 1 "33k" H 7868 5906 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" H 7750 5950 50  0001 C CNN
-F 3 "" H 7750 5950 50  0001 C CNN
-F 4 " C4216" H 7750 5950 50  0001 C CNN "lcsc_part_number"
-F 5 "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_Uniroyal-Elec-0603WAF3302T5E_C4216.html/?href=jlc-SMT" H 7750 5950 50  0001 C CNN "lcsc_url"
-F 6 "0603" H 7750 5950 50  0001 C CNN "package"
-	1    7750 5950
+P 7377 5941
+F 0 "R11" H 7497 5993 50  0000 C CNN
+F 1 "33k" H 7495 5897 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 7377 5941 50  0001 C CNN
+F 3 "" H 7377 5941 50  0001 C CNN
+F 4 " C4216" H 7377 5941 50  0001 C CNN "lcsc_part_number"
+F 5 "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_Uniroyal-Elec-0603WAF3302T5E_C4216.html/?href=jlc-SMT" H 7377 5941 50  0001 C CNN "lcsc_url"
+F 6 "0603" H 7377 5941 50  0001 C CNN "package"
+	1    7377 5941
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	7650 5850 7750 5850
-Connection ~ 7750 5850
+	7277 5841 7377 5841
+Connection ~ 7377 5841
 Wire Wire Line
-	8250 5850 8350 5850
+	7877 5841 7977 5841
 Text Notes 10300 3850 0    50   ~ 0
 UART-USB
 Text Notes 4200 750  0    50   ~ 0
@@ -494,7 +492,6 @@ Text GLabel 2700 6600 2    50   Output ~ 0
 B2ON
 Text GLabel 2800 2450 2    50   Input ~ 0
 5V
-NoConn ~ 4800 6200
 NoConn ~ 4800 6300
 NoConn ~ 4800 6400
 $Comp
@@ -545,37 +542,33 @@ Wire Wire Line
 	2100 4700 2800 4700
 Connection ~ 2100 4700
 Wire Wire Line
-	3869 1813 3869 1763
+	3908 666  3958 666 
 Wire Wire Line
-	3819 1813 3869 1813
+	3958 766  3958 816 
 Wire Wire Line
-	3869 1913 3869 1963
-Wire Wire Line
-	3819 1913 3869 1913
-Text GLabel 3869 1763 1    50   Output ~ 0
-B1VM
+	3908 766  3958 766 
 $Comp
 L power:GND #PWR018
 U 1 1 5FAC6DC8
-P 3869 1963
-F 0 "#PWR018" H 3869 1713 50  0001 C CNN
-F 1 "GND" H 3874 1790 50  0000 C CNN
-F 2 "" H 3869 1963 50  0001 C CNN
-F 3 "" H 3869 1963 50  0001 C CNN
-	1    3869 1963
+P 3958 816
+F 0 "#PWR018" H 3958 566 50  0001 C CNN
+F 1 "GND" H 3963 643 50  0000 C CNN
+F 2 "" H 3958 816 50  0001 C CNN
+F 3 "" H 3958 816 50  0001 C CNN
+	1    3958 816 
 	1    0    0    -1  
 $EndComp
 $Comp
 L Connector:Conn_01x02_Male J1
 U 1 1 5FAC6DBE
-P 3619 1913
-F 0 "J1" H 3754 2088 50  0000 C CNN
-F 1 "BATT1" H 3619 2013 50  0000 C CNN
-F 2 "Acea:AMASS_XT60PW-M" H 3619 1913 50  0001 C CNN
-F 3 "~" H 3619 1913 50  0001 C CNN
-F 4 "" H 3619 1913 50  0001 C CNN "other_URL"
-F 5 "C98732" H 3619 1913 50  0001 C CNN "lcsc_part_number"
-	1    3619 1913
+P 3708 766
+F 0 "J1" H 3843 941 50  0000 C CNN
+F 1 "BATT1" H 3708 866 50  0000 C CNN
+F 2 "Acea:AMASS_XT60PW-M" H 3708 766 50  0001 C CNN
+F 3 "~" H 3708 766 50  0001 C CNN
+F 4 "" H 3708 766 50  0001 C CNN "other_URL"
+F 5 "C98732" H 3708 766 50  0001 C CNN "lcsc_part_number"
+	1    3708 766 
 	1    0    0    1   
 $EndComp
 Wire Notes Line
@@ -596,12 +589,10 @@ B1VD
 Text GLabel 4800 5800 0    50   Input ~ 0
 B2VD
 Wire Wire Line
-	4432 888  4532 888 
-Wire Wire Line
 	4532 888  4532 938 
 Wire Wire Line
 	4532 1138 4532 1188
-Text GLabel 4432 888  0    50   BiDi ~ 0
+Text GLabel 4051 579  2    50   BiDi ~ 0
 B1VM
 Text GLabel 4800 6000 0    50   Input ~ 0
 B2CVD
@@ -795,59 +786,59 @@ Wire Wire Line
 	5509 787  5509 737 
 Text GLabel 5509 737  1    50   BiDi ~ 0
 B1C
-Text GLabel 8900 5850 0    50   Input ~ 0
+Text GLabel 9305 5854 0    50   Input ~ 0
 3v3VD
 $Comp
 L power:GND #PWR047
 U 1 1 5FE0D0D4
-P 9000 6050
-F 0 "#PWR047" H 9000 5800 50  0001 C CNN
-F 1 "GND" H 9005 5877 50  0000 C CNN
-F 2 "" H 9000 6050 50  0001 C CNN
-F 3 "" H 9000 6050 50  0001 C CNN
-	1    9000 6050
+P 9405 6054
+F 0 "#PWR047" H 9405 5804 50  0001 C CNN
+F 1 "GND" H 9410 5881 50  0000 C CNN
+F 2 "" H 9405 6054 50  0001 C CNN
+F 3 "" H 9405 6054 50  0001 C CNN
+	1    9405 6054
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R_Small R18
 U 1 1 5FE0D0EB
-P 9000 5750
-F 0 "R18" H 9120 5802 50  0000 C CNN
-F 1 "3.6k" H 9150 5700 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" H 9000 5750 50  0001 C CNN
-F 3 "" H 9000 5750 50  0001 C CNN
-F 4 "C22980" H 9000 5750 50  0001 C CNN "lcsc_part_number"
-F 5 "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_Uniroyal-Elec-0603WAF3601T5E_C22980.html/?href=jlc-SMT" H 9000 5750 50  0001 C CNN "lcsc_url"
-F 6 "0603" H 9000 5750 50  0001 C CNN "package"
-	1    9000 5750
+P 9405 5754
+F 0 "R18" H 9525 5806 50  0000 C CNN
+F 1 "3.6k" H 9555 5704 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 9405 5754 50  0001 C CNN
+F 3 "" H 9405 5754 50  0001 C CNN
+F 4 "C22980" H 9405 5754 50  0001 C CNN "lcsc_part_number"
+F 5 "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_Uniroyal-Elec-0603WAF3601T5E_C22980.html/?href=jlc-SMT" H 9405 5754 50  0001 C CNN "lcsc_url"
+F 6 "0603" H 9405 5754 50  0001 C CNN "package"
+	1    9405 5754
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R_Small R19
 U 1 1 5FE0D106
-P 9000 5950
-F 0 "R19" H 9120 6002 50  0000 C CNN
-F 1 "11k" H 9150 5900 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" H 9000 5950 50  0001 C CNN
-F 3 "" H 9000 5950 50  0001 C CNN
-F 4 "C25950" H 9000 5950 50  0001 C CNN "lcsc_part_number"
-F 5 "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_Uniroyal-Elec-0603WAF1102T5E_C25950.html/?href=jlc-SMT" H 9000 5950 50  0001 C CNN "lcsc_url"
-F 6 "0603" H 9000 5950 50  0001 C CNN "package"
-	1    9000 5950
+P 9405 5954
+F 0 "R19" H 9525 6006 50  0000 C CNN
+F 1 "11k" H 9555 5904 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 9405 5954 50  0001 C CNN
+F 3 "" H 9405 5954 50  0001 C CNN
+F 4 "C25950" H 9405 5954 50  0001 C CNN "lcsc_part_number"
+F 5 "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_Uniroyal-Elec-0603WAF1102T5E_C25950.html/?href=jlc-SMT" H 9405 5954 50  0001 C CNN "lcsc_url"
+F 6 "0603" H 9405 5954 50  0001 C CNN "package"
+	1    9405 5954
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	8900 5850 9000 5850
-Connection ~ 9000 5850
+	9305 5854 9405 5854
+Connection ~ 9405 5854
 $Comp
 L power:+3V3 #PWR046
 U 1 1 5FE1A912
-P 9000 5650
-F 0 "#PWR046" H 9000 5500 50  0001 C CNN
-F 1 "+3V3" H 9015 5823 50  0000 C CNN
-F 2 "" H 9000 5650 50  0001 C CNN
-F 3 "" H 9000 5650 50  0001 C CNN
-	1    9000 5650
+P 9405 5654
+F 0 "#PWR046" H 9405 5504 50  0001 C CNN
+F 1 "+3V3" H 9420 5827 50  0000 C CNN
+F 2 "" H 9405 5654 50  0001 C CNN
+F 3 "" H 9405 5654 50  0001 C CNN
+	1    9405 5654
 	1    0    0    -1  
 $EndComp
 Text GLabel 4800 6100 0    50   Input ~ 0
@@ -877,36 +868,36 @@ Text Notes 2751 6731 0    50   ~ 0
 RTC_7
 Text Notes 2753 6830 0    50   ~ 0
 RTC_17
-Text GLabel 9550 5850 0    50   Input ~ 0
+Text GLabel 9955 5854 0    50   Input ~ 0
 B1CVD
 $Comp
 L power:GND #PWR0102
 U 1 1 601B6A7F
-P 9650 6050
-F 0 "#PWR0102" H 9650 5800 50  0001 C CNN
-F 1 "GND" H 9655 5877 50  0000 C CNN
-F 2 "" H 9650 6050 50  0001 C CNN
-F 3 "" H 9650 6050 50  0001 C CNN
-	1    9650 6050
+P 10055 6054
+F 0 "#PWR0102" H 10055 5804 50  0001 C CNN
+F 1 "GND" H 10060 5881 50  0000 C CNN
+F 2 "" H 10055 6054 50  0001 C CNN
+F 3 "" H 10055 6054 50  0001 C CNN
+	1    10055 6054
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	9550 5850 9650 5850
-Text GLabel 10200 5850 0    50   Input ~ 0
+	9955 5854 10055 5854
+Text GLabel 10605 5854 0    50   Input ~ 0
 B2CVD
 $Comp
 L power:GND #PWR0103
 U 1 1 601BD714
-P 10300 6050
-F 0 "#PWR0103" H 10300 5800 50  0001 C CNN
-F 1 "GND" H 10305 5877 50  0000 C CNN
-F 2 "" H 10300 6050 50  0001 C CNN
-F 3 "" H 10300 6050 50  0001 C CNN
-	1    10300 6050
+P 10705 6054
+F 0 "#PWR0103" H 10705 5804 50  0001 C CNN
+F 1 "GND" H 10710 5881 50  0000 C CNN
+F 2 "" H 10705 6054 50  0001 C CNN
+F 3 "" H 10705 6054 50  0001 C CNN
+	1    10705 6054
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	10200 5850 10300 5850
+	10605 5854 10705 5854
 Wire Notes Line
 	7000 5200 11200 5200
 Wire Notes Line
@@ -915,9 +906,9 @@ Wire Notes Line
 	3700 4800 7000 4800
 Wire Notes Line
 	5600 3700 5600 4800
-Text GLabel 9650 5650 1    50   Input ~ 0
+Text GLabel 10055 5654 1    50   Input ~ 0
 B1CM
-Text GLabel 10300 5650 1    50   Input ~ 0
+Text GLabel 10705 5654 1    50   Input ~ 0
 B2CM
 Wire Wire Line
 	1600 4700 1600 4550
@@ -973,90 +964,90 @@ Wire Wire Line
 $Comp
 L Device:R_Small R12
 U 1 1 601E84F7
-P 8350 5750
-F 0 "R12" H 8470 5802 50  0000 C CNN
-F 1 "200k" H 8486 5708 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" H 8350 5750 50  0001 C CNN
-F 3 "" H 8350 5750 50  0001 C CNN
-F 4 "C25811" H 8350 5750 50  0001 C CNN "lcsc_part_number"
-F 5 "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_Uniroyal-Elec-0603WAF2003T5E_C25811.html/?href=jlc-SMT" H 8350 5750 50  0001 C CNN "lcsc_url"
-F 6 "0603" H 8350 5750 50  0001 C CNN "package"
-	1    8350 5750
+P 7977 5741
+F 0 "R12" H 8097 5793 50  0000 C CNN
+F 1 "200k" H 8113 5699 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 7977 5741 50  0001 C CNN
+F 3 "" H 7977 5741 50  0001 C CNN
+F 4 "C25811" H 7977 5741 50  0001 C CNN "lcsc_part_number"
+F 5 "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_Uniroyal-Elec-0603WAF2003T5E_C25811.html/?href=jlc-SMT" H 7977 5741 50  0001 C CNN "lcsc_url"
+F 6 "0603" H 7977 5741 50  0001 C CNN "package"
+	1    7977 5741
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R_Small R13
 U 1 1 601ED5C7
-P 8350 5950
-F 0 "R13" H 8470 6002 50  0000 C CNN
-F 1 "33k" H 8468 5906 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" H 8350 5950 50  0001 C CNN
-F 3 "" H 8350 5950 50  0001 C CNN
-F 4 " C4216" H 8350 5950 50  0001 C CNN "lcsc_part_number"
-F 5 "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_Uniroyal-Elec-0603WAF3302T5E_C4216.html/?href=jlc-SMT" H 8350 5950 50  0001 C CNN "lcsc_url"
-F 6 "0603" H 8350 5950 50  0001 C CNN "package"
-	1    8350 5950
+P 7977 5941
+F 0 "R13" H 8097 5993 50  0000 C CNN
+F 1 "33k" H 8095 5897 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 7977 5941 50  0001 C CNN
+F 3 "" H 7977 5941 50  0001 C CNN
+F 4 " C4216" H 7977 5941 50  0001 C CNN "lcsc_part_number"
+F 5 "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_Uniroyal-Elec-0603WAF3302T5E_C4216.html/?href=jlc-SMT" H 7977 5941 50  0001 C CNN "lcsc_url"
+F 6 "0603" H 7977 5941 50  0001 C CNN "package"
+	1    7977 5941
 	1    0    0    -1  
 $EndComp
-Connection ~ 8350 5850
+Connection ~ 7977 5841
 $Comp
 L Device:R_Small R21
 U 1 1 601F2504
-P 9650 5750
-F 0 "R21" H 9770 5802 50  0000 C CNN
-F 1 "3.6k" H 9800 5700 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" H 9650 5750 50  0001 C CNN
-F 3 "" H 9650 5750 50  0001 C CNN
-F 4 "C22980" H 9650 5750 50  0001 C CNN "lcsc_part_number"
-F 5 "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_Uniroyal-Elec-0603WAF3601T5E_C22980.html/?href=jlc-SMT" H 9650 5750 50  0001 C CNN "lcsc_url"
-F 6 "0603" H 9650 5750 50  0001 C CNN "package"
-	1    9650 5750
+P 10055 5754
+F 0 "R21" H 10175 5806 50  0000 C CNN
+F 1 "3.6k" H 10205 5704 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 10055 5754 50  0001 C CNN
+F 3 "" H 10055 5754 50  0001 C CNN
+F 4 "C22980" H 10055 5754 50  0001 C CNN "lcsc_part_number"
+F 5 "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_Uniroyal-Elec-0603WAF3601T5E_C22980.html/?href=jlc-SMT" H 10055 5754 50  0001 C CNN "lcsc_url"
+F 6 "0603" H 10055 5754 50  0001 C CNN "package"
+	1    10055 5754
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R_Small R22
 U 1 1 601F6E5A
-P 9650 5950
-F 0 "R22" H 9770 6002 50  0000 C CNN
-F 1 "11k" H 9800 5900 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" H 9650 5950 50  0001 C CNN
-F 3 "" H 9650 5950 50  0001 C CNN
-F 4 "C25950" H 9650 5950 50  0001 C CNN "lcsc_part_number"
-F 5 "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_Uniroyal-Elec-0603WAF1102T5E_C25950.html/?href=jlc-SMT" H 9650 5950 50  0001 C CNN "lcsc_url"
-F 6 "0603" H 9650 5950 50  0001 C CNN "package"
-	1    9650 5950
+P 10055 5954
+F 0 "R22" H 10175 6006 50  0000 C CNN
+F 1 "11k" H 10205 5904 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 10055 5954 50  0001 C CNN
+F 3 "" H 10055 5954 50  0001 C CNN
+F 4 "C25950" H 10055 5954 50  0001 C CNN "lcsc_part_number"
+F 5 "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_Uniroyal-Elec-0603WAF1102T5E_C25950.html/?href=jlc-SMT" H 10055 5954 50  0001 C CNN "lcsc_url"
+F 6 "0603" H 10055 5954 50  0001 C CNN "package"
+	1    10055 5954
 	1    0    0    -1  
 $EndComp
-Connection ~ 9650 5850
+Connection ~ 10055 5854
 $Comp
 L Device:R_Small R23
 U 1 1 601FB65C
-P 10300 5750
-F 0 "R23" H 10420 5802 50  0000 C CNN
-F 1 "3.6k" H 10450 5700 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" H 10300 5750 50  0001 C CNN
-F 3 "" H 10300 5750 50  0001 C CNN
-F 4 "C22980" H 10300 5750 50  0001 C CNN "lcsc_part_number"
-F 5 "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_Uniroyal-Elec-0603WAF3601T5E_C22980.html/?href=jlc-SMT" H 10300 5750 50  0001 C CNN "lcsc_url"
-F 6 "0603" H 10300 5750 50  0001 C CNN "package"
-	1    10300 5750
+P 10705 5754
+F 0 "R23" H 10825 5806 50  0000 C CNN
+F 1 "3.6k" H 10855 5704 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 10705 5754 50  0001 C CNN
+F 3 "" H 10705 5754 50  0001 C CNN
+F 4 "C22980" H 10705 5754 50  0001 C CNN "lcsc_part_number"
+F 5 "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_Uniroyal-Elec-0603WAF3601T5E_C22980.html/?href=jlc-SMT" H 10705 5754 50  0001 C CNN "lcsc_url"
+F 6 "0603" H 10705 5754 50  0001 C CNN "package"
+	1    10705 5754
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R_Small R24
 U 1 1 601FFE7A
-P 10300 5950
-F 0 "R24" H 10420 6002 50  0000 C CNN
-F 1 "11k" H 10450 5900 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" H 10300 5950 50  0001 C CNN
-F 3 "" H 10300 5950 50  0001 C CNN
-F 4 "C25950" H 10300 5950 50  0001 C CNN "lcsc_part_number"
-F 5 "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_Uniroyal-Elec-0603WAF1102T5E_C25950.html/?href=jlc-SMT" H 10300 5950 50  0001 C CNN "lcsc_url"
-F 6 "0603" H 10300 5950 50  0001 C CNN "package"
-	1    10300 5950
+P 10705 5954
+F 0 "R24" H 10825 6006 50  0000 C CNN
+F 1 "11k" H 10855 5904 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 10705 5954 50  0001 C CNN
+F 3 "" H 10705 5954 50  0001 C CNN
+F 4 "C25950" H 10705 5954 50  0001 C CNN "lcsc_part_number"
+F 5 "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_Uniroyal-Elec-0603WAF1102T5E_C25950.html/?href=jlc-SMT" H 10705 5954 50  0001 C CNN "lcsc_url"
+F 6 "0603" H 10705 5954 50  0001 C CNN "package"
+	1    10705 5954
 	1    0    0    -1  
 $EndComp
-Connection ~ 10300 5850
+Connection ~ 10705 5854
 $Comp
 L Device:R_Small R20
 U 1 1 602170C0
@@ -1660,48 +1651,42 @@ Text GLabel 7161 1767 3    50   BiDi ~ 0
 B2C
 Text GLabel 7161 967  1    50   BiDi ~ 0
 COM
-Text GLabel 6592 817  0    50   BiDi ~ 0
+Text GLabel 6149 580  2    50   BiDi ~ 0
 B2VM
-Wire Wire Line
-	6592 817  6692 817 
 Wire Wire Line
 	6692 817  6692 867 
 Wire Wire Line
 	6692 1067 6692 1167
 Text Notes 6548 710  0    50   ~ 0
 Batt 2 isolator (auxiliary)
-Text GLabel 6020 1742 1    50   Output ~ 0
-B2VM
 Wire Wire Line
-	6020 1792 6020 1742
+	6011 665  6061 665 
 Wire Wire Line
-	5970 1792 6020 1792
+	6061 765  6061 815 
 Wire Wire Line
-	6020 1892 6020 1942
-Wire Wire Line
-	5970 1892 6020 1892
+	6011 765  6061 765 
 $Comp
 L power:GND #PWR032
 U 1 1 5F07EB25
-P 6020 1942
-F 0 "#PWR032" H 6020 1692 50  0001 C CNN
-F 1 "GND" H 6025 1769 50  0000 C CNN
-F 2 "" H 6020 1942 50  0001 C CNN
-F 3 "" H 6020 1942 50  0001 C CNN
-	1    6020 1942
+P 6061 815
+F 0 "#PWR032" H 6061 565 50  0001 C CNN
+F 1 "GND" H 6066 642 50  0000 C CNN
+F 2 "" H 6061 815 50  0001 C CNN
+F 3 "" H 6061 815 50  0001 C CNN
+	1    6061 815 
 	1    0    0    -1  
 $EndComp
 $Comp
 L Connector:Conn_01x02_Male J4
 U 1 1 5F07EB11
-P 5770 1892
-F 0 "J4" H 5905 2067 50  0000 C CNN
-F 1 "BATT2" H 5770 1992 50  0000 C CNN
-F 2 "Acea:AMASS_XT60PW-M" H 5770 1892 50  0001 C CNN
-F 3 "~" H 5770 1892 50  0001 C CNN
-F 4 "" H 5770 1892 50  0001 C CNN "other_URL"
-F 5 "C98732" H 5770 1892 50  0001 C CNN "lcsc_part_number"
-	1    5770 1892
+P 5811 765
+F 0 "J4" H 5946 940 50  0000 C CNN
+F 1 "BATT2" H 5811 865 50  0000 C CNN
+F 2 "Acea:AMASS_XT60PW-M" H 5811 765 50  0001 C CNN
+F 3 "~" H 5811 765 50  0001 C CNN
+F 4 "" H 5811 765 50  0001 C CNN "other_URL"
+F 5 "C98732" H 5811 765 50  0001 C CNN "lcsc_part_number"
+	1    5811 765 
 	1    0    0    1   
 $EndComp
 Wire Wire Line
@@ -2104,10 +2089,10 @@ L Device:C_Small C2
 U 1 1 6130AAB9
 P 1850 2300
 F 0 "C2" H 1650 2300 50  0000 L CNN
-F 1 "10nF" H 1600 2200 50  0000 L CNN
+F 1 "1uF" H 1600 2200 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0603_1608Metric" H 1850 2300 50  0001 C CNN
 F 3 "~" H 1850 2300 50  0001 C CNN
-F 4 "C57112" H 1850 2300 50  0001 C CNN "lcsc_part_number"
+F 4 "C15849" H 1850 2300 50  0001 C CNN "lcsc_part_number"
 	1    1850 2300
 	1    0    0    -1  
 $EndComp
@@ -2163,17 +2148,15 @@ $EndComp
 $Comp
 L Device:L_Small L1
 U 1 1 6130AADD
-P 2000 1550
-F 0 "L1" V 2200 1550 50  0000 C CNN
-F 1 "47uH" V 2100 1550 50  0000 C CNN
-F 2 "Inductor_SMD:L_Bourns_SRN6045TA" H 2000 1550 50  0001 C CNN
-F 3 "~" H 2000 1550 50  0001 C CNN
-F 4 "C36414" H 2000 1550 50  0001 C CNN "lcsc_part_number"
-	1    2000 1550
+P 1950 1650
+F 0 "L1" V 1892 1654 50  0000 C CNN
+F 1 "47uH" V 1793 1654 50  0000 C CNN
+F 2 "Inductor_SMD:L_Bourns_SRN6045TA" H 1950 1650 50  0001 C CNN
+F 3 "~" H 1950 1650 50  0001 C CNN
+F 4 "C36414" H 1950 1650 50  0001 C CNN "lcsc_part_number"
+	1    1950 1650
 	0    -1   -1   0   
 $EndComp
-Wire Wire Line
-	2100 1550 2400 1550
 Wire Wire Line
 	2400 1550 2400 1650
 Connection ~ 2400 1650
@@ -2215,8 +2198,6 @@ F 3 "" H 2600 1650 50  0001 C CNN
 $EndComp
 Connection ~ 2600 1650
 Wire Wire Line
-	1750 1450 1750 1150
-Wire Wire Line
 	1750 1750 1750 2200
 Wire Wire Line
 	2500 2850 2500 2450
@@ -2225,26 +2206,6 @@ Wire Wire Line
 Wire Wire Line
 	2050 2200 2500 2200
 Connection ~ 2500 2450
-Wire Wire Line
-	1750 1650 2400 1650
-Wire Wire Line
-	1900 1550 1750 1550
-$Comp
-L Device:R_Small R2
-U 1 1 613FB15B
-P 1850 1150
-F 0 "R2" H 1970 1202 50  0000 C CNN
-F 1 "11k" H 2000 1100 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" H 1850 1150 50  0001 C CNN
-F 3 "" H 1850 1150 50  0001 C CNN
-F 4 "C25950" H 1850 1150 50  0001 C CNN "lcsc_part_number"
-F 5 "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_Uniroyal-Elec-0603WAF1102T5E_C25950.html/?href=jlc-SMT" H 1850 1150 50  0001 C CNN "lcsc_url"
-F 6 "0603" H 1850 1150 50  0001 C CNN "package"
-	1    1850 1150
-	0    -1   -1   0   
-$EndComp
-Text GLabel 1950 1150 2    50   Input ~ 0
-B2VM
 Text GLabel 2700 6500 2    50   Output ~ 0
 SYS_LED
 Text GLabel 850  5650 1    50   Input ~ 0
@@ -2474,4 +2435,85 @@ Wire Wire Line
 Connection ~ 8600 4550
 Wire Wire Line
 	9203 3262 9203 3285
+Wire Wire Line
+	1750 1650 1850 1650
+Wire Wire Line
+	2050 1650 2400 1650
+Wire Wire Line
+	1750 1550 2400 1550
+Text Notes 3868 305  0    50   ~ 0
+B1VM will only have 12v when B1 is \nconnected, threfore, B1’s MOSFETs will \nconduct without B1 attached.
+Text Notes 5966 317  0    50   ~ 0
+B2VM will only have 12v when B2 is \nconnected, threfore, B2s MOSFETs will \nconduct without B2 attached.
+Wire Wire Line
+	4051 579  3958 579 
+Wire Wire Line
+	3958 579  3958 666 
+Wire Wire Line
+	4080 888  4080 666 
+Wire Wire Line
+	4080 666  3958 666 
+Wire Wire Line
+	4080 888  4532 888 
+Connection ~ 3958 666 
+Wire Wire Line
+	6061 580  6061 665 
+Wire Wire Line
+	6149 580  6061 580 
+Wire Wire Line
+	6184 817  6184 665 
+Wire Wire Line
+	6184 665  6061 665 
+Wire Wire Line
+	6184 817  6692 817 
+Connection ~ 6061 665 
+Text GLabel 8612 5644 1    50   Output ~ 0
+B1C
+Text GLabel 8512 5844 0    50   Input ~ 0
+B1CD
+$Comp
+L power:GND #PWR0113
+U 1 1 614F2694
+P 8612 6044
+F 0 "#PWR0113" H 8612 5794 50  0001 C CNN
+F 1 "GND" H 8617 5871 50  0000 C CNN
+F 2 "" H 8612 6044 50  0001 C CNN
+F 3 "" H 8612 6044 50  0001 C CNN
+	1    8612 6044
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8512 5844 8612 5844
+$Comp
+L Device:R_Small R2
+U 1 1 614F269E
+P 8612 5744
+F 0 "R2" H 8732 5796 50  0000 C CNN
+F 1 "200k" H 8748 5702 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 8612 5744 50  0001 C CNN
+F 3 "" H 8612 5744 50  0001 C CNN
+F 4 "C25811" H 8612 5744 50  0001 C CNN "lcsc_part_number"
+F 5 "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_Uniroyal-Elec-0603WAF2003T5E_C25811.html/?href=jlc-SMT" H 8612 5744 50  0001 C CNN "lcsc_url"
+F 6 "0603" H 8612 5744 50  0001 C CNN "package"
+	1    8612 5744
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_Small R34
+U 1 1 614F26A7
+P 8612 5944
+F 0 "R34" H 8732 5996 50  0000 C CNN
+F 1 "33k" H 8730 5900 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 8612 5944 50  0001 C CNN
+F 3 "" H 8612 5944 50  0001 C CNN
+F 4 " C4216" H 8612 5944 50  0001 C CNN "lcsc_part_number"
+F 5 "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount_Uniroyal-Elec-0603WAF3302T5E_C4216.html/?href=jlc-SMT" H 8612 5944 50  0001 C CNN "lcsc_url"
+F 6 "0603" H 8612 5944 50  0001 C CNN "package"
+	1    8612 5944
+	1    0    0    -1  
+$EndComp
+Connection ~ 8612 5844
+Text GLabel 4800 6200 0    50   Input ~ 0
+B1CD
+NoConn ~ 1750 1450
 $EndSCHEMATC
