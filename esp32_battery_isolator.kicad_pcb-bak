@@ -12,7 +12,7 @@
   (page A4)
   (title_block
     (title "ESP32 Battery Isolator")
-    (date 2021-09-23)
+    (date 2021-09-30)
     (rev G)
   )
 

@@ -26,10 +26,10 @@
 #define OLED_RESET 4        // Reset pin # (or -1 if sharing Arduino reset pin)
 #define SCREEN_ADDRESS 0x3C ///< See datasheet for Address; 0x3D for 128x64, 0x3C for 128x32
 
-char auth[] = "pX5sSlM-W175Zs_KnO9OHuXQ-55sdPdU";
+const char auth[] = "pX5sSlM-W175Zs_KnO9OHuXQ-55sdPdU";
 char version[] = "v001";
 
-const char *sw_version = "20210930";
+char sw_version[] = "20210930";
 const char *host = "isolator";
 const char *ssid = "isolator";
 const char *password = "isolator";
@@ -77,8 +77,8 @@ float milliVoltPerAmp = 0.045;
 
 float systemVoltage = 0.00;
 float systemTemperature = 25.00;
-float battery1Voltage = 0.00;
-float battery2Voltage = 0.00;
+float battery1Voltage = 13.00;
+float battery2Voltage = 13.00;
 float battery1Current = 0.00;
 float battery2Current = 0.00;
 float battery1VoltageMin = 15.00;
@@ -558,14 +558,18 @@ void pwmControl(int channel, int value, String from)
   if ((debugPWM) && (value > 1))
   {
     Serial.print(channelName);
-    Serial.print(" ON - PWM being set to ");
-    Serial.println(value);
+    Serial.print(" ON ");
+    Serial.print(value);
+    Serial.print(" ");
+    Serial.println(from);
   }
   else if ((debugPWM) && (value <= 1))
   {
     Serial.print(channelName);
-    Serial.print(" OFF - PWM being set to ");
-    Serial.println(value);
+    Serial.print(" OFF ");
+    Serial.print(value);
+    Serial.print(" ");
+    Serial.println(from);
   }
 }
 
@@ -587,44 +591,40 @@ void ioControl()
     {
       pwmControl(b1PWMChannel, maxPWMVal, "B1 > 12.4 && < 12.7 - FORCED ON"); // connected
     }
-    else if (battery2Voltage > 12.70) // if B2 charging
+    else // B1 normal range, disconnected
     {
-      pwmControl(b1PWMChannel, maxPWMVal, "B1 > 12.4 && < 12.7 && B2 > 12.7 - ON"); // connected
-    }
-    else // B1 low and B2 not charging
-    {
-      pwmControl(b1PWMChannel, minPWMVal, "B1 > 12.4 && < 12.7 && B2 < 12.7 - ON"); // connected
+      pwmControl(b1PWMChannel, minPWMVal, "B1 > 12.4 && < 12.7 - OFF"); // connected
     }
   }
-  if ((battery2Voltage > 11.50) && (battery2Voltage < 12.9) && (!carStarting) && (!currentLimited)) // B1 voltage high or B2 voltage normal (normal run mode)
+  if ((battery2Voltage > 11.50) && (battery2Voltage < 12.7) && (!carStarting) && (!currentLimited)) // B1 voltage high or B2 voltage normal (normal run mode)
   {
     // B1 control
     if (b1ForcedOn) // if B1 forced on
     {
-      pwmControl(b1PWMChannel, maxPWMVal, "B2 >= 11.5 && < 12.9 - FORCED ON"); // disconnect
+      pwmControl(b1PWMChannel, maxPWMVal, "B2 >= 11.5 && < 12.7 - FORCED ON"); // connect
     }
     else // normal operation
     {
-      pwmControl(b1PWMChannel, minPWMVal, "B2 >= 11.5 && < 12.9 - ON"); // connect
+      pwmControl(b1PWMChannel, minPWMVal, "B2 >= 11.5 && < 12.7 - OFF"); // disconnect
     }
     //B2 Control
-    pwmControl(b2PWMChannel, maxPWMVal, "B2 >= 11.5 && < 12.9 - ON"); // connect
+    pwmControl(b2PWMChannel, maxPWMVal, "B2 >= 11.5 && < 12.7 - ON"); // connect
     //L1 Control
-    pwmControl(l1PWMChannel, maxPWMVal, "B2 >= 11.5 && < 12.9 - ON"); // connect
+    pwmControl(l1PWMChannel, maxPWMVal, "B2 >= 11.5 && < 12.7 - ON"); // connect
     //L2 Control
-    pwmControl(l2PWMChannel, maxPWMVal, "B2 >= 11.5 && < 12.9 - ON"); // connect
+    pwmControl(l2PWMChannel, maxPWMVal, "B2 >= 11.5 && < 12.7 - ON"); // connect
     //l3 Control
     if (l3ForcedOff)
     {
-      pwmControl(l3PWMChannel, minPWMVal, "B2 >= 11.5 && < 12.9 - FORCED OFF IN APP"); // disconnect
+      pwmControl(l3PWMChannel, minPWMVal, "B2 >= 11.5 && < 12.7 - FORCED OFF IN APP"); // disconnect
     }
     else
     {
-      pwmControl(l3PWMChannel, maxPWMVal, "B2 >= 11.5 && < 12.9 - ON"); // connect
+      pwmControl(l3PWMChannel, maxPWMVal, "B2 >= 11.5 && < 12.7 - ON"); // connect
     }
   }
 
-  if ((battery1Voltage > 12.70) && (!carStarting) && (!currentLimited)) // B1 charging
+  else if (((battery2Voltage > 12.70) || (battery1Voltage > 12.70)) && (!carStarting) && (!currentLimited)) // B1 charging
   {
     // B1 control
     if (!b1ForcedOn) // if not forced on
@@ -635,24 +635,31 @@ void ioControl()
       }
       else if (ioControlLoop > 59) // disconnect b1 every minute and check its voltage
       {
-        pwmControl(b1PWMChannel, minPWMVal, "B1 > 12.7 - OFF TO CHECK"); // disconnect
+        pwmControl(b1PWMChannel, minPWMVal, "B1 || B2 > 12.7 - OFF TO CHECK"); // disconnect
       }
       else // normal operation
       {
-        pwmControl(b1PWMChannel, maxPWMVal, "B1 > 12.7 - ON"); // connect
-        pwmControl(b2PWMChannel, maxPWMVal, "B1 > 12.7 - ON"); // connect
-        pwmControl(l1PWMChannel, maxPWMVal, "B1 > 12.7 - ON"); // connect
-        pwmControl(l2PWMChannel, maxPWMVal, "B1 > 12.7 - ON"); // connect
-        pwmControl(l3PWMChannel, maxPWMVal, "B1 > 12.7 - ON"); // connect
+        pwmControl(b1PWMChannel, maxPWMVal, "B1 || B2 > 12.7 - ON"); // connect
+        pwmControl(b2PWMChannel, maxPWMVal, "B1 || B2 > 12.7 - ON"); // connect
+        pwmControl(l1PWMChannel, maxPWMVal, "B1 || B2 > 12.7 - ON"); // connect
+        pwmControl(l2PWMChannel, maxPWMVal, "B1 || B2 > 12.7 - ON"); // connect
+        if (l3ForcedOff)
+        {
+          pwmControl(l3PWMChannel, minPWMVal, "B1 || B2 > 12.7 - FORCED OFF IN APP"); // disconnect
+        }
+        else
+        {
+          pwmControl(l3PWMChannel, maxPWMVal, "B1 || B2 > 12.7 - ON"); // connect
+        }
       }
     }
     else // if forced on
     {
-      pwmControl(b1PWMChannel, maxPWMVal, "B1 > 12.7 - FORCED ON"); // connect
+      pwmControl(b1PWMChannel, maxPWMVal, "B1 || B2 > 12.7 - FORCED ON"); // connect
     }
   }
 
-  if (battery2Voltage < 11.50) //
+  else if (battery2Voltage < 11.50) //
   {
     // B1 control
     if (b1ForcedOn) // if forced on, be on
@@ -688,20 +695,16 @@ void ioControl()
     }
     else // if not forced on, be off
     {
-      pwmControl(l3PWMChannel, minPWMVal, "B2 < 11.5 - OFF"); // disconnect
+      pwmControl(l2PWMChannel, minPWMVal, "B2 < 11.5 - OFF"); // disconnect
     }
     //l3 Control
     pwmControl(l3PWMChannel, minPWMVal,"B2 < 11.5 - OFF"); // disconnect (app is force off, so no need to check)
   }
-
   // check current is within limits
   adjustCurrentFlow();
-
   // update min/max values for voltage and current
-  if (millis() > 2000) // don't update anything until after the ADC settles on reboot
-  {
-    updateLimits();
-  }
+  updateLimits();
+  // adjust fn speed based on temp
   adjustFan();
 }
 
@@ -732,16 +735,19 @@ void readFromADC()
     // ... and the internal temp sensor, frequently
     systemTemperature = adc.readTemperatureConverted();
   }
-  ioControl(); // act on the ADC values and control IO
-  Serial.print("B1 Voltage ");
-  Serial.print(battery1Voltage);
-  Serial.print(" B1 Current ");
-  Serial.print(battery1Current);
-  Serial.print(" B2 Voltage ");
-  Serial.print(battery2Voltage);
-  Serial.print(" B2 Current ");
-  Serial.println(battery2Current);
-  Serial.println(" ");
+  if (millis() > 3000) // don't update anything until after the ADC settles on reboot
+  {
+    ioControl(); // act on the ADC values and control IO
+    Serial.print("B1 Voltage ");
+    Serial.print(battery1Voltage);
+    Serial.print(" B1 Current ");
+    Serial.print(battery1Current);
+    Serial.print(" B2 Voltage ");
+    Serial.print(battery2Voltage);
+    Serial.print(" B2 Current ");
+    Serial.println(battery2Current);
+    Serial.println(" ");
+  }
 }
 
 void sendDataOverBLE()
@@ -1610,7 +1616,7 @@ void setup()
 
   digitalWrite(sysLED, 1); // turn LED on to show some sign of life
 
-  staticText("ISOLATOR", version);
+  staticText("ISOLATOR_V1", sw_version);
 
   Serial.begin(115200);
   Serial.print("software version: ");
