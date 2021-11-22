@@ -26,16 +26,17 @@
 #define OLED_RESET 4        // Reset pin # (or -1 if sharing Arduino reset pin)
 #define SCREEN_ADDRESS 0x3C ///< See datasheet for Address; 0x3D for 128x64, 0x3C for 128x32
 
-const char auth[] = "pX5sSlM-W175Zs_KnO9OHuXQ-55sdPdU";
+const char auth[] = "pX5sSlM-W175Zs_KnO9OHuXQ-55sdPdU"; // Acea's token
+//const char auth[] = "KkZ2Pvq4-I8aNwZjsOCtiQJzL8I8NYvO"; // Warren's token
+
 char version[] = "v001";
 
-char sw_version[] = "20210930";
+char sw_version[] = "20211013";
 const char *host = "isolator";
 const char *ssid = "isolator";
 const char *password = "isolator";
 
 bool debugVoltages = false; // ToDo: move this into setup and catch a button press to enable
-bool debugHealthStates = false;
 bool debugBLE = false;
 bool debugPWM = true;
 bool debugTemp = false;
@@ -46,11 +47,16 @@ bool notificationsOn = true;
 bool notificationAllowed = true;
 
 const int maxAllowedBoardTemp = 84;
-int battery1CurrentLimit = 10;
-int battery2CurrentLimit = 10;
-int currentLimited = 0;
+float battery1CurrentLimit = 25.00;
+float battery2CurrentLimit = 25.00;
+int b1CurrentLimited = 0;
+int b2CurrentLimited = 0;
 int temperatureLimited = 0;
-uint16_t currentLimitedMillis = 0;
+unsigned long startMillis = 0;
+unsigned long currentMillis = 0;
+unsigned long carStartingTimer = 0;
+unsigned b1LoadDebounceTimer = 0;
+unsigned b2LoadDebounceTimer = 0;
 int carStarting = 0;
 String channelName;
 
@@ -58,11 +64,11 @@ String channelName;
 #ifdef REVG
 const int buttonPin = 33; // Mode button
 const int sysLED = 23;    // SYS LED (red, 1Hz blink)
-const int b1EnPin = 32;   // connection to starter battery
-const int b2EnPin = 25;   // connection to auxiliary battery
-const int l1EnPin = 14;   // connection to Load 1 (Freezer)
-const int l2EnPin = 13;   // connection to Load 2 (Fridge)
-const int l3EnPin = 4;    // Connection to Load 3 (Lights)
+const int b1EnPin = 32;   // connection to starter battery (32)
+const int b2EnPin = 25;   // connection to auxiliary battery (25)
+const int l1EnPin = 14;   // connection to Load 1 (Freezer) (14)
+const int l2EnPin = 13;   // connection to Load 2 (Fridge) (13)
+const int l3EnPin = 4;    // Connection to Load 3 (Lights) (4)
 const int fanEnPin = 16;  // PWM fan in case
 // need to write the code for the buzzer
 const int buzzerEnPin = 18;  // buzzer on PCB
@@ -100,8 +106,7 @@ int l1PWMVal = 255;
 int l2PWMVal = 255;
 int l3PWMVal = 255;
 int fanPWMVal = 255;
-const int freq = 50; // 50Hz
-const int b1PWMChannel = 1;
+const int freq = 125; // 400Hz
 const int b2PWMChannel = 2;
 const int l1PWMChannel = 3;
 const int l2PWMChannel = 4;
@@ -188,7 +193,6 @@ const char *serverIndex =
 void PWMSetup()
 {
   // configure LED PWM functionalitites
-  ledcSetup(b1PWMChannel, freq, resolution);
   ledcSetup(b2PWMChannel, freq, resolution);
   ledcSetup(l1PWMChannel, freq, resolution);
   ledcSetup(l2PWMChannel, freq, resolution);
@@ -196,7 +200,6 @@ void PWMSetup()
   ledcSetup(fanPWMChannel, freq, resolution);
 
   // attach the channel to the GPIO to be controlled
-  ledcAttachPin(b1EnPin, b1PWMChannel);
   ledcAttachPin(b2EnPin, b2PWMChannel);
   ledcAttachPin(l1EnPin, l1PWMChannel);
   ledcAttachPin(l2EnPin, l2PWMChannel);
@@ -209,11 +212,6 @@ void gpioSetup()
   pinMode(buttonPin, INPUT_PULLUP);
   pinMode(sysLED, OUTPUT);
   pinMode(b1EnPin, OUTPUT);
-  pinMode(b2EnPin, OUTPUT);
-  pinMode(l1EnPin, OUTPUT);
-  pinMode(l2EnPin, OUTPUT);
-  pinMode(l3EnPin, OUTPUT);
-  pinMode(fanEnPin, OUTPUT);
 }
 
 // this function will be called when the button was pressed 1 time only.
@@ -288,6 +286,14 @@ void timeKeeper()
     {
       seconds = 0;
       minutes = minutes + 1;
+      b1LoadDebounceTimer = 0;
+      b2LoadDebounceTimer = 0;
+      if (debugPWM)
+      {
+        Serial.print("Seconds =60, debouncing to 0: ");
+        Serial.println(b1LoadDebounceTimer);
+      }
+      ioControlLoop++;
     }
     if (minutes == 60)
     {
@@ -302,6 +308,7 @@ void timeKeeper()
     {
       hours = 0;
       days = days + 1;
+      resetDailyCounters()
     }
     if (days == 28)
     {
@@ -321,7 +328,6 @@ void timeKeeper()
   }
   digitalWrite(sysLED, sysLEDState);
   sysLEDState = !sysLEDState;
-  ioControlLoop++;
 }
 
 void OLEDUpdater()
@@ -391,33 +397,132 @@ void OLEDUpdater()
   }
 }
 
+void resetDailyCounters() 
+{
+  Serial.println("RESETTING DAILY COUNTERS");
+  battery1VoltageMin = battery1VoltageMax;
+  battery2VoltageMin = battery2VoltageMax;
+  battery1VoltageMax = battery1VoltageMin;
+  battery2VoltageMax = battery2VoltageMin;
+  battery1CurrentMin = battery1CurrentMax;
+  battery2CurrentMin = battery2CurrentMax;
+  battery1CurrentMax = battery1CurrentMin;
+  battery2CurrentMax = battery2CurrentMin;
+}
+
 void adjustCurrentFlow()
 {
   // B1 current limiting
-  if ((battery1Current > battery1CurrentLimit * -1) && (battery1Current < battery1CurrentLimit)) // current within limits
+  if ((battery1Current > -battery1CurrentLimit) && (battery1Current < battery1CurrentLimit)) // current within limits
   {
-    currentLimited = 0;
-  }
-  else
-  {
-    currentLimited = 1;
-    if (notificationAllowed)
-    {
-      Blynk.notify("ISOLATOR: Current HIGH!!!");
-      notificationAllowed = false;
-    }
-    currentLimitedMillis = millis() - currentLimitedMillis;
-    if (currentLimitedMillis > 60000)
-    {
-      pwmControl(b1PWMChannel, maxPWMVal, "B1 CURRENT HIGH - 60 SEC TIMOUT - ON"); // connect
-      currentLimitedMillis = 0;
-      currentLimited = 0;
+    if (b1Healthy)
+    {  
+      if (battery1PWMVal < 255)
+      {
+        currentMillis = millis();
+        if ((battery1PWMVal == 0) && (currentMillis - startMillis >= 15000))
+        {
+          battery1PWMVal++;
+          Serial.println("B1: CURRENT LOWER LIMIT APPLIED FOR THE NEXT 15 SECONDS");
+          startMillis = currentMillis;
+        }
+        else if (battery1PWMVal > 0)
+        {
+          battery1PWMVal++;
+          Serial.println("B1: CURRENT INCREASING TO MANAGE LOAD");
+        }
+      }
+      else
+      {
+        Serial.println("B1: CURRENT INCREASED TO MAXIMUM");
+      }
+      if (battery2PWMVal == 155)
+      {
+        b1CurrentLimited = 0;
+      }
     }
     else
     {
-      pwmControl(b1PWMChannel, minPWMVal, "B1 CURRENT HIGH - OFF"); // disconnect
+      battery1PWMVal = minPWMVal;
+      Serial.println("B1: UNHEALTHY - SETTING PWM TO MINIMUM");
     }
   }
+  else
+  {
+    b1CurrentLimited = 1;
+    if (battery1PWMVal > 0)
+    {
+      battery1PWMVal--;
+      Serial.println("B1: CURRENT REDUCING TO MANAGE LOAD");
+    }
+    else
+    {
+      Serial.println("B1: CURRENT DECREASED TO MINIMUM");
+    }
+    if (notificationAllowed)
+    {
+      Blynk.notify("ISOLATOR: CURRENT HIGH!!!");
+      notificationAllowed = false;
+    }
+  }
+  //pwmControl(b1PWMChannel, battery1PWMVal, "B1 CURRENT LIMITING PWM"); // disconnect
+
+  /*
+  // B2 current limiting
+  if ((battery2Current > -battery2CurrentLimit) && (battery2Current < battery2CurrentLimit)) // current within limits
+  {
+    if (b2Healthy)
+    {  
+      if (battery2PWMVal < 255)
+      {
+        currentMillis = millis();
+        if ((battery2PWMVal == 0) && (currentMillis - startMillis >= 15000))
+        {
+          battery2PWMVal++;
+          Serial.println("B2: CURRENT LOWER LIMIT APPLIED FOR THE NEXT 15 SECONDS");
+          startMillis = currentMillis;
+        }
+        else if (battery2PWMVal > 0)
+        {
+          battery2PWMVal++;
+          Serial.println("B2: CURRENT INCREASING TO MANAGE LOAD");
+        }
+      }
+      else
+      {
+        Serial.println("B2: CURRENT INCREASED TO MAXIMUM");
+      }
+      if (battery2PWMVal == 255)
+      {
+        b2CurrentLimited = 0;
+      }
+    }
+    else
+    {
+      battery2PWMVal = minPWMVal;
+      Serial.println("B2: UNHEALTHY - SETTING PWM TO MINIMUM");
+    }
+  }
+  else
+  {
+    b2CurrentLimited = 1;
+    if (battery2PWMVal > 0)
+    {
+      battery2PWMVal--;
+      Serial.println("B2: CURRENT REDUCING TO MANAGE LOAD");
+    }
+    else
+    {
+      Serial.println("B2: CURRENT DECREASED TO MINIMUM");
+    }
+    if (notificationAllowed)
+    {
+      Blynk.notify("ISOLATOR: CURRENT HIGH!!!");
+      notificationAllowed = false;
+    }
+  }
+  pwmControl(b2PWMChannel, battery2PWMVal, "B2 CURRENT LIMITING PWM"); // disconnect
+  */
 }
 
 void adjustFan()
@@ -435,7 +540,7 @@ void adjustFan()
       }
     }
   }
-  else if (systemTemperature > maxAllowedBoardTemp)
+  /*else if (systemTemperature > maxAllowedBoardTemp)
   {
     temperatureLimited = 1;
     if (notificationAllowed)
@@ -457,11 +562,12 @@ void adjustFan()
       battery1PWMVal -= 10; // ramp B1 current down fast
       if (debugPWM)
       {
-        Serial.print("B1: Current being reduced, PCB overtemp, PWM value: ");
+        Serial.print("B1: Current being reduced, PCB OVERTEMP - PWM value: ");
         Serial.println(battery1PWMVal);
       }
     }
   }
+  */
   else
   {
     temperatureLimited = 0;
@@ -470,10 +576,11 @@ void adjustFan()
       fanPWMVal -= 1; // ramp down fan speed
       if (debugPWM)
       {
-        Serial.print("FAN: SPEED REDUCING - TEMPS GOOD - PWM Value ");
+        Serial.print("FAN: SPEED REDUCING - TEMP GOOD - PWM Value ");
         Serial.println(fanPWMVal);
       }
     }
+    /*
     if (battery1PWMVal < maxPWMVal)
     {
       battery1PWMVal += 1; // ramp B1 current up slow
@@ -483,6 +590,7 @@ void adjustFan()
         Serial.println(battery1PWMVal);
       }
     }
+    */
   }
   if (debugTemp)
   {
@@ -492,7 +600,7 @@ void adjustFan()
   // set the actual fan speed
   ledcWrite(fanPWMChannel, fanPWMVal);
   // limit B1 current
-  ledcWrite(b1PWMChannel, battery1PWMVal);
+  //ledcWrite(b1PWMChannel, battery1PWMVal);
 }
 
 void updateLimits()
@@ -575,100 +683,111 @@ void pwmControl(int channel, int value, String from)
 
 void ioControl()
 {
-  if (battery1Voltage <= 11.3)
+  if (battery1Voltage <= 5.0) // B1 not connected, may as well try and act like an isolator
   {
-    carStarting = 1;
-    pwmControl(b1PWMChannel, minPWMVal, "CAR STARTING - B1 DISCONNECTED"); // disconnected
-  }
-  else 
-  {
+    //pwmControl(b1PWMChannel, minPWMVal, "B1 < 11.3 - OFF"); // disconnected
+    digitalWrite(b1EnPin, LOW);
     carStarting = 0;
+    if (debugPWM)
+      {
+        Serial.println("B1 < 5V");
+      }
   }
-  if ((battery1Voltage > 12.40) && (battery1Voltage < 12.70) && (!carStarting) && (!currentLimited)) // B1 in normal state (B1 disconnected)
+  else if (battery1Voltage <= 11.3) // car is cranking over
   {
-    // B1 control
-    if (b1ForcedOn) // if forced on
+    if (carStartingTimer <401)
     {
-      pwmControl(b1PWMChannel, maxPWMVal, "B1 > 12.4 && < 12.7 - FORCED ON"); // connected
+      carStartingTimer++;
     }
-    else // B1 normal range, disconnected
+    if (debugPWM)
+      {
+        Serial.println("B1 < 11.3V");
+      }
+    if (carStartingTimer > 400) // give up after 20 seconds, must be a battery issue
     {
-      pwmControl(b1PWMChannel, minPWMVal, "B1 > 12.4 && < 12.7 - OFF"); // connected
+      carStarting = 0;
+      carStartingTimer = 0;
+      if (debugPWM)
+      {
+        Serial.println("CarStartingTimer Timed out > 400");
+      }
+      if (notificationAllowed)
+      {
+        Blynk.notify("ISOLATOR: B1 DISCONNECTED?");
+        notificationAllowed = false;
+      }
+    }
+    else if (carStartingTimer == 0)
+    {
+      if (debugPWM)
+      {
+        Serial.println("CarStartTimer was 0: ");
+      }
+      carStarting = 1;
+      //pwmControl(b1PWMChannel, minPWMVal, "CAR STARTING - B1 OFF"); // disconnected
+      digitalWrite(b1EnPin, LOW);
+      pwmControl(b2PWMChannel, minPWMVal, "CAR STARTING - B2 OFF"); // disconnected
+    }
+    
+    if (carStartingTimer > 0)
+    {
+      if (debugPWM)
+      {
+        Serial.print("CarStartTimer was not 0 and not >400: ");
+        Serial.println(fanPWMVal);
+      }
+      Serial.print("carStartingTimer");
+      Serial.println(carStartingTimer);
     }
   }
-  if ((battery2Voltage > 11.50) && (battery2Voltage < 12.7) && (!carStarting) && (!currentLimited)) // B1 voltage high or B2 voltage normal (normal run mode)
+  else if (battery1Voltage <= 12.7) // normal state
   {
-    // B1 control
-    if (b1ForcedOn) // if B1 forced on
+    carStarting++;
+    carStartingTimer = 0;
+    //pwmControl(b1PWMChannel, minPWMVal, "B1 < 12.7 - OFF"); // disconnected
+    digitalWrite(b1EnPin, LOW);
+  }
+  else // all fine here, nothing to see
+  {
+    Serial.println("B1 > 12.7");
+    Serial.print("b1loaddebouncetimer: ");
+    Serial.println(b1LoadDebounceTimer);
+    Serial.print("carStarting: ");
+    Serial.println(carStarting);
+    Serial.print("carStartingTimer: ");
+    Serial.println(carStartingTimer);
+    carStarting = 0;
+    carStartingTimer = 0;
+    if (b1LoadDebounceTimer == 0)
     {
-      pwmControl(b1PWMChannel, maxPWMVal, "B2 >= 11.5 && < 12.7 - FORCED ON"); // connect
-    }
-    else // normal operation
-    {
-      pwmControl(b1PWMChannel, minPWMVal, "B2 >= 11.5 && < 12.7 - OFF"); // disconnect
-    }
-    //B2 Control
-    pwmControl(b2PWMChannel, maxPWMVal, "B2 >= 11.5 && < 12.7 - ON"); // connect
-    //L1 Control
-    pwmControl(l1PWMChannel, maxPWMVal, "B2 >= 11.5 && < 12.7 - ON"); // connect
-    //L2 Control
-    pwmControl(l2PWMChannel, maxPWMVal, "B2 >= 11.5 && < 12.7 - ON"); // connect
-    //l3 Control
-    if (l3ForcedOff)
-    {
-      pwmControl(l3PWMChannel, minPWMVal, "B2 >= 11.5 && < 12.7 - FORCED OFF IN APP"); // disconnect
-    }
-    else
-    {
-      pwmControl(l3PWMChannel, maxPWMVal, "B2 >= 11.5 && < 12.7 - ON"); // connect
+      //pwmControl(b1PWMChannel, maxPWMVal, "B1 > 12.7 - ON"); // connected
+      digitalWrite(b1EnPin, HIGH);
+      pwmControl(b2PWMChannel, maxPWMVal, "B1 > 12.7 - ON"); // connect
+      Serial.print("B2 ENABLED BY B1");
+      b1LoadDebounceTimer = 1;
     }
   }
 
-  else if (((battery2Voltage > 12.70) || (battery1Voltage > 12.70)) && (!carStarting) && (!currentLimited)) // B1 charging
-  {
-    // B1 control
-    if (!b1ForcedOn) // if not forced on
-    {
-      if (ioControlLoop > 61) // reset back to normal after 2 seconds of checking B1 voltage while B1 disconnected
-      {
-        ioControlLoop = 0; // reset int
-      }
-      else if (ioControlLoop > 59) // disconnect b1 every minute and check its voltage
-      {
-        pwmControl(b1PWMChannel, minPWMVal, "B1 || B2 > 12.7 - OFF TO CHECK"); // disconnect
-      }
-      else // normal operation
-      {
-        pwmControl(b1PWMChannel, maxPWMVal, "B1 || B2 > 12.7 - ON"); // connect
-        pwmControl(b2PWMChannel, maxPWMVal, "B1 || B2 > 12.7 - ON"); // connect
-        pwmControl(l1PWMChannel, maxPWMVal, "B1 || B2 > 12.7 - ON"); // connect
-        pwmControl(l2PWMChannel, maxPWMVal, "B1 || B2 > 12.7 - ON"); // connect
-        if (l3ForcedOff)
-        {
-          pwmControl(l3PWMChannel, minPWMVal, "B1 || B2 > 12.7 - FORCED OFF IN APP"); // disconnect
-        }
-        else
-        {
-          pwmControl(l3PWMChannel, maxPWMVal, "B1 || B2 > 12.7 - ON"); // connect
-        }
-      }
-    }
-    else // if forced on
-    {
-      pwmControl(b1PWMChannel, maxPWMVal, "B1 || B2 > 12.7 - FORCED ON"); // connect
-    }
-  }
 
-  else if (battery2Voltage < 11.50) //
+  if (battery2Voltage <= 11.50) //
   {
+    if (notificationAllowed)
+    {
+      Blynk.notify("ISOLATOR: B2 FLAT, TAKE ACTION!!!");
+      notificationAllowed = false;
+    }
+    b2Healthy = 0;
     // B1 control
     if (b1ForcedOn) // if forced on, be on
     {
-      pwmControl(b1PWMChannel, maxPWMVal, "B2 < 11.5 - FORCED ON IN APP"); // connect
+      //pwmControl(b1PWMChannel, maxPWMVal, "B2 < 11.5 - FORCED ON IN APP"); // connect
+      digitalWrite(b1EnPin, HIGH);
     }
     else // if not forced on, be off
     {
-      pwmControl(b1PWMChannel, minPWMVal, "B2 < 11.5 - OFF"); // disconnect
+      //pwmControl(b1PWMChannel, minPWMVal, "B2 < 11.5 - OFF"); // disconnect
+      pwmControl(b2PWMChannel, minPWMVal, "B2 < 11.5 - OFF"); // disconnect
+      digitalWrite(b1EnPin, LOW);
     }
     //B2 Control
     if (b2ForcedOn) // if forced on, be on
@@ -695,13 +814,108 @@ void ioControl()
     }
     else // if not forced on, be off
     {
-      pwmControl(l2PWMChannel, minPWMVal, "B2 < 11.5 - OFF"); // disconnect
+      if (b2LoadDebounceTimer == 0)
+      {
+        pwmControl(l2PWMChannel, minPWMVal, "B2 < 11.5 - OFF"); // disconnect
+        b2LoadDebounceTimer = 1;
+      }
     }
     //l3 Control
     pwmControl(l3PWMChannel, minPWMVal,"B2 < 11.5 - OFF"); // disconnect (app is force off, so no need to check)
+  } 
+  else if ((battery2Voltage > 11.50) && (battery2Voltage < 12.7) && (!carStarting) && (!b2CurrentLimited)) // B1 voltage high or B2 voltage normal (normal run mode)
+  {
+    carStarting = 0;
+    if (debugPWM)
+      {
+        Serial.println("B2 > 11.5");
+      }
+    b2Healthy = 1;
+    //B2 Control
+    if (b2LoadDebounceTimer == 0)
+    {
+      if (battery1Voltage > 12.7)
+      {
+        pwmControl(b2PWMChannel, maxPWMVal, "B2 >= 11.5 && < 12.7 - on"); // connect
+      }
+      else
+      {
+       pwmControl(b2PWMChannel, minPWMVal, "B2 >= 11.5 && < 12.7 - OFF"); // disconnect
+      }
+       //L1 Control
+      pwmControl(l1PWMChannel, maxPWMVal, "B2 >= 11.5 && < 12.7 - ON"); // connect
+      //L2 Control
+      pwmControl(l2PWMChannel, maxPWMVal, "B2 >= 11.5 && < 12.7 - ON"); // connect
+      b2LoadDebounceTimer = 1;
+    }
+    //l3 Control
+    if (l3ForcedOff)
+    {
+      pwmControl(l3PWMChannel, minPWMVal, "B2 >= 11.5 && < 12.7 - FORCED OFF IN APP"); // disconnect
+    }
+    else
+    {
+      pwmControl(l3PWMChannel, maxPWMVal, "B2 >= 11.5 && < 12.7 - ON"); // connect
+    }
+  }
+  else if (((battery2Voltage > 12.70) || (battery1Voltage > 12.70)) && (!carStarting) && (!b1CurrentLimited) && (!b2CurrentLimited)) // B1 charging
+  {
+    carStarting = 0;
+    if (debugPWM)
+      {
+        Serial.println("B1 || B2 > 12.7V");
+      }
+    b1Healthy = 1;
+    b2Healthy = 1;
+    // B1 control
+    if (!b1ForcedOn) // if not forced on
+    {
+      if (ioControlLoop > 61) // reset back to normal after 2 seconds of checking B1 voltage while B1 disconnected
+      {
+        ioControlLoop = 0; // reset int
+      }
+      else if (ioControlLoop > 59) // disconnect b1 every minute and check its voltage
+      {
+        if (debugPWM)
+        {
+          Serial.println("B1 DICONNECTING FOR VOLTAGE CHECK");
+        }
+        //pwmControl(b1PWMChannel, minPWMVal, "B1 || B2 > 12.7 - OFF TO CHECK"); // disconnect
+        digitalWrite(b1EnPin, LOW);
+        pwmControl(b2PWMChannel, minPWMVal, "B1 || B2 > 12.7 - OFF TO CHECK"); // disconnect
+      }
+      else // normal operation
+      {
+        if (b2LoadDebounceTimer == 0)
+        {
+          //pwmControl(b1PWMChannel, maxPWMVal, "B1 || B2 > 12.7 - ON"); // connect
+          digitalWrite(b1EnPin, HIGH);
+          pwmControl(b2PWMChannel, maxPWMVal, "B1 || B2 > 12.7 - ON"); // connect
+          //L1 Control
+          pwmControl(l1PWMChannel, maxPWMVal, "B1 || B2 > 12.7 - ON"); // connect
+          //L2 Control
+          pwmControl(l2PWMChannel, maxPWMVal, "B1 || B2 > 12.7 - ON"); // connect
+          b2LoadDebounceTimer = 1;
+        }
+        //l3 Control
+        if (l3ForcedOff)
+        {
+          pwmControl(l3PWMChannel, minPWMVal, "B1 || B2 > 12.7 - FORCED OFF IN APP"); // disconnect
+        }
+        else
+        {
+          pwmControl(l3PWMChannel, maxPWMVal, "B1 || B2 > 12.7 - ON"); // connect
+        }
+      }
+    }
+    else // if forced on
+    {
+      pwmControl(b2PWMChannel, maxPWMVal, "B1 || B2 > 12.7 - FORCED ON"); // connect
+      digitalWrite(b1EnPin, HIGH);
+    }
   }
   // check current is within limits
-  adjustCurrentFlow();
+  //adjustCurrentFlow();
   // update min/max values for voltage and current
   updateLimits();
   // adjust fn speed based on temp
@@ -1610,19 +1824,20 @@ void updateConnectionDetails()
 
 void setup()
 {
+  currentMillis = millis();
   display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS);
   display.setRotation(2);
   display.clearDisplay();
 
   digitalWrite(sysLED, 1); // turn LED on to show some sign of life
 
-  staticText("ISOLATOR_V1", sw_version);
+  staticText("ISOLATOR", sw_version);
 
   Serial.begin(115200);
   Serial.print("software version: ");
   Serial.println(sw_version);
 
-  Blynk.setDeviceName("Isolator_v001");
+  Blynk.setDeviceName("Isolator_v1");
 
   gpioSetup(); // setup the GPIOs and directions
   PWMSetup();  // setup the PWM current limiting
@@ -1630,7 +1845,7 @@ void setup()
   adc.begin();
 
   // Setup a function to be called every x seconds
-  timer0.setInterval(200L, readFromADC);
+  timer0.setInterval(50L, readFromADC);
   timer0.setInterval(1000L, timeKeeper);
   timer0.setInterval(2000L, OLEDUpdater);
   timer0.setInterval(2500L, sendDataOverBLE);
