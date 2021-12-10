@@ -84,18 +84,6 @@
           "size_x": 1001,
           "size_y": 505
         }
-      },
-      {
-        "name": "esp32_battery_isolator.kicad_sch",
-        "open": false,
-        "window": {
-          "display": 0,
-          "maximized": false,
-          "pos_x": 1714,
-          "pos_y": 26,
-          "size_x": 1720,
-          "size_y": 1415
-        }
       }
     ]
   }
