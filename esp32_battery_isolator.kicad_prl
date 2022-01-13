@@ -72,19 +72,6 @@
     "version": 3
   },
   "project": {
-    "files": [
-      {
-        "name": "esp32_battery_isolator.kicad_pcb",
-        "open": false,
-        "window": {
-          "display": 0,
-          "maximized": true,
-          "pos_x": 1219,
-          "pos_y": 480,
-          "size_x": 1001,
-          "size_y": 505
-        }
-      }
-    ]
+    "files": []
   }
 }

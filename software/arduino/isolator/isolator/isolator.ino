@@ -26,12 +26,14 @@
 #define OLED_RESET 4        // Reset pin # (or -1 if sharing Arduino reset pin)
 #define SCREEN_ADDRESS 0x3C ///< See datasheet for Address; 0x3D for 128x64, 0x3C for 128x32
 
-//const char auth[] = "pX5sSlM-W175Zs_KnO9OHuXQ-55sdPdU"; // Acea's token
-const char auth[] = "KkZ2Pvq4-I8aNwZjsOCtiQJzL8I8NYvO"; // Warren's token
+//const char auth[] = "F_vFiDebuoiGhieNf7NrUHF3qbPQSBDX"; // Acea's new token
+//const char auth[] = "pX5sSlM-W175Zs_KnO9OHuXQ-55sdPdU"; // Acea's old token
+//const char auth[] = "OXJ0Zess1y0CIiUHsOAZgY8n23J2pXoI"; // Warren's new token
+const char auth[] = "KkZ2Pvq4-I8aNwZjsOCtiQJzL8I8NYvO"; // Warren's old token
 
 char version[] = "v001";
 
-char sw_version[] = "20211127";
+char sw_version[] = "20211230";
 const char *host = "isolator";
 const char *ssid = "isolator";
 const char *password = "isolator";
