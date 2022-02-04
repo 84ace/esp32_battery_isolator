@@ -3,11 +3,10 @@
 /* Comment this out to disable prints and save space */
 #define BLYNK_PRINT Serial
 
+#include "Arduino.h"
 #include "Wire.h"
 #include "ADC128D818.h"
 #include <SPI.h>
-#include <Adafruit_GFX.h>
-#include <Adafruit_SSD1306.h>
 #include <BlynkSimpleEsp32_BLE.h>
 #include <BLEDevice.h>
 #include <BLEServer.h>
@@ -21,19 +20,14 @@
 /* Fill-in your Template ID (only if using Blynk.Cloud) */
 //#define BLYNK_TEMPLATE_ID   "YourTemplateID"
 
-#define SCREEN_WIDTH 128    // OLED display width, in pixels
-#define SCREEN_HEIGHT 32    // OLED display height, in pixels
-#define OLED_RESET 4        // Reset pin # (or -1 if sharing Arduino reset pin)
-#define SCREEN_ADDRESS 0x3C ///< See datasheet for Address; 0x3D for 128x64, 0x3C for 128x32
-
 //const char auth[] = "F_vFiDebuoiGhieNf7NrUHF3qbPQSBDX"; // Acea's new token
-//const char auth[] = "pX5sSlM-W175Zs_KnO9OHuXQ-55sdPdU"; // Acea's old token
+const char auth[] = "pX5sSlM-W175Zs_KnO9OHuXQ-55sdPdU"; // Acea's old token
 //const char auth[] = "OXJ0Zess1y0CIiUHsOAZgY8n23J2pXoI"; // Warren's new token
-const char auth[] = "KkZ2Pvq4-I8aNwZjsOCtiQJzL8I8NYvO"; // Warren's old token
+// const char auth[] = "KkZ2Pvq4-I8aNwZjsOCtiQJzL8I8NYvO"; // Warren's old token
 
 char version[] = "v001";
 
-char sw_version[] = "20211230";
+char sw_version[] = "20220115";
 const char *host = "isolator";
 const char *ssid = "isolator";
 const char *password = "isolator";
@@ -47,8 +41,10 @@ bool debugTiming = false;
 bool menuDebug = false;
 bool notificationsOn = true;
 bool notificationAllowed = true;
+bool warning = false;
+bool buzzerOn = true;
 
-const int maxAllowedBoardTemp = 84;
+const int maxAllowedBoardTemp = 85;
 float battery1CurrentLimit = 25.00;
 float battery2CurrentLimit = 25.00;
 int b1CurrentLimited = 0;
@@ -62,8 +58,9 @@ unsigned b2LoadDebounceTimer = 0;
 int carStarting = 0;
 String channelName;
 
-#define REVG // board hardware version (written on the back of the PCB)
-#ifdef REVG
+#define REV6 // board hardware version (written on the back of the PCB)
+
+#ifdef REV6
 const int buttonPin = 33; // Mode button
 const int sysLED = 23;    // SYS LED (red, 1Hz blink)
 const int b1EnPin = 32;   // connection to starter battery (32)
@@ -73,15 +70,15 @@ const int l2EnPin = 13;   // connection to Load 2 (Fridge) (13)
 const int l3EnPin = 4;    // Connection to Load 3 (Lights) (4)
 const int fanEnPin = 16;  // PWM fan in case
 // need to write the code for the buzzer
-const int buzzerEnPin = 18;  // buzzer on PCB
+const int buzzerPin = 18;  // buzzer on PCB
 #endif
 
 int sysLEDState = 0;
 
-float systemVoltageDivider = 1.322;
-float currentVoltageDivider = 1.33;
-float batteryVoltageDivider = 7.139;
-float milliVoltPerAmp = 0.045;
+float systemVoltageDivider = 1.322; //delete
+float currentVoltageDivider = 1.33; //delete
+float batteryVoltageDivider = 7.139; // 7.06 as per the math
+float milliVoltPerAmp = 0.045; //delete?
 
 float systemVoltage = 0.00;
 float systemTemperature = 25.00;
@@ -116,34 +113,9 @@ const int l3PWMChannel = 5;
 const int fanPWMChannel = 6;
 const int resolution = 8;
 bool smallText = false;
-bool suspendOLEDUpdates = false;
+bool suspendOLEDUpdates = false; // No OLED from Rev6
 
-int l0 = 0;
-int l1 = 0;
-int l2 = 0;
-int l3 = 0;
-int l4 = 0;
-bool singlePress = false;
-bool doublePress = false;
-int multiPress = 0;
 bool longPress = false;
-bool menuMode = false;
-bool menuOpen = false;
-bool ioMenuMode = false;
-bool b1MenuMode = false;
-bool b1MenuAuto = false;
-bool b2MenuMode = false;
-bool l1MenuMode = false;
-bool l2MenuMode = false;
-bool l3MenuMode = false;
-bool b1MenuOn = false;
-bool b1MenuOff = false;
-bool limitsMenuMode = false;
-bool uploadMenuMode = false;
-
-char staticTextToDisplay[22] = "";
-char minBuffer[] = "-25.00";
-char maxBuffer[] = "-25.00";
 
 bool b1Healthy = 1;
 bool b2Healthy = 1;
@@ -157,8 +129,10 @@ int l1ForcedOn = 0;
 int l2ForcedOn = 0;
 int l3ForcedOff = 0;
 
+char minBuffer[] = "-25.00";
+char maxBuffer[] = "-25.00";
+
 int batchEvent = 0;
-int OLEDEvent = 0;
 int connectedToBlynk = 0;
 extern bool appState;
 
@@ -171,8 +145,6 @@ int minutes = 0;
 int hours = 0;
 
 WebServer server(80);
-
-Adafruit_SSD1306 display = Adafruit_SSD1306(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
 ADC128D818 adc(0x1D);
 
@@ -216,31 +188,6 @@ void gpioSetup()
   pinMode(b1EnPin, OUTPUT);
 }
 
-// this function will be called when the button was pressed 1 time only.
-void singleClick()
-{
-  Serial.println("singleClick() detected.");
-  singlePress = true;
-  menuNavigator();
-} // singleClick
-
-// this function will be called when the button was pressed 2 times in a short timeframe.
-void doubleClick()
-{
-  Serial.println("doubleClick() detected.");
-  doublePress = true;
-  menuNavigator();
-} // doubleClick
-
-// this function will be called when the button was pressed multiple times in a short timeframe.
-void multiClick()
-{
-  Serial.print("multiClick(");
-  Serial.print(button.getNumberClicks());
-  Serial.println(") detected.");
-  menuNavigator();
-} // multiClick
-
 // this function will be called when the button was held down for 1 second or more.
 void pressStart()
 {
@@ -257,26 +204,6 @@ void pressStop()
   longPress = true;
   menuNavigator();
 } // pressStop()
-
-void staticText(char *line1, char *line2, char *line3 = "", char *line4 = "")
-{
-  display.clearDisplay();
-  if (!smallText)
-  {
-    display.setTextSize(2);
-  }
-  else
-  {
-    display.setTextSize(1);
-  }
-  display.setTextColor(SSD1306_WHITE);
-  display.setCursor(00, 0);
-  display.println(F(line1));
-  display.println(F(line2));
-  display.println(F(line3));
-  display.println(F(line4));
-  display.display();
-}
 
 void timeKeeper()
 {
@@ -330,71 +257,22 @@ void timeKeeper()
   }
   digitalWrite(sysLED, sysLEDState);
   sysLEDState = !sysLEDState;
-}
 
-void OLEDUpdater()
-{
-  if (!suspendOLEDUpdates)
+  // check if audio warning needed
+  // play warning buzzer tones
+  if (warning)
   {
-    if (OLEDEvent == 0)
+    if (buzzerOn)
     {
-      dtostrf(systemTemperature, 3, 2, staticTextToDisplay);
-      staticText("Temp (C):", staticTextToDisplay);
-      OLEDEvent++;
+      ledcWriteTone(0,800);
+      delay(1000);
+      buzzer = false;
     }
-    else if (OLEDEvent == 1)
+    else
     {
-      dtostrf(battery1Voltage, 3, 2, staticTextToDisplay);
-      staticText("B1 (V):", staticTextToDisplay);
-      OLEDEvent++;
-    }
-    else if (OLEDEvent == 2)
-    {
-      dtostrf(battery2Voltage, 3, 2, staticTextToDisplay);
-      staticText("B2 (V):", staticTextToDisplay);
-      OLEDEvent++;
-    }
-    else if (OLEDEvent == 3)
-    {
-      dtostrf(battery1Current, 3, 2, staticTextToDisplay);
-      staticText("B1 (A):", staticTextToDisplay);
-      OLEDEvent++;
-    }
-    else if (OLEDEvent == 4)
-    {
-      dtostrf(battery2Current, 3, 2, staticTextToDisplay);
-      staticText("B2 (A):", staticTextToDisplay);
-      OLEDEvent++;
-    }
-    else if (OLEDEvent == 5)
-    {
-      char SingleInt[21] = "00000000";
-      char uptime[21] = "";
-      char systemV[19] = "";
-      char systemVText[19] = "";
-      smallText = true;
-      //memset(uptime,0,sizeof(uptime)); // ensure it's empty, probably redundant
-      strcat(uptime, "Uptime: ");
-      itoa(days, SingleInt, 10);
-      strcat(uptime, SingleInt);
-      strcat(uptime, "d");
-      itoa(hours, SingleInt, 10);
-      strcat(uptime, SingleInt);
-      strcat(uptime, "h");
-      itoa(minutes, SingleInt, 10);
-      strcat(uptime, SingleInt);
-      strcat(uptime, "m");
-      itoa(seconds, SingleInt, 10);
-      strcat(uptime, SingleInt);
-      strcat(uptime, "s");
-
-      strcat(systemV, "Sys Voltage:");
-      dtostrf(systemVoltage, 6, 2, systemVText);
-      strcat(systemV, systemVText);
-
-      staticText("DEBUG:", uptime, systemV);
-      smallText = false;
-      OLEDEvent = 0;
+      ledcWriteTone(0,2800); 
+      delay(1000);
+      buzzer = true;
     }
   }
 }
@@ -465,6 +343,7 @@ void adjustCurrentFlow()
     {
       Blynk.notify("ISOLATOR: CURRENT HIGH!!!");
       notificationAllowed = false;
+      warning = true;
     }
   }
   //pwmControl(b1PWMChannel, battery1PWMVal, "B1 CURRENT LIMITING PWM"); // disconnect
@@ -521,6 +400,7 @@ void adjustCurrentFlow()
     {
       Blynk.notify("ISOLATOR: CURRENT HIGH!!!");
       notificationAllowed = false;
+      warning = true;
     }
   }
   pwmControl(b2PWMChannel, battery2PWMVal, "B2 CURRENT LIMITING PWM"); // disconnect
@@ -549,6 +429,7 @@ void adjustFan()
     {
       Blynk.notify("ISOLATOR: PCB TEMPERATURE HIGH!!!");
       notificationAllowed = false;
+      warning = true;
     }
     if (fanPWMVal < maxPWMVal)
     {
@@ -717,6 +598,7 @@ void ioControl()
       {
         Blynk.notify("ISOLATOR: B1 DISCONNECTED?");
         notificationAllowed = false;
+        warning = true;
       }
     }
     else if (carStartingTimer == 0)
@@ -777,6 +659,7 @@ void ioControl()
     {
       Blynk.notify("ISOLATOR: B2 FLAT, TAKE ACTION!!!");
       notificationAllowed = false;
+      warning = true;
     }
     b2Healthy = 0;
     // B1 control
@@ -1098,614 +981,16 @@ void startWifi()
 
 void menuNavigator()
 {
-  suspendOLEDUpdates = true; // only display the menu on the OLED
-  if (menuDebug)
-  {
-    Serial.print("l0: ");
-    Serial.println(l0);
-    Serial.print("l1: ");
-    Serial.println(l1);
-    Serial.print("l2: ");
-    Serial.println(l2);
-    Serial.print("l3: ");
-    Serial.println(l3);
-    Serial.print("l4: ");
-    Serial.println(l4);
-  }
-
-  // l0 modes
-  if ((singlePress && l0 == 0) || (singlePress && l1 == 10))
-  {
-    if (menuDebug)
-    {
-      Serial.println("entered SETTINGS MENU");
-    }
-    staticText("SETTINGS", "MENU");
-    singlePress = false;
-    l0 = 1;
-    l1 = 0;
-    l2 = 0;
-    l3 = 0;
-  }
-
-  // l1 modes
-  if (doublePress && l0 == 1 && l1 == 0) //set menuMode back to 0 when exiting menu
-  {
-    if (menuDebug)
-    {
-      Serial.println("IO MODE");
-    }
-    doublePress = false;
-    singlePress = false;
-    staticText("IO", "MODE");
-    l1 = 1;
-  }
-  if (singlePress && l1 == 1 && l2 == 0)
-  {
-    if (menuDebug)
-    {
-      Serial.println("LIMITS MODE");
-    }
-    singlePress = false;
-    staticText("LIMITS", "MODE");
-    l1 = 2;
-  }
-  if (singlePress && l1 == 2 && l2 == 0)
-  {
-    if (menuDebug)
-    {
-      Serial.println("WIFI .BIN UPLOAD");
-    }
-    singlePress = false;
-    staticText("WIFI .BIN", "UPLOAD");
-    l1 = 3;
-  }
-
-  if (longPress && l1 == 3 && l2 == 0)
-  {
-    if (menuDebug)
-    {
-      Serial.println("BACK");
-    }
-    longPress = false;
-    singlePress = true;
-    staticText("BACK", "");
-    l1 = 10;
-    l2 = 0;
-  }
-
-  // B1 modes
-  if (doublePress && l1 == 1 && l2 == 0 && l3 == 0)
-  {
-    if (menuDebug)
-    {
-      Serial.println("B1 MODE");
-    }
-    doublePress = false;
-    staticText("B1", "MODE");
-    l2 = 1;
-    l3 = 0;
-  }
-  if (doublePress && l1 == 1 && l2 == 1 && l3 == 0)
-  {
-    if (menuDebug)
-    {
-      Serial.println("B1 AUTO");
-    }
-    doublePress = false;
-    staticText("B1", "AUTO");
-    l3 = 1;
-  }
-  if (doublePress && l1 == 1 && l2 == 1 && l3 == 1)
-  {
-    if (menuDebug)
-    {
-      Serial.println("B1 AUTO SELECTED");
-    }
-    doublePress = false;
-    staticText("AUTO", "SELECTED");
-    l1 = 10;
-
-    // do stuff here to put B1 in auto mode
-    // must long click to go back
-  }
-  if (singlePress && l1 == 1 && l2 == 1 && l3 == 1)
-  {
-    if (menuDebug)
-    {
-      Serial.println("B1 ON");
-    }
-    singlePress = false;
-    staticText("B1", "ON");
-    l3 = 2;
-  }
-  if (doublePress && l1 == 1 && l2 == 1 && l3 == 2)
-  {
-    if (menuDebug)
-    {
-      Serial.println("B1 ON SELECTED");
-    }
-    doublePress = false;
-    staticText("ON", "SELECTED");
-    l1 = 10;
-
-    // do stuff here to put B1 in on mode
-    // must long click to go back
-  }
-  if (singlePress && l1 == 1 && l2 == 1 && l3 == 2)
-  {
-    if (menuDebug)
-    {
-      Serial.println("B1 OFF");
-    }
-    singlePress = false;
-    staticText("B1", "OFF");
-    l3 = 3;
-  }
-  if (doublePress && l1 == 1 && l2 == 1 && l3 == 3)
-  {
-    if (menuDebug)
-    {
-      Serial.println("B1 OFF SELECTED");
-    }
-    doublePress = false;
-    staticText("OFF", "SELECTED");
-
-    // do stuff here to put B1 in off mode
-    // must long click to go back
-  }
-  if (longPress && l2 == 1 && l3 == 3)
-  {
-    if (menuDebug)
-    {
-      Serial.println("BACK");
-    }
-    singlePress = true;
-    longPress = false;
-    staticText("BACK", "");
-    l1 = 10;
-  }
-
-  // B2 modes
-  if (singlePress && l1 == 1 && l2 == 1 && l3 == 0)
-  {
-    if (menuDebug)
-    {
-      Serial.println("B2 MODE");
-    }
-    singlePress = false;
-    staticText("B2", "MODE");
-    l2 = 2;
-  }
-  if (doublePress && l1 == 1 && l2 == 2 && l3 == 0)
-  {
-    if (menuDebug)
-    {
-      Serial.println("B2 AUTO");
-    }
-    doublePress = false;
-    staticText("B2", "AUTO");
-    l3 = 1;
-  }
-  if (doublePress && l1 == 1 && l2 == 2 && l3 == 1)
-  {
-    if (menuDebug)
-    {
-      Serial.println("B2 AUTO SELECTED");
-    }
-    doublePress = false;
-    staticText("AUTO", "SELECTED");
-    l1 = 10;
-
-    // do stuff here to put B2 in auto mode
-    // must long click to go back
-  }
-  if (singlePress && l1 == 1 && l2 == 2 && l3 == 1)
-  {
-    if (menuDebug)
-    {
-      Serial.println("B2 ON");
-    }
-    singlePress = false;
-    staticText("B2", "ON");
-    l3 = 2;
-  }
-  if (doublePress && l1 == 1 && l2 == 2 && l3 == 2)
-  {
-    if (menuDebug)
-    {
-      Serial.println("B2 ON SELECTED");
-    }
-    singlePress = false;
-    staticText("ON", "SELECTED");
-    l1 = 10;
-
-    // do stuff here to put B2 in on mode
-    // must long click to go back
-  }
-  if (singlePress && l1 == 1 && l2 == 2 && l3 == 2)
-  {
-    if (menuDebug)
-    {
-      Serial.println("B2 OFF");
-    }
-    singlePress = false;
-    staticText("B2", "OFF");
-    l3 = 3;
-  }
-  if (doublePress && l1 == 1 && l2 == 2 && l3 == 2)
-  {
-    if (menuDebug)
-    {
-      Serial.println("B2 OFF SELECTED");
-    }
-    doublePress = false;
-    staticText("OFF", "SELECTED");
-
-    // do stuff here to put B2 in off mode
-    // must long click to go back
-  }
-  if (longPress && l1 == 1 && l2 == 2 && l3 == 3)
-  {
-    if (menuDebug)
-    {
-      Serial.println("BACK");
-    }
-    singlePress = true;
-    longPress = false;
-    staticText("BACK", "");
-    l1 = 10;
-  }
-
-  // L1 modes
-  if (singlePress && l1 == 1 && l2 == 2 && l3 == 0)
-  {
-    if (menuDebug)
-    {
-      Serial.println("L1 MODE");
-    }
-    singlePress = false;
-    staticText("L1", "MODE");
-    l2 = 3;
-  }
-  if (doublePress && l1 == 1 && l2 == 3 && l3 == 0)
-  {
-    if (menuDebug)
-    {
-      Serial.println("L1 AUTO");
-    }
-    doublePress = false;
-    staticText("L1", "AUTO");
-    l3 = 1;
-  }
-  if (doublePress && l1 == 1 && l2 == 3 && l3 == 1)
-  {
-    if (menuDebug)
-    {
-      Serial.println("L1 AUTO SELECTED");
-    }
-    doublePress = false;
-    staticText("AUTO", "SELECTED");
-    l1 = 10;
-
-    // do stuff here to put L1 in auto mode
-    // must long click to go back
-  }
-  if (singlePress && l1 == 1 && l2 == 3 && l3 == 1)
-  {
-    if (menuDebug)
-    {
-      Serial.println("L1 ON");
-    }
-    singlePress = false;
-    staticText("L1", "ON");
-    l3 = 2;
-  }
-  if (doublePress && l1 == 1 && l2 == 3 && l3 == 2)
-  {
-    if (menuDebug)
-    {
-      Serial.println("L1 ON SELECTED");
-    }
-    doublePress = false;
-    staticText("ON", "SELECTED");
-    l1 = 10;
-
-    // do stuff here to put L1 in on mode
-    // must long click to go back
-  }
-  if (singlePress && l1 == 1 && l2 == 3 && l3 == 2)
-  {
-    if (menuDebug)
-    {
-      Serial.println("L1 OFF");
-    }
-    singlePress = false;
-    staticText("L1", "OFF");
-    l3 = 3;
-  }
-  if (doublePress && l1 == 1 && l2 == 3 && l3 == 3)
-  {
-    if (menuDebug)
-    {
-      Serial.println("L1 OFF SELECTED");
-    }
-    doublePress = false;
-    staticText("OFF", "SELECTED");
-
-    // do stuff here to put L1 in off mode
-    // must long click to go back
-  }
-  if (longPress && l1 == 1 && l2 == 3 && l3 == 3)
-  {
-    if (menuDebug)
-    {
-      Serial.println("BACK");
-    }
-    singlePress = true;
-    longPress = false;
-    staticText("BACK", "");
-    l1 = 10;
-  }
-
-  // l2 modes
-  if (singlePress && l1 == 1 && l2 == 3 && l3 == 0)
-  {
-    if (menuDebug)
-    {
-      Serial.println("L2 MODE");
-    }
-    singlePress = false;
-    staticText("L2", "MODE");
-    l2 = 4;
-  }
-  if (doublePress && l1 == 1 && l2 == 4 && l3 == 0)
-  {
-    if (menuDebug)
-    {
-      Serial.println("L2 AUTO");
-    }
-    doublePress = false;
-    staticText("L2", "AUTO");
-    l3 = 1;
-  }
-  if (doublePress && l1 == 1 && l2 == 4 && l3 == 1)
-  {
-    if (menuDebug)
-    {
-      Serial.println("L2 AUTO SELECTED");
-    }
-    doublePress = false;
-    staticText("AUTO", "SELECTED");
-    l1 = 10;
-
-    // do stuff here to put L1 in auto mode
-    // must long click to go back
-  }
-  if (singlePress && l1 == 1 && l2 == 4 && l3 == 1)
-  {
-    if (menuDebug)
-    {
-      Serial.println("L2 ON");
-    }
-    singlePress = false;
-    staticText("L2", "ON");
-    l3 = 2;
-  }
-  if (doublePress && l1 == 1 && l2 == 4 && l3 == 2)
-  {
-    if (menuDebug)
-    {
-      Serial.println("L2 ON SELECTED");
-    }
-    doublePress = false;
-    staticText("ON", "SELECTED");
-    l1 = 10;
-
-    // do stuff here to put L2 in on mode
-    // must long click to go back
-  }
-  if (singlePress && l1 == 1 && l2 == 4 && l3 == 2)
-  {
-    if (menuDebug)
-    {
-      Serial.println("L2 OFF");
-    }
-    singlePress = false;
-    staticText("L2", "OFF");
-    l3 = 3;
-  }
-  if (doublePress && l1 == 1 && l2 == 4 && l3 == 3)
-  {
-    if (menuDebug)
-    {
-      Serial.println("L2 OFF SELECTED");
-    }
-    doublePress = false;
-    staticText("OFF", "SELECTED");
-
-    // do stuff here to put L2 in off mode
-    // must long click to go back
-  }
-  if (longPress && l1 == 1 && l2 == 4 && l3 == 3)
-  {
-    if (menuDebug)
-    {
-      Serial.println("BACK");
-    }
-    singlePress = true;
-    longPress = false;
-    staticText("BACK", "");
-    l1 = 10;
-  }
-
-  // l3 modes
-  if (singlePress && l1 == 1 && l2 == 4 && l3 == 0)
-  {
-    if (menuDebug)
-    {
-      Serial.println("L3 MODE");
-    }
-    singlePress = false;
-    staticText("L3", "MODE");
-    l2 = 5;
-  }
-  if (doublePress && l1 == 1 && l2 == 5 && l3 == 0)
-  {
-    if (menuDebug)
-    {
-      Serial.println("L3 AUTO");
-    }
-    doublePress = false;
-    staticText("L3", "AUTO");
-    l3 = 1;
-  }
-  if (doublePress && l1 == 1 && l2 == 5 && l3 == 1)
-  {
-    if (menuDebug)
-    {
-      Serial.println("L3 AUTO SELECTED");
-    }
-    doublePress = false;
-    staticText("AUTO", "SELECTED");
-    l1 = 10;
-
-    // do stuff here to put L3 in auto mode
-    // must long click to go back
-  }
-  if (singlePress && l1 == 1 && l2 == 5 && l3 == 1)
-  {
-    if (menuDebug)
-    {
-      Serial.println("L3 ON");
-    }
-    singlePress = false;
-    staticText("L3", "ON");
-    l3 = 2;
-  }
-  if (doublePress && l1 == 1 && l2 == 5 && l3 == 2)
-  {
-    if (menuDebug)
-    {
-      Serial.println("L3 ON SELECTED");
-    }
-    doublePress = false;
-    staticText("ON", "SELECTED");
-    l1 = 10;
-
-    // do stuff here to put L2 in on mode
-    // must long click to go back
-  }
-  if (singlePress && l1 == 1 && l2 == 5 && l3 == 2)
-  {
-    if (menuDebug)
-    {
-      Serial.println("L3 OFF");
-    }
-    singlePress = false;
-    staticText("L3", "OFF");
-    l3 = 3;
-  }
-  if (doublePress && l1 == 1 && l2 == 5 && l3 == 3)
-  {
-    if (menuDebug)
-    {
-      Serial.println("L3 OFF SELECTED");
-    }
-    doublePress = false;
-    staticText("OFF", "SELECTED");
-
-    // do stuff here to put L2 in off mode
-    // must long click to go back
-  }
-  if (longPress && l1 == 1 && l2 == 5 && l3 == 3)
-  {
-    if (menuDebug)
-    {
-      Serial.println("BACK");
-    }
-    singlePress = true;
-    longPress = false;
-    staticText("BACK", "");
-    l1 = 10;
-  }
-
-  if (doublePress && l1 == 2 && l2 == 0)
-  {
-    if (menuDebug)
-    {
-      Serial.println("CHANGE LIMITS");
-    }
-    doublePress = false;
-    staticText("CHANGE", "LIMITS");
-    l1 = 2;
-    l2 = 6;
-  }
-  if (doublePress && l1 == 2 && l2 == 6)
-  {
-    if (menuDebug)
-    {
-      Serial.println("NYI");
-    }
-    doublePress = false;
-    singlePress = true;
-    staticText("NOT YET IM", "PLEMENTED");
-    l1 = 10;
-    // must long click to go back
-  }
-  if (longPress && l1 == 2 && l2 == 6)
-  {
-    if (menuDebug)
-    {
-      Serial.println("BACK");
-    }
-    longPress = false;
-    singlePress = true;
-    staticText("BACK", "");
-    l1 = 10;
-  }
-
-  if (doublePress && l1 == 4)
+  if (longPress)
   {
     if (menuDebug)
     {
       Serial.println("UPLOAD FIRMWARE");
     }
-    doublePress = false;
-    staticText("UPLOAD", "FIRMWARE");
-    smallText = true;
-    staticText("UPLOAD MODE:", "http://192.168.4.1", "SSID:isolator", "PWD:isolator");
-    startWifi();
-    smallText = false;
-  }
-  if (longPress && l1 == 4)
-  {
-
-    if (menuDebug)
-    {
-      Serial.println("BACK");
-    }
-    WiFi.mode(WIFI_OFF);
     longPress = false;
-    singlePress = true;
-    staticText("BACK", "");
-    l1 = 10;
-    l2 = 0;
-    l3 = 0;
-  }
-
-  if (menuDebug)
-  {
-    Serial.print("l0: ");
-    Serial.println(l0);
-    Serial.print("l1: ");
-    Serial.println(l1);
-    Serial.print("l2: ");
-    Serial.println(l2);
-    Serial.print("l3: ");
-    Serial.println(l3);
-    Serial.print("l4: ");
-    Serial.println(l4);
+    Serial.println("Firmware upload via WiFi: ACTIVATED");
+    Serial.println("Upload server at: http://192.168.4.1 via WiFi: SSID:isolator PWD:isolator");
+    startWifi();
   }
 }
 
@@ -1805,7 +1090,8 @@ BLYNK_WRITE(V12) // L3 Overide (lights?)
   }
 }
 
-void updateConnectionDetails()
+// make the below work with the buzzer instead?
+/* void updateConnectionDetails()
 {
   if (appState)
   {
@@ -1822,18 +1108,13 @@ void updateConnectionDetails()
       }
     }
   }
-}
+} */
 
 void setup()
 {
   currentMillis = millis();
-  display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS);
-  display.setRotation(2);
-  display.clearDisplay();
 
   digitalWrite(sysLED, 1); // turn LED on to show some sign of life
-
-  staticText("ISOLATOR", sw_version);
 
   Serial.begin(115200);
   Serial.print("software version: ");
@@ -1844,25 +1125,24 @@ void setup()
   gpioSetup(); // setup the GPIOs and directions
   PWMSetup();  // setup the PWM current limiting
 
+  // ADC stuff
+  Wire.begin();
   adc.begin();
+
+  // Buzzer stuff
+  ledcSetup(0,1E5,12);
+  ledcAttachPin(buzzerPin,0);
 
   // Setup a function to be called every x seconds
   timer0.setInterval(50L, readFromADC);
   timer0.setInterval(1000L, timeKeeper);
-  timer0.setInterval(2000L, OLEDUpdater);
   timer0.setInterval(2500L, sendDataOverBLE);
 
   attachInterrupt(digitalPinToInterrupt(buttonPin), checkTicks, CHANGE);
 
-  // link the xxxclick functions to be called on xxxclick event.
-  button.attachClick(singleClick);
-  button.attachDoubleClick(doubleClick);
-  button.attachMultiClick(multiClick);
-
   button.setPressTicks(1000); // that is the time when LongPressStart is called
   button.attachLongPressStart(pressStart);
   button.attachLongPressStop(pressStop);
-
   Blynk.begin(auth);
 }
 
@@ -1872,5 +1152,5 @@ void loop()
   server.handleClient();
   button.tick();
   Blynk.run();
-  updateConnectionDetails();
+  //updateConnectionDetails(); // see comment at function
 }

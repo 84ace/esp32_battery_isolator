@@ -2878,6 +2878,11 @@
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 30f8f37a-6b01-4431-9a8c-7e0b6851654c)
   )
+  (text "Inestigate the INA3221 for voltage and current monitoring"
+    (at 94.615 -6.35 0)
+    (effects (font (size 5.08 5.08)) (justify left bottom))
+    (uuid 314cd1a1-a17c-4697-abb8-1aa6ae478c16)
+  )
   (text "ESP-32 Microcontroller" (at 19.3294 160.782 0)
     (effects (font (size 5.08 5.08) (thickness 1.016) bold) (justify left bottom))
     (uuid 3db7265c-4e2a-4089-9969-8ce4d5fa176d)

@@ -2,7 +2,7 @@
 
 // setup some pinzz
 int buttonPin = 33;
-int sysLedPin = 37;
+int sysLedPin = 23;
 int b1EnPin = 32;
 int b2EnPin = 25;
 int l1EnPin = 14;
@@ -10,6 +10,7 @@ int l2EnPin = 13;
 int l3EnPin = 4;
 int fanPin = 16;
 int fanRpmPin = 17;
+int buzzer = 18;  // buzzer on PCB
 
 // butt stuff ;)
 int buttonState = 0;
@@ -44,6 +45,7 @@ void setup() {
   pinMode(l1EnPin, OUTPUT);
   pinMode(l2EnPin, OUTPUT);
   pinMode(l3EnPin, OUTPUT);
+  pinMode(buzzer, OUTPUT);
 
   // configure FAN PWM functionalitites
   ledcSetup(fanChannel, freq, resolution);
@@ -53,6 +55,10 @@ void setup() {
 
   // attach to the fan RPM interrupt
   attachInterrupt(0, rpm_fan, FALLING);
+
+  // setup the buzzer
+  ledcSetup(0,1E5,12);
+  ledcAttachPin(buzzer,0);
   
   Serial.println("Waiting for input...");
     
@@ -75,6 +81,7 @@ void loop() {
     digitalWrite(l1EnPin, LOW);
     digitalWrite(l2EnPin, LOW);
     digitalWrite(l3EnPin, LOW);
+    ledcWriteTone(0,0);
     Serial.println("All off");
     Serial.flush();
   }
@@ -101,10 +108,11 @@ void loop() {
     }
   }
   else if (state == 10) {
-    digitalWrite(b1EnPin, LOW);
+    pinMode(b1EnPin, INPUT_PULLDOWN);
     Serial.println("B1 off");
   }
   else if (state == 11) {
+    pinMode(b1EnPin, OUTPUT);
     digitalWrite(b1EnPin, HIGH);
     Serial.println("B1 on");
   }
@@ -139,6 +147,12 @@ void loop() {
   else if (state == 51) {
     digitalWrite(l3EnPin, HIGH);
     Serial.println("L3 on");
+  }
+  else if (state == 61) {
+    ledcWriteTone(0,800);
+    delay(1000);
+    ledcWriteTone(0,3000);
+    delay(1000);
   }
 
   // monitor fan RPM
